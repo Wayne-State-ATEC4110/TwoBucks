@@ -9,7 +9,18 @@ public class User {
     private double expenses;
     //Budget
 
+    public User(){
 
+    }
+
+    //constructor used for Profile Creation
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    //constructor used to load saved profile information.
     public User(String firstName, String lastName, String email, double income, double expenses) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -56,5 +67,16 @@ public class User {
 
     public void setExpenses(double expenses) {
         this.expenses = expenses;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", income=" + income +
+                ", expenses=" + expenses +
+                '}';
     }
 }
