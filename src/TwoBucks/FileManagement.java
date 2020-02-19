@@ -2,8 +2,9 @@ package TwoBucks;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 import java.lang.*;
 
 public class FileManagement {
@@ -21,28 +22,17 @@ public class FileManagement {
 
     }
 
-    public void loadFile() throws IOException{
+    public ArrayList<String> loadFile() throws IOException{
 
-        int position;
-        //if file exists, user file loads.
-        FileReader readFile = null;
-        try {
-            readFile = new FileReader("Users.txt");
+        Scanner scan = new Scanner(new File("Users.txt"));
+        ArrayList<String> list = new ArrayList<String>();
+        while (scan.hasNextLine()){
+            list.add(scan.nextLine());
         }
-        catch (FileNotFoundException fe) {
-            System.out.println("File not found!");
-        }
+        scan.close();
 
-        //read file
+        return list;
 
-        String loadString = "";
-
-        while((position = readFile.read())!= -1 ) {
-            //System.out.print((char)position);
-            loadString += (char)position;
-
-        }
-        System.out.println(loadString);
 
     }
 
