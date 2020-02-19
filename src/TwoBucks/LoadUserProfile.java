@@ -4,20 +4,21 @@ import java.util.*;
 
 public class LoadUserProfile {
 
-    public User loadUser(ArrayList<String> users){
-        
+        public User loadUser(ArrayList<String> users){
+        //initialize user class
         User loadUser = new User();
 
+        //initialize string array to check for user name
         String[] check;
 
         //read txt file into array list
-
         Scanner scan = new Scanner(System.in);
+
         //prompt user for first and last name separated by space
         System.out.println("Enter first and last name");
         String input = scan.nextLine();
-        //split string to first and last name
 
+        //split string to first and last name
         String[] fullName = input.split(" ",2);
 
         //search array list for user
@@ -30,6 +31,7 @@ public class LoadUserProfile {
                 break;
             }
 
+            //splits user string into separate pieces to represent User variables. 
             check = users.get(i).split(", ",5);
 
             //if user found load user
