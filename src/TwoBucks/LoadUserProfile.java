@@ -5,14 +5,7 @@ import java.util.*;
 public class LoadUserProfile {
 
     public User loadUser(ArrayList<String> users){
-
-        String firstName;
-        String lastName;
-        //String password;      //may use in future sprint
-        String email;
-        double income;
-        double expenses;
-
+        
         User loadUser = new User();
 
         String[] check;
@@ -34,7 +27,6 @@ public class LoadUserProfile {
             //if user not found
             if(i == users.size()){
                 System.out.println("No profile with name "+ fullName[0]+" "+fullName[1]);
-                //flag = false;
                 break;
             }
 
@@ -51,7 +43,7 @@ public class LoadUserProfile {
             i++;
 
         }
-        
+
         return loadUser;
 
     }
