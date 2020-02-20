@@ -1,5 +1,8 @@
 package TwoBucks;
 
+// Two Bucks
+// By Sawyer Kisha
+
 public class Main
 {
     public static void main(String[] args)

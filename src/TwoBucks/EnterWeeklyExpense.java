@@ -1,9 +1,15 @@
 package TwoBucks;
 
+// Two Bucks
+// US9. Enter Weekly Expense
+// By Sawyer Kisha
+
 import java.util.Scanner;
 
 public class EnterWeeklyExpense
 {
+    //Taken from user class
+    /*
     private double expenses;
 
     public double getExpenses()
@@ -15,6 +21,7 @@ public class EnterWeeklyExpense
     {
         this.expenses = expenses;
     }
+    */
 
     public void setUserExpenses()
     {
@@ -22,6 +29,12 @@ public class EnterWeeklyExpense
         double userExpenses;
         System.out.println("Enter your weekly expenses: ");
         userExpenses = scanner.nextDouble();
+        while(userExpenses < 0)
+        {
+            System.out.println("Invalid: expense must be more than 0 ");
+            System.out.println("Enter your weekly expenses: ");
+            userExpenses = scanner.nextDouble();
+        }
         setExpenses(userExpenses);
     }
 }

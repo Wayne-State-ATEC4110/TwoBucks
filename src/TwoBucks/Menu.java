@@ -1,5 +1,9 @@
 package TwoBucks;
 
+// Two Bucks
+// US1. Main Menu
+// By Sawyer Kisha
+
 import java.util.Scanner;
 
 public class Menu
