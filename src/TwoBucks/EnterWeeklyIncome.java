@@ -7,6 +7,7 @@ package TwoBucks;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.util.*;
 
 public class EnterWeeklyIncome {
 
@@ -14,14 +15,14 @@ public class EnterWeeklyIncome {
 
     public static void enterIncome() {
 
-        float weeklyIncome;
+        double weeklyIncome;
 
         Scanner in = new Scanner(System.in);
 
         System.out.println("What is you weekly income?");
         while (true) {
             try {
-                weeklyIncome = Float.parseFloat(in.nextLine());
+                weeklyIncome = Double.parseDouble(in.nextLine());
                 if (weeklyIncome < 0) {
                     System.out.println("Please enter a value of 0 or higher.");
                 } else {
