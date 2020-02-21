@@ -1,3 +1,5 @@
+//Author: Alex Gonzalez
+
 package TwoBucks;
 
 public class User {

@@ -1,3 +1,5 @@
+//Author: Alex Gonzalez
+
 package TwoBucks;
 
 import java.util.Scanner;

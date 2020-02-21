@@ -1,3 +1,5 @@
+//Author: Alex Gonzalez
+
 package TwoBucks;
 
 import java.util.*;
@@ -31,7 +33,7 @@ public class LoadUserProfile {
                 break;
             }
 
-            //splits user string into separate pieces to represent User variables. 
+            //splits user string into separate pieces to represent User variables.
             check = users.get(i).split(", ",5);
 
             //if user found load user
