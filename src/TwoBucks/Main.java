@@ -10,13 +10,28 @@ public class Main
         Menu menu = new Menu();
         EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
 
-        while (menu.getOption() != 5) {
+        while (menu.getOption() != 5)
+        {
             menu.showOptions();
             menu.selectOption();
 
-            if (menu.getOption() == 2) {
+            //Enter Weekly Income
+            if (menu.getOption() == 1)
+            {
+                //Send to EnterWeeklyIncome
+            }
+            //Enter Weekly Expense
+            if (menu.getOption() == 2)
+            {
                 enterWeeklyExpense.setUserExpenses();
             }
+            //Enter Financial Goals
+            if (menu.getOption() == 3)
+            {
+                //Send to EnterFinancialGoals
+            }
+
+            //Create more paths for future features...
         }
     }
 }
