@@ -4,9 +4,10 @@ DebtCalculator.java
 Author: Mike Shea
  */
 
-// todo input verification, format output
+// todo input verification
 
 import java.util.Scanner;
+
 
 public class DebtCalculator {
 
@@ -16,15 +17,16 @@ public class DebtCalculator {
     private double debtInterestRate;
     private double debtInterestAmount;
     private double debtMonthlyPayment;
+    private double totalInterestPaid;
     private int weeksRemaining;
     private int userSelection;
+    int numberOfPeriods = 12;
     private boolean firstPass = true;
 
     public void DebtCalculatorMain() {  // Interface for module
 
-        // Introduction message
         if(firstPass){
-            System.out.println("Welcome to the Two Bucks Debt Calculator.");
+            DisplayIntroductionMessage();
             firstPass = false;
         }
 
@@ -59,11 +61,17 @@ public class DebtCalculator {
             case 4:
                 // Return to the Two Bucks Main Menu
                 break;
-                //todo: invalid input
+            //todo: invalid input
             default:
                 // Invalid input - Try again
                 break;
         }
+    }
+
+    // Display introduction message
+    private void DisplayIntroductionMessage(){
+        System.out.println("=========================================");
+        System.out.println("Welcome to the Two Bucks Debt Calculator.");
     }
 
     // Display debt calculator menu
@@ -83,9 +91,9 @@ public class DebtCalculator {
 
     // Display data already entered by the user
     private void DisplayDebt() {
-        System.out.println("Principal debt: $" + debtPrincipal);
-        System.out.println("Interest Rate: " + debtInterestRate + "%");
-        System.out.println("Debt Interest Amount: $" + debtInterestAmount);
+        System.out.println("Principal debt: $" + String.format("%.2f", debtPrincipal));
+        System.out.println("Monthly interest Rate: " + String.format("%.2f", debtInterestRate) + "%");
+        System.out.println("Monthly interest paid: $" + String.format("%.2f", debtInterestAmount));
     }
 
     // Receive the debt principle from the user
@@ -102,18 +110,18 @@ public class DebtCalculator {
 
     // Receive the debt interest rate from the user
     private void ReceiveDebtInterestRate() {
-        System.out.print("Enter the interest rate of the debt as a percentage:");
-        debtInterestRate = scan.nextInt();
+        System.out.print("Enter the annual percentage rate (APR) of the debt: ");
 
         // Prevent division by zero
-        if(debtInterestRate != 0){
-            debtInterestRate /= 100;
+        if(numberOfPeriods !=0) {
+            debtInterestRate = scan.nextDouble() / numberOfPeriods;
         }
     }
 
     // Calculate the debt interest amount
     private void CalculateDebtInterestAmount() {
-        debtInterestAmount =  (debtPrincipal * debtInterestRate);
+
+        debtInterestAmount =  (debtPrincipal * (debtInterestRate / 100));
     }
 
     // Calculate the weeks required to pay off the debt
@@ -130,8 +138,9 @@ public class DebtCalculator {
                 // Calculate new interest amount
                 this.CalculateDebtInterestAmount();
 
-                // Add interest to account
+                // Add interest to account and running total
                 tempDebt += debtInterestAmount;
+                totalInterestPaid += debtInterestAmount;
 
                 weeksRemaining++;
 
@@ -142,7 +151,9 @@ public class DebtCalculator {
 
     // Display the weeks remaining until the debt is paid off
     private void DisplayRemainingWeeks(){
-        System.out.println("It will take " + weeksRemaining + " weeks to pay off the debt at $" + debtMonthlyPayment + " per month.");
+        System.out.println("It will take " + weeksRemaining + " weeks to pay off the debt at $" + String.format("%.2f", debtMonthlyPayment) + " per month.");
+        System.out.println("Total interest paid: $" + String.format("%.2f", totalInterestPaid));
+        System.out.println("Total amount paid: $" + String.format("%.2f", debtPrincipal + totalInterestPaid));
     }
 
 }
