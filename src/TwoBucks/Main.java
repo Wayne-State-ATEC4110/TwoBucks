@@ -18,7 +18,7 @@ public class Main
             //Enter Weekly Income
             if (menu.getOption() == 1)
             {
-                //Send to EnterWeeklyIncome
+                enterWeeklyIncome.enterIncome();
             }
             //Enter Weekly Expense
             if (menu.getOption() == 2)
@@ -28,7 +28,7 @@ public class Main
             //Enter Financial Goals
             if (menu.getOption() == 3)
             {
-                //Send to EnterFinancialGoals
+                enterFinancialGoals.enterGoals()
             }
 
             //Create more paths for future features...

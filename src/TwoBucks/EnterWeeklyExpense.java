@@ -8,21 +8,6 @@ import java.util.Scanner;
 
 public class EnterWeeklyExpense
 {
-    //Taken from user class
-    /*
-    private double expenses;
-
-    public double getExpenses()
-    {
-        return this.expenses;
-    }
-
-    public void setExpenses(double expenses)
-    {
-        this.expenses = expenses;
-    }
-    */
-
     public void setUserExpenses()
     {
         //Inputting the weekly expense
@@ -38,6 +23,8 @@ public class EnterWeeklyExpense
             System.out.println("Enter your weekly expenses: ");
             userExpenses = scanner.nextDouble();
         }
+        //Sends to user
         setExpenses(userExpenses);
+        System.out.println("Weekly expense of $" + userExpenses + " has been saved to your user profile!");
     }
 }
