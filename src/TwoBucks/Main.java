@@ -17,11 +17,8 @@ public class Main
         file.saveFile(create.createUser().toString());
 
         //load user profile
-        //LoadUserProfile load = new LoadUserProfile();
-        //User currentUser = load.loadUser();
-
-        //for testing
-        User currentUser = new User("Bob","Marley","bob@rasta.com");
+        LoadUserProfile load = new LoadUserProfile();
+        User currentUser = load.loadUser(file.loadFile());
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
