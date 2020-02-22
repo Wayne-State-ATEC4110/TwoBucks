@@ -18,7 +18,7 @@ public class Menu
         options[0] = "1. Weekly Income";
         options[1] = "2. Weekly Expense";
         options[2] = "3. Financial Goals";
-        options[3] = "4. Option 4";
+        options[3] = "4. Debt Calculator";
         options[4] = "5. Exit";
     }
 
