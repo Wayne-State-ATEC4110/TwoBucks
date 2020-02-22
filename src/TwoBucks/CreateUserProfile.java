@@ -2,13 +2,14 @@
 
 package TwoBucks;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CreateUserProfile {
 
 
     //method to create user profile
-    public User createUser() {
+    public User createUser() throws IOException {
         String firstName;
         String lastName;
         //String password;      //may use in future sprint

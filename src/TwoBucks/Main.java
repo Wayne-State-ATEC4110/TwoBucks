@@ -3,12 +3,28 @@ package TwoBucks;
 // Two Bucks
 // By Sawyer Kisha
 
+import java.io.IOException;
+
 public class Main
 {
-    public static void main(String[] args)
+    public static void main(String[] args)throws IOException
     {
+        //save user
+        FileManagement file = new FileManagement();
+
+        //create user profile
+        CreateUserProfile create = new CreateUserProfile();
+        file.saveFile(create.createUser().toString());
+
+        //load user profile
+        //LoadUserProfile load = new LoadUserProfile();
+        //User currentUser = load.loadUser();
+
+        //for testing
+        User currentUser = new User("Bob","Marley","bob@rasta.com");
+
         Menu menu = new Menu();
-        EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
+        DebtCalculator calculateDebt = new DebtCalculator();
 
         while (menu.getOption() != 5)
         {
@@ -18,17 +34,29 @@ public class Main
             //Enter Weekly Income
             if (menu.getOption() == 1)
             {
-                enterWeeklyIncome.enterIncome();
+                EnterWeeklyIncome income = new EnterWeeklyIncome();
+                currentUser.setIncome(income.enterIncome());
             }
             //Enter Weekly Expense
             if (menu.getOption() == 2)
             {
-                enterWeeklyExpense.setUserExpenses();
+                EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
+                currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
             }
             //Enter Financial Goals
             if (menu.getOption() == 3)
             {
-                enterFinancialGoals.enterGoals()
+                EnterFinancialGoals goals = new EnterFinancialGoals();
+                currentUser.setSpendAmount(goals.enterSpendGoal());
+                currentUser.setSaveAmount(goals.enterSaveGoal());
+            }
+            //Debt Calculator
+            if (menu.getOption() == 4)
+            {
+                calculateDebt.DebtCalculatorMain();
+            }
+            if (menu.getOption()== 5){
+                file.saveFile(currentUser.toString());
             }
 
             //Create more paths for future features...

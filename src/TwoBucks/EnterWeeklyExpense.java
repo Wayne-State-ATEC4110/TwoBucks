@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class EnterWeeklyExpense
 {
-    public void setUserExpenses()
+    public double setUserExpenses()
     {
         //Inputting the weekly expense
         Scanner scanner = new Scanner(System.in);
@@ -24,7 +24,8 @@ public class EnterWeeklyExpense
             userExpenses = scanner.nextDouble();
         }
         //Sends to user
-        setExpenses(userExpenses);
+        //setExpenses(userExpenses);
         System.out.println("Weekly expense of $" + userExpenses + " has been saved to your user profile!");
+        return userExpenses;
     }
 }

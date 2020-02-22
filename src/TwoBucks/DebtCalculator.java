@@ -8,6 +8,7 @@ simply initialize a DebtCalculator object (no args)
 and call the DebtCalculatorMain() method on it.
 
  */
+package TwoBucks;
 
 import java.util.Scanner;
 
