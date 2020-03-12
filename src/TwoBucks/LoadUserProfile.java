@@ -1,4 +1,17 @@
-//Author: Alex Gonzalez
+/**
+ * <h1>LoadUserProfile</h1>
+ * The LoadUserProfile class is used in the main.
+ * The user is asekd for their name and email adress.
+ * They systme creates a user profile for them based
+ * on their inputs, which will allow them to log in.
+ *
+ * <p>
+ *
+ *
+ * @author  Alex Gonzalez
+ * @version 1.0
+ * @since   03-04-2020
+ */
 
 package TwoBucks;
 
@@ -6,7 +19,16 @@ import java.util.*;
 
 public class LoadUserProfile {
 
-        public User loadUser(ArrayList<String> users){
+
+    /**
+     * The loadUser method takes an ArrayLis of strings which
+     * in this program will come from the loadUser method in
+     * the FileManagement class
+     *
+     * @param ArrayList  users
+     * @return User loadUser
+     */
+    public User loadUser(ArrayList<String> users){
         //initialize user class
         User loadUser = new User();
 

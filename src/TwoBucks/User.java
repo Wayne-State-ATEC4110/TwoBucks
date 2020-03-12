@@ -27,6 +27,18 @@ public class User {
     private double spendAmount;
     //Budget
 
+    //Score
+
+    //Rank
+
+    //Week Class
+
+    //previous week
+
+    //Curent week
+
+    //Initial week
+
     /**
      * Constructor used when no parameters are passed
      * @param Nothing

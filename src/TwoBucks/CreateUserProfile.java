@@ -1,4 +1,17 @@
-//Author: Alex Gonzalez
+/**
+ * <h1>CreateUserProfile</h1>
+ * The LoadUserProfile class is used in the main.
+ * The user is asekd for their name and email adress.
+ * They systme creates a user profile for them based
+ * on their inputs, which will allow them to log in.
+ *
+ * <p>
+ *
+ *
+ * @author  Alex Gonzalez
+ * @version 1.0
+ * @since   03-04-2020
+ */
 
 package TwoBucks;
 
@@ -9,6 +22,13 @@ public class CreateUserProfile {
 
 
     //method to create user profile
+
+    /**
+     *
+     *
+     * @return User
+     * @throws IOException
+     */
     public User createUser() throws IOException {
         String firstName;
         String lastName;
