@@ -27,7 +27,7 @@ public class FileManagement {
 
 
 
-    public void saveFile(String saveUser) throws IOException{
+    public void saveFile1(String saveUser) throws IOException{
 
         //create writer
         FileWriter writer = new FileWriter("Users.txt");
@@ -42,7 +42,13 @@ public class FileManagement {
     }
 
     //new save file method
-    public
+    public saveFile(ArrayList<String> list) throws IOExcption{
+        //run loop to save each individual User in ArrayList
+        for(int i = 0; i < list.size()){
+            System.out.println(list[i]);
+        }
+
+    }
 
 
 
