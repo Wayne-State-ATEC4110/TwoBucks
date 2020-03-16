@@ -23,39 +23,66 @@ import java.lang.*;
 
 public class FileManagement {
 
-    //save file method
 
 
+    public void saveFile(User saveUser) throws IOException{
 
-    public void saveFile1(String saveUser) throws IOException{
+        //load existing Users
+        ArrayList<String> list = new ArrayList<>();
+        list = loadFile();
+
+        //check for duplicate email in file
+        //if duplicate email, update that line
+        String[] check;
+
+        //search array list for user
+        int count = 0;
+        while(true){
+
+            //if user not found
+            if(count == list.size()){
+                //add user to list
+                list.add(saveUser.toString());
+                break;
+
+            }
+
+            //splits user string into separate pieces to represent User variables.
+            check = list.get(count).split(", ",5);
+
+            //if user found load user
+            if(check[2].equals(saveUser.getEmail())){
+                // Update user info
+                list.set(count,saveUser.toString());
+                break;
+
+            }
+
+
+            count++;
+
+        }
+
 
         //create writer
         FileWriter writer = new FileWriter("Users.txt");
 
-        //
-        for (int i = 0; i < saveUser.length(); i++){
-            writer.write(saveUser.charAt(i));
+        //writes to Users.txt
+        for(int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(i).length(); j++) {
+                writer.write(list.get(i).charAt(j));
+            }
+            writer.write("\n");
         }
         //close writer
         writer.close();
-
-    }
-
-    //new save file method
-    public saveFile(ArrayList<String> list) throws IOExcption{
-        //run loop to save each individual User in ArrayList
-        for(int i = 0; i < list.size()){
-            System.out.println(list[i]);
-        }
-
     }
 
 
-
-    //load file method
 
     /**
      * Method loads saved user classes from Users.txt
+     * Method returns list of all users saved variables
      *
      * @return list
      * @throws IOException
@@ -75,6 +102,34 @@ public class FileManagement {
 
         return list;
 
+
+    }
+
+    public boolean checkEmail(String email,ArrayList<String> list){
+
+        String[] check;
+
+        //search array list for user
+        int i = 0;
+        while(true){
+
+            //if user not found
+            if(i == list.size()){
+                return false;
+            }
+
+            //splits user string into separate pieces to represent User variables.
+            check = list.get(i).split(", ",5);
+
+            //if user found load user
+            if(check[2].equals(email)){
+                return true;
+            }
+
+
+            i++;
+
+        }
 
     }
 
