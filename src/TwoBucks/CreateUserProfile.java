@@ -31,7 +31,7 @@ public class CreateUserProfile {
 
         return (str != null) && //check if string is not null
                 (!str.equals("")) && // check if string is not empty
-                (str.matches("^[a-zAZ]*$")); //check for alpha characters
+                (str.matches("^[a-zA-Z]*$")); //check for alpha characters
     }
 
     /**
@@ -58,9 +58,12 @@ public class CreateUserProfile {
                     if (checkAlpha(firstName) == true) {
                         break;
                     }
+                    else
+                        throw new Exception("Invalid Input");
                 }
                 catch (Exception e){
                     System.out.println("Please enter name with only Alphabet characters");
+
                 }
 
             }
@@ -73,6 +76,9 @@ public class CreateUserProfile {
                 lastName = scan.nextLine();
                 if (checkAlpha(lastName) == true) {
                     break;
+                }
+                else{
+                    throw new Exception("Invalid Input");
                 }
             }
             catch (Exception e){
