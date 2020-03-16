@@ -21,10 +21,21 @@ import java.util.Scanner;
 public class CreateUserProfile {
 
 
-    //method to create user profile
+    /**
+     * Method checks if user input contains only alpha characters
+     *
+     * @param str
+     * @return true or false
+     */
+    public Boolean checkAlpha(String str){
+
+        return (str != null) && //check if string is not null
+                (!str.equals("")) && // check if string is not empty
+                (str.matches("^[a-zAZ]*$")); //check for alpha characters
+    }
 
     /**
-     *
+     * Method to create User Profile
      *
      * @return User
      * @throws IOException
@@ -39,13 +50,38 @@ public class CreateUserProfile {
         //create scanner
         Scanner scan = new Scanner(System.in);
 
-        //prompt user for first name
-        System.out.println("Enter your first name: ");
-        firstName = scan.nextLine();
+            while (true) {
+                try {
+                    //prompt user for first name
+                    System.out.println("Enter your first name: ");
+                    firstName = scan.nextLine();
+                    if (checkAlpha(firstName) == true) {
+                        break;
+                    }
+                }
+                catch (Exception e){
+                    System.out.println("Please enter name with only Alphabet characters");
+                }
 
-        //prompt user for last name
-        System.out.println("Enter your last name: ");
-        lastName = scan.nextLine();
+            }
+
+
+        while(true) {
+            try {
+                //prompt user for last name
+                System.out.println("Enter your last name: ");
+                lastName = scan.nextLine();
+                if (checkAlpha(lastName) == true) {
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Please enter name with only Alphabet characters");
+            }
+
+        }
+
+
 
         //prompt user for email address
         System.out.println("Enter your email address: ");
