@@ -25,7 +25,7 @@ public class LoadUserProfile {
      * in this program will come from the loadUser method in
      * the FileManagement class
      *
-     * @param ArrayList  users
+     * @param ArrayList users
      * @return User loadUser
      */
     public User loadUser(ArrayList<String> users){
@@ -39,11 +39,11 @@ public class LoadUserProfile {
         Scanner scan = new Scanner(System.in);
 
         //prompt user for first and last name separated by space
-        System.out.println("Enter first and last name");
+        System.out.println("Login: Enter your email address");
         String input = scan.nextLine();
 
         //split string to first and last name
-        String[] fullName = input.split(" ",2);
+        String email = input;
 
         //search array list for user
         int i = 0;
@@ -51,7 +51,7 @@ public class LoadUserProfile {
 
             //if user not found
             if(i == users.size()){
-                System.out.println("No profile with name "+ fullName[0]+" "+fullName[1]);
+                System.out.println("No profile with email "+ email +"Try again or create new profile");
                 break;
             }
 
@@ -59,8 +59,8 @@ public class LoadUserProfile {
             check = users.get(i).split(", ",5);
 
             //if user found load user
-            if(check[0].equals(fullName[0]) && check[1].equals(fullName[1]) ){
-                System.out.println("Welcome "+fullName[0]+" "+fullName[1]);
+            if(check[2].equals(email)){
+                System.out.println("Welcome "+check[0]+" "+check[1]);
                 loadUser = new User(check[0],check[1],check[2],Double.parseDouble(check[3]),Double.parseDouble(check[4]));
                 break;
             }
