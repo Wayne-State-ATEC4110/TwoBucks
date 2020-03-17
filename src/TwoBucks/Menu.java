@@ -1,28 +1,34 @@
 package TwoBucks;
 
-// Two Bucks
-// US1. Main Menu
-// By Sawyer Kisha
-
 import java.util.Scanner;
 
+/**
+ * @author  Sawyer Kisha
+ * @version 1.2
+ * @since   1.0
+ * Menu.java
+ */
 public class Menu
 {
 
-    //Array list of options for main menu
     private String[] options = new String[5];
     private int option;
 
+    /**
+     *  Array list of options for main menu
+     */
     public Menu()
     {
         options[0] = "1. Weekly Income";
         options[1] = "2. Weekly Expense";
         options[2] = "3. Financial Goals";
-        options[3] = "4. Option 4";
+        options[3] = "4. Debt Calculator";
         options[4] = "5. Exit";
     }
 
-    //Displays main menu to the user
+    /**
+     * Displays main menu to the user
+     */
     public void showOptions()
     {
         System.out.println("Select an option: ");
@@ -32,10 +38,21 @@ public class Menu
         }
     }
 
+    /**
+     * constructor for option
+     * @return option
+     */
     public int getOption() {
         return this.option;
     }
 
+    /**
+     * Uses the user input integer choice
+     * which is then used for a switch case
+     * in order to send the user to their
+     * desired interface
+     * @return choice
+     */
     public int selectOption()
     {
 
@@ -45,8 +62,10 @@ public class Menu
         System.out.println("Select an option: ");
         choice = scanner.nextInt();
 
-        //User input selects one of the following options
-        //Each option leads to a different features
+        /*
+        User input selects one of the following options
+        Each option leads to a different features
+        */
         switch(choice)
         {
             case 1:
