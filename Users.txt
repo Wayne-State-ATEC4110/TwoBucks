@@ -1,0 +1,6 @@
+Joe, Shrimp, this@email.com, 0.0, 0.0
+Joe, Shome, this@gmail.com, 0.0, 0.0
+Bob, Marley, this@homes.com, 2.5, 42.0
+Joe, this, this@poop.com, 0.0, 0.0
+David, Bowie, starman@mars.com, 2.5, 42.0
+Vlad, Lenin, me@revolution.com, 345.0, 100.0
