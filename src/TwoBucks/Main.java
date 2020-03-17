@@ -80,7 +80,7 @@ public class Main
 
         //create user profile
         CreateUserProfile create = new CreateUserProfile();
-        file.saveFile(create.createUser().toString());
+        file.saveFile(create.createUser());
 
         //load user profile
         LoadUserProfile load = new LoadUserProfile();
@@ -119,7 +119,7 @@ public class Main
                 calculateDebt.DebtCalculatorMain();
             }
             if (menu.getOption()== 5){
-                file.saveFile(currentUser.toString());
+                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...

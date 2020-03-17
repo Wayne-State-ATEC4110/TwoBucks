@@ -1,4 +1,17 @@
-//Author: Alex Gonzalez
+/**
+ * <h1>LoadUserProfile</h1>
+ * The LoadUserProfile class is used in the main.
+ * The user is asekd for their name and email adress.
+ * They systme creates a user profile for them based
+ * on their inputs, which will allow them to log in.
+ *
+ * <p>
+ *
+ *
+ * @author  Alex Gonzalez
+ * @version 1.0
+ * @since   03-04-2020
+ */
 
 package TwoBucks;
 
@@ -6,7 +19,16 @@ import java.util.*;
 
 public class LoadUserProfile {
 
-        public User loadUser(ArrayList<String> users){
+
+    /**
+     * The loadUser method takes an ArrayLis of strings which
+     * in this program will come from the loadUser method in
+     * the FileManagement class
+     *
+     * @param ArrayList users
+     * @return User loadUser
+     */
+    public User loadUser(ArrayList<String> users){
         //initialize user class
         User loadUser = new User();
 
@@ -17,11 +39,11 @@ public class LoadUserProfile {
         Scanner scan = new Scanner(System.in);
 
         //prompt user for first and last name separated by space
-        System.out.println("Enter first and last name");
+        System.out.println("Login: Enter your email address");
         String input = scan.nextLine();
 
         //split string to first and last name
-        String[] fullName = input.split(" ",2);
+        String email = input;
 
         //search array list for user
         int i = 0;
@@ -29,7 +51,7 @@ public class LoadUserProfile {
 
             //if user not found
             if(i == users.size()){
-                System.out.println("No profile with name "+ fullName[0]+" "+fullName[1]);
+                System.out.println("No profile with email "+ email +"Try again or create new profile");
                 break;
             }
 
@@ -37,8 +59,8 @@ public class LoadUserProfile {
             check = users.get(i).split(", ",5);
 
             //if user found load user
-            if(check[0].equals(fullName[0]) && check[1].equals(fullName[1]) ){
-                System.out.println("Welcome "+fullName[0]+" "+fullName[1]);
+            if(check[2].equals(email)){
+                System.out.println("Welcome "+check[0]+" "+check[1]);
                 loadUser = new User(check[0],check[1],check[2],Double.parseDouble(check[3]),Double.parseDouble(check[4]));
                 break;
             }
