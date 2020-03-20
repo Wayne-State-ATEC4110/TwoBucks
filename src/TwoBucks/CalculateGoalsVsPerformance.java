@@ -1,7 +1,16 @@
-// Two Bucks
-// US10. Calculate Goals vs Actual Performance
-// By Frino Jais
-
+/**
+ * Calculate Goals vs. Actual Performance US.10
+ *
+ * The CalculateGoalsVsPerformance class is used when the user wants
+ * to view their statistics of their performance compared to their
+ * set goals. It will follow the pipe and filter architecture because
+ * it uses data from other portions of the program, and outputs information
+ * based on that data
+ *
+ * @author Frino Jais
+ * @version 1.0
+ * @since 03-04-2020
+ */
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -9,15 +18,19 @@ import java.util.*;
 
 public class CalculateGoalsVsPerformance {
 
-    private static DecimalFormat df = new DecimalFormat("0.00");
+    private static DecimalFormat df = new DecimalFormat("0.00"); // to keep the values in the correct format
 
-    public void PerformanceAnalysis() {
+    /***
+     * This function will take the data from other classes to show results of how the
+     * user has been spending/saving.
+     */
+    public void PerformanceAnalysis() { // function to show statistics of spending/saving vs actual
 
-        EnterFinancialGoals goals = new EnterFinancialGoals();
-        EnterWeeklyExpense expense = new EnterWeeklyExpense();
-        EnterWeeklyIncome income = new EnterWeeklyIncome();
+        EnterFinancialGoals goals = new EnterFinancialGoals(); // creating an object to retrieve user's goals
+        EnterWeeklyExpense expense = new EnterWeeklyExpense(); //  creating object to retrieve user's expenses
+        EnterWeeklyIncome income = new EnterWeeklyIncome(); // creating object to retrieve user's income
 
-        double weeklySavings = (expense.setUserExpenses() - income.enterIncome());
+        double weeklySavings = (expense.setUserExpenses() - income.enterIncome()); // calculating savings
 
         System.out.println("Your spending goal for this week was "+ goals.enterSpendGoal()+".");
         System.out.println("You spent "+ expense.setUserExpenses()+ " this week.");
