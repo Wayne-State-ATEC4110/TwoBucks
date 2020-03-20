@@ -1,65 +1,86 @@
+/**
+ * Update Profile Feature US.24
+ *
+ * The UpdateProfile class is used when the user chooses to update
+ * their old first name, last name, or email to a new one. It will
+ * follow the pipe and filter architecture style because it uses data retrieved
+ * from another portions of the program, edits it, and outputs it in
+ * its original format
+ *
+ * @author Frino Jais
+ * @version 1.0
+ * @since 03-04-2020
+ */
+
 import java.util.*;
 import java.io.*;
 
 public class UpdateProfile {
-
-    public static void readTxtFile(String[] args) throws Exception{
+    /***
+     * This function will read from the text file where the
+     * User information is stored and change the user's choice
+     * of first name, last name, or email address
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void readFile(String[] args) throws Exception{
+        // creating object for User.txt where data is saved
         File txtFile = new File("User.txt");
+        // reader created to read from User.txt
         BufferedReader reader = new BufferedReader(new FileReader(txtFile));
-        String dataRows[][] = new String[100][5];
-        String rowItems[] = new String[5],row;
+        String dataRows[][] = new String[100][5]; // creating enough rows for 100 users
+        String rowItems[] = new String[5],row; // 5 values per row
         int numOfRows=0,i;
 
-        while((row=reader.readLine()) != null){
-            if(!row.strip().equals("")){
-                rowItems = row.split(",");
-                dataRows[numOfRows++] = rowItems;
+        while((row=reader.readLine()) != null){ // understanding each value separated by comma
+            if(!line.strip().equals("")){ // check for empty string
+                rowItems = line.split(","); // separating values
+                dataRows[numOfRows++] = rowItems; //adding values to an array
             }
         }
 
         Scanner scnr = new Scanner(System.in);
         int option;
-        System.out.println("What would you like to update?");
+        System.out.println("What would you like to update?"); // menu
         System.out.println("");
         System.out.println("1. First Name");
         System.out.println("2. Last Name");
         System.out.println("3. Email");
-        System.out.println("");
-        System.out.println("Option: ");
 
         option = scnr.nextInt();
 
         if (option == 1){
 
-            int rowIndex = 0;
+            int rowIndex = 0; // set the index to 0 to be the position of first name
 
             System.out.println("Please confirm your existing first name: ");
-            String oldFirstName = scnr.next();
+            String oldFirstName = input.next();
             System.out.println("Please enter your new first name: ");
-            String newFirstName = scnr.next();
+            String newFirstName = input.next();
 
             Boolean flag = false;
 
-            for (i=0; i<numOfRows; i++){
+            for (i=0; i<numOfRows; i++){ // loop to check for name
 
                 if(dataRows[i][rowIndex].strip().equals(oldFirstName.strip())){
 
-                    dataRows[i][rowIndex] = newFirstName;
-                    flag = true;
+                    dataRows[i][rowIndex] = newFirstName; // insert the new name
+                    flag = true; // name is found
                     break;
                 }
             }
 
             if (flag == true){
-                BufferedWriter buffWriter = new BufferedWriter(new FileWriter(txtFile));
+                BufferedWriter buffWriter = new BufferedWriter(new Filewriter(txtFile));
 
                 for (i=0; i<numOfRows; i++){
-                    buffWriter.write(String.join(",",dataRows[i]) + "\n");
+                    buffWriter.write(String.join(",",dataRows[]) + "\n"); // new entry back into the file separating values with comma
                 }
                 buffWriter.close();
             }
             else{
-                System.out.println("Name not found.");
+                System.out.println("Name not found.")
             }
 
 
@@ -67,9 +88,9 @@ public class UpdateProfile {
             int rowIndex = 1;
 
             System.out.println("Please confirm your existing last name: ");
-            String oldLastName = scnr.next();
+            String oldLastName = input.next();
             System.out.println("Please enter your new last name: ");
-            String newLastName = scnr.next();
+            String newLastName = input.next();
 
             Boolean flag = false;
 
@@ -84,24 +105,24 @@ public class UpdateProfile {
             }
 
             if (flag == true){
-                BufferedWriter buffWriter = new BufferedWriter(new FileWriter(txtFile));
+                BufferedWriter buffWriter = new BufferedWriter(new Filewriter(txtFile));
 
                 for (i=0; i<numOfRows; i++){
-                    buffWriter.write(String.join(",",dataRows[i]) + "\n");
+                    buffWriter.write(String.join(",",dataRows[]) + "\n");
                 }
                 buffWriter.close();
             }
             else{
-                System.out.println("Last name not found.");
+                System.out.println("Last name not found.")
             }
 
         }else if(option == 3){
             int rowIndex = 2;
 
             System.out.println("Please confirm your existing email: ");
-            String oldEmail = scnr.next();
+            String oldEmail = input.next();
             System.out.println("Please enter your new email: ");
-            String newEmail = scnr.next();
+            String newEmail = input.next();
 
             Boolean flag = false;
 
@@ -116,15 +137,15 @@ public class UpdateProfile {
             }
 
             if (flag == true){
-                BufferedWriter buffWriter = new BufferedWriter(new FileWriter(txtFile));
+                BufferedWriter buffWriter = new BufferedWriter(new Filewriter(txtFile));
 
                 for (i=0; i<numOfRows; i++){
-                    buffWriter.write(String.join(",",dataRows[i]) + "\n");
+                    buffWriter.write(String.join(",",dataRows[]) + "\n");
                 }
                 buffWriter.close();
             }
             else{
-                System.out.println("Email not found.");
+                System.out.println("Name not found.")
             }
         }else{
             System.out.println("Please enter a valid option.");
