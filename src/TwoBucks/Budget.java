@@ -1,7 +1,7 @@
 /**
  * <h1>Budget</h1>
  *
- * <p></p>The Budget class allows for a budget to be created or edited after initially created
+ * <p>The Budget class allows for a budget to be created or edited after initially created
  * It belongs to the User class.</p>
  *
  * @author Mike Shea
