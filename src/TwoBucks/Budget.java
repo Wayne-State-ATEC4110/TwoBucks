@@ -4,6 +4,8 @@
  * <p>The Budget class allows for a budget to be created or edited after initially created
  * It belongs to the User class.</p>
  *
+ * TODO:    Let user know when amount removed exceeds current category amount
+ *
  * @author Mike Shea
  * @version 1.0
  * @since 3/22/20
@@ -25,10 +27,12 @@ public class Budget {
     private double healthcareExpenses;
     private double entertainmentExpenses;
     private double monthlyNetChange;    // (Income - Expenses)
+    private int userSelection = 0;
     private Scanner scan = new Scanner(System.in);
 
     /**
      * Class toString method used to export class members into one string for saving
+     *
      * @return String of class members separated by comma and space
      */
 
@@ -41,9 +45,11 @@ public class Budget {
 
     /**
      * Creates budget with user-entered values
+     * User can add or remove from their budget after the initial input
+     * by following the menu prompts.
      */
 
-    public void CreateBudget(){
+    public void CreateBudget() {
         try {
             ReceiveTotalIncome();
             ReceiveRentExpenses();
@@ -56,11 +62,28 @@ public class Budget {
 
             // Display Budget
             DisplayBudget();
-        }
-        catch(InputMismatchException e){
+            ReceiveUserSelection();
+
+            while(userSelection != 3) {
+
+                // Add purchase to budget
+                if (userSelection == 1) {
+                    System.out.print("Not yet implemented");
+                    DisplayBudget();
+                    ReceiveUserSelection();
+                }
+                // Remove purchase from budget
+                else if (userSelection == 2) {
+                    RemoveFromBudget();
+                    DisplayBudget();
+                    ReceiveUserSelection();
+                } else {
+                    // Nothing - continue with current budget
+                }
+            }
+        } catch (InputMismatchException e) {
             System.out.println("Error: Unrecoverable input entered.");
-        }
-        finally{
+        } finally {
             // Close input stream
             scan.close();
         }
@@ -71,7 +94,7 @@ public class Budget {
      */
     private void DisplayBudget() {
         System.out.println("");
-        System.out.println("Weekly Budget");
+        System.out.println("Monthly Budget");
         System.out.println("==========================");
         System.out.println("Total Income: $" + String.format("%.2f", totalIncome));
         System.out.println("Rent/mortgage: $" + String.format("%.2f", rentExpenses));
@@ -81,18 +104,20 @@ public class Budget {
         System.out.println("Healthcare: $" + String.format("%.2f", healthcareExpenses));
         System.out.println("Entertainment: $" + String.format("%.2f", entertainmentExpenses));
         System.out.println("Net change: $" + String.format("%.2f", monthlyNetChange));
+        System.out.println();
     }
 
     /**
      * Prompts the user to enter their monthly total income
+     *
      * @throws InputMismatchException
      */
 
     private void ReceiveTotalIncome() throws InputMismatchException {
-        System.out.print("Enter your total income from all sources (include all sources of income): $");
+        System.out.print("Enter your total income (include all sources of income): $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for the total income: $");
             scan.next();
         }
@@ -100,11 +125,11 @@ public class Budget {
         totalIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(totalIncome <=0 ){
+        while (totalIncome <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the total income: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for the total income: $");
                 scan.next();
             }
@@ -117,13 +142,14 @@ public class Budget {
 
     /**
      * Prompts the user to enter their monthly rent/mortgage payment
+     *
      * @throws InputMismatchException
      */
     private void ReceiveRentExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on this month's rent/mortgage: $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for the rent/mortgage payment: $");
             scan.next();
         }
@@ -131,11 +157,11 @@ public class Budget {
         rentExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(rentExpenses <=0){
+        while (rentExpenses <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the rent/mortgage payment: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for the rent/mortgage payment: $");
                 scan.next();
             }
@@ -148,13 +174,14 @@ public class Budget {
 
     /**
      * Prompts the user to enter their utilities expenses
+     *
      * @throws InputMismatchException
      */
     private void ReceiveUtilitiesExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on utilities (electric, water, phone, ect): $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for the utilities payment: $");
             scan.next();
         }
@@ -162,11 +189,11 @@ public class Budget {
         utilitiesExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(utilitiesExpenses <=0){
+        while (utilitiesExpenses <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the utilities payment: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for the utilities payment: $");
                 scan.next();
             }
@@ -180,14 +207,15 @@ public class Budget {
 
     /**
      * Prompts the user to enter their food expenses
+     *
      * @throws InputMismatchException
      */
-    private void ReceiveFoodExpenses() throws InputMismatchException{
+    private void ReceiveFoodExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on food: $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for the food payment: $");
             scan.next();
         }
@@ -195,11 +223,11 @@ public class Budget {
         foodExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(foodExpenses <=0){
+        while (foodExpenses <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the food payment: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for the food payment: $");
                 scan.next();
             }
@@ -213,13 +241,14 @@ public class Budget {
 
     /**
      * Prompts the user to enter their travel expenses
+     *
      * @throws InputMismatchException
      */
-    private void ReceiveTravelExpenses() throws InputMismatchException{
+    private void ReceiveTravelExpenses() throws InputMismatchException {
         System.out.print("Enter the total spent on travel (car payments/repairs, gasoline, public transport, ect): $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for the travel expenses: $");
             scan.next();
         }
@@ -227,11 +256,11 @@ public class Budget {
         travelExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(travelExpenses <=0){
+        while (travelExpenses <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the travel expenses: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for the travel expenses: $");
                 scan.next();
             }
@@ -245,14 +274,15 @@ public class Budget {
 
     /**
      * Prompts the user to enter their healthcare expenses
+     *
      * @throws InputMismatchException
      */
-    private void ReceiveHealthcareExpenses() throws InputMismatchException{
+    private void ReceiveHealthcareExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on healthcare expenses (including insurance): $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for healthcare expenses: $");
             scan.next();
         }
@@ -260,11 +290,11 @@ public class Budget {
         healthcareExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(healthcareExpenses <=0){
+        while (healthcareExpenses <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the healthcare expenses: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for the utilities payment: $");
                 scan.next();
             }
@@ -278,14 +308,15 @@ public class Budget {
 
     /**
      * Prompts the user to enter their entertainment expenses
+     *
      * @throws InputMismatchException
      */
-    private void ReceiveEntertainmentExpenses() throws InputMismatchException{
+    private void ReceiveEntertainmentExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on entertainment: $");
 
         // Validate Input - must be Double type
-        while(!scan.hasNextDouble()){
+        while (!scan.hasNextDouble()) {
             System.out.print("Invalid input. Please enter a numerical value for entertainment expenses: $");
             scan.next();
         }
@@ -293,11 +324,11 @@ public class Budget {
         entertainmentExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while(entertainmentExpenses <=0){
+        while (entertainmentExpenses <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for entertainment expenses: $");
 
             // Validate Input - must be Double type
-            while(!scan.hasNextDouble()){
+            while (!scan.hasNextDouble()) {
                 System.out.print("Invalid input. Please enter a numerical value for entertainment expenses: $");
                 scan.next();
             }
@@ -311,11 +342,46 @@ public class Budget {
 
     /**
      * Calculates the monthly net change (income - expenses)
+     *
      * @throws InputMismatchException
      */
-    private void CalculateMonthlyNetChange() throws InputMismatchException{
-        monthlyNetChange = totalIncome - (utilitiesExpenses + foodExpenses
-                + travelExpenses + healthcareExpenses + entertainmentExpenses);
+    private void CalculateMonthlyNetChange() throws InputMismatchException {
+        monthlyNetChange = totalIncome - (rentExpenses + utilitiesExpenses +
+                foodExpenses + travelExpenses + healthcareExpenses + entertainmentExpenses);
+    }
+
+    /**
+     * Receives user input for menu
+     *
+     * @throws InputMismatchException
+     */
+
+    public void ReceiveUserSelection() throws InputMismatchException {
+        // User Menu
+        System.out.println("Enter an option from the menu below.");
+        System.out.println("1. Add purchase to budget");
+        System.out.println("2. Remove purchase from budget");
+        System.out.println("3. Continue with current budget");
+
+        // Must be an integer
+        while (!scan.hasNextInt()) {
+            System.out.print("Invalid input. Please enter a valid numerical option as shown in the menu.");
+            scan.next();
+        }
+
+        userSelection = scan.nextInt();
+
+        while (userSelection <= 0 || userSelection > 3) {
+            System.out.print("Invalid input. Please enter a valid numerical option as shown in the menu.");
+
+            while (!scan.hasNextInt()) {
+                System.out.print("Invalid input. Please enter a valid numerical option as shown in the menu.");
+                scan.next();
+            }
+
+            userSelection = scan.nextInt();
+        }
+
     }
 
     /**
@@ -414,5 +480,155 @@ public class Budget {
      */
     public void setEntertainmentExpenses(double entertainmentExpenses) {
         this.entertainmentExpenses = entertainmentExpenses;
+    }
+
+    /**
+     * Prompts the user to select a category to remove an amount from,
+     * then prompts the user to select an amount to remove. If the amount is greater
+     * than what is currently in the category, the category will be reduced to zero.
+     * @throws InputMismatchException
+     */
+    public void RemoveFromBudget() throws InputMismatchException{
+        int selection = 0;
+        double amount = 0;
+
+        System.out.println("Select a category from the menu below to remove an amount from:");
+        System.out.println("1. Total Income");
+        System.out.println("2. Mortgage/Rent");
+        System.out.println("3. Utilities");
+        System.out.println("4. Food");
+        System.out.println("5. Travel");
+        System.out.println("6. Healthcare");
+        System.out.println("7. Entertainment");
+        System.out.println("8. Return to previous menu");
+
+        // Validate Input - must be Int type
+        while (!scan.hasNextInt()) {
+            System.out.print("Invalid input. Please enter an option from the menu above.");
+            scan.next();
+        }
+        selection = scan.nextInt();
+
+        // Validate input - must be positive value
+        while (selection <= 0 || selection > 8) {
+            System.out.print("Invalid input. Please enter an option from the menu above.");
+
+            // Validate Input - must be Int type
+            while (!scan.hasNextInt()) {
+                System.out.print("Invalid input. Please enter an option from the menu above.");
+                scan.next();
+            }
+
+            selection = scan.nextInt();
+        }
+
+        scan.nextLine();    // Clear input stream
+
+        System.out.print("Enter the amount you would like to remove: $");
+        amount = getAmount();
+
+        switch(selection){
+            case 1:
+                // Change total income
+                if(amount > totalIncome) {
+                    totalIncome = 0;
+                }
+                else {
+                    totalIncome -= amount;
+                }
+                break;
+            case 2:
+                // Change Mortage/rent
+                if(amount > rentExpenses){
+                    rentExpenses = 0;
+                }
+                else{
+                    rentExpenses -= amount;
+                }
+                break;
+            case 3:
+                // Change Utilities
+                if(amount > utilitiesExpenses){
+                    rentExpenses = 0;
+                }
+                else{
+                    utilitiesExpenses -= amount;
+                }
+                break;
+            case 4:
+                // Change Food
+                if(amount > foodExpenses){
+                    foodExpenses = 0;
+                }
+                else{
+                    foodExpenses -= amount;
+                }
+                break;
+            case 5:
+                // Change Travel
+                if(amount > travelExpenses){
+                    travelExpenses = 0;
+                }
+                else{
+                    travelExpenses -= amount;
+                }
+                break;
+            case 6:
+                // Change Healthcare
+                if(amount > healthcareExpenses){
+                    healthcareExpenses = 0;
+                }
+                else{
+                    healthcareExpenses -= amount;
+                }
+                break;
+            case 7:
+                // Change Entertainment
+                if(amount > entertainmentExpenses){
+                    entertainmentExpenses = 0;
+                }
+                else{
+                    entertainmentExpenses -= amount;
+                }
+                break;
+            case 8:
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    /**
+     * Prompts the user to enter a dollar amount and returns it
+     * @return double amount
+     * @throws InputMismatchException
+     */
+    private double getAmount() throws InputMismatchException{
+    double amount = 0;
+
+    // Validate Input - must be Double type
+    while (!scan.hasNextDouble()) {
+        System.out.print("Invalid input. Please enter an amount: $");
+        scan.next();
+    }
+
+    amount = scan.nextDouble();
+
+    // Validate input - must be positive value
+    while (amount <= 0) {
+        System.out.print("Invalid input. Please enter a positive amount: $");
+
+        // Validate Input - must be Double type
+        while (!scan.hasNextDouble()) {
+            System.out.print("Invalid input. Please enter an amount: $");
+            scan.next();
+        }
+
+        amount = scan.nextDouble();
+    }
+
+    scan.nextLine();    // Clear input stream
+    return amount;
     }
 }
