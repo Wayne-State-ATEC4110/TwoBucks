@@ -1,4 +1,4 @@
-package TwoBucksTesting;
+package TwoBucks;
 
 import java.util.Scanner;
 
