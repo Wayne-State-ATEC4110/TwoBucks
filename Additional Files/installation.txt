@@ -1,4 +1,0 @@
-Two Bucks runs on the Java Virtual Machine (JVM) Version 8 Update 241. To download the newest installer of JVM from Oracle visit https://www.java.com/en/download/ and find an installer appropriate for your system specifications.
-
-
-To run the application, open the command line and navigate to the folder where TwoBucks.jar is located. Then, type the command: java -jar TwoBucksSprint1Demo.jar
