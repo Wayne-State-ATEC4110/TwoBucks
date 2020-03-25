@@ -20,7 +20,7 @@ public class Week {
 
     // progress to next week copies user variables and saves them to
     // new User object previousWeek. Previous week cannot be edited.
-    public User toNextWeek(User currentWeek){
+    public void toNextWeek(User currentWeek){
 
         // Copy all current user parameters from 'currentWeek' to 'previousWeek'
         previousWeek.setFirstName(currentWeek.getFirstName());          // first name
@@ -30,12 +30,12 @@ public class Week {
         previousWeek.setSaveAmount(currentWeek.getSaveAmount());        // saveAmount
         previousWeek.setSpendAmount(currentWeek.getSpendAmount());      // spendAmount
 
-        //budget
+        // copy budget parameters
 
 
         // Reset all expenses and weekly savings in current week
 
-        //
+
     }
 
 
