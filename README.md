@@ -13,7 +13,7 @@ expenses for a given week. It uses this data to deliver the following features:
 * Calculate and display the user's performance from the current week relative to the first week to show total growth towards their goals
 * Award the user a score and a rank in order to encourage engagement with the application and to build better spending and tracking habits
 
-## Real-time Budget Tracking##
+## Real-time Budget Tracking ##
 * Add purchases to the budget and see how much money is left for specific categories
 
 ## Debt Calculation Tools ##
