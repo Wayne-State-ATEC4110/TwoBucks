@@ -20,25 +20,10 @@ public class UpdateProfile {
      * This function will read from the text file where the
      * User information is stored and change the user's choice
      * of first name, last name, or email address
-     *
-     * @param args
-     * @throws Exception
+     * @param currentUser
+     * @return currentUser
      */
-    public static void readFile(String[] args) throws Exception{
-        // creating object for User.txt where data is saved
-        File txtFile = new File("User.txt");
-        // reader created to read from User.txt
-        BufferedReader reader = new BufferedReader(new FileReader(txtFile));
-        String dataRows[][] = new String[100][5]; // creating enough rows for 100 users
-        String rowItems[] = new String[5],row; // 5 values per row
-        int numOfRows=0,i;
-
-        while((row=reader.readLine()) != null){ // understanding each value separated by comma
-            if(!line.strip().equals("")){ // check for empty string
-                rowItems = line.split(","); // separating values
-                dataRows[numOfRows++] = rowItems; //adding values to an array
-            }
-        }
+    public User readFile(User currentUser){
 
         Scanner scnr = new Scanner(System.in);
         int option;
@@ -51,105 +36,49 @@ public class UpdateProfile {
         option = scnr.nextInt();
 
         if (option == 1){
-
-            int rowIndex = 0; // set the index to 0 to be the position of first name
-
             System.out.println("Please confirm your existing first name: ");
-            String oldFirstName = input.next();
-            System.out.println("Please enter your new first name: ");
-            String newFirstName = input.next();
 
-            Boolean flag = false;
-
-            for (i=0; i<numOfRows; i++){ // loop to check for name
-
-                if(dataRows[i][rowIndex].strip().equals(oldFirstName.strip())){
-
-                    dataRows[i][rowIndex] = newFirstName; // insert the new name
-                    flag = true; // name is found
-                    break;
+            while(true) {
+                String oldFirstName = input.next();
+                if(oldFirstName != currentUser.getFirstName()){ // check if the user's input matches existing
+                    System.out.println("This first name does not exist. Please try again: ");
                 }
-            }
 
-            if (flag == true){
-                BufferedWriter buffWriter = new BufferedWriter(new Filewriter(txtFile));
+                System.out.println("Please enter your new first name: ");
+                currentUser.setFirstName(input.next()); // use set function to set new first name
 
-                for (i=0; i<numOfRows; i++){
-                    buffWriter.write(String.join(",",dataRows[]) + "\n"); // new entry back into the file separating values with comma
+
+            }else if(option == 2){
+
+                System.out.println("Please confirm your existing last name: ");
+
+                while(true) {
+                    String oldLastName = input.next();
+                    if(oldLastName != currentUser.getLastName()){
+                        System.out.println("This last name does not exist. Please try again: ");
+                    }
                 }
-                buffWriter.close();
-            }
-            else{
-                System.out.println("Name not found.")
-            }
+                System.out.println("Please enter your new last name: ");
+                currentUser.setLastName(input.next());
 
+            }else if(option == 3){
 
-        }else if(option == 2){
-            int rowIndex = 1;
+                System.out.println("Please confirm your existing email: ");
 
-            System.out.println("Please confirm your existing last name: ");
-            String oldLastName = input.next();
-            System.out.println("Please enter your new last name: ");
-            String newLastName = input.next();
-
-            Boolean flag = false;
-
-            for (i=0; i<numOfRows; i++){
-
-                if(dataRows[i][rowIndex].strip().equals(oldLastName.strip())){
-
-                    dataRows[i][rowIndex] = newLastName;
-                    flag = true;
-                    break;
+                while(true) {
+                    String oldEmail = input.next();
+                    if(oldEmail != currentUser.getEmail()){
+                        System.out.println("This email does not exist. Please try again: ");
+                    }
                 }
+                System.out.println("Please enter your new first name: ");
+                currentUser.setEmail(input.next());
+
+            }else{
+                System.out.println("Please enter a valid option.");
             }
 
-            if (flag == true){
-                BufferedWriter buffWriter = new BufferedWriter(new Filewriter(txtFile));
+            return currentUser;
 
-                for (i=0; i<numOfRows; i++){
-                    buffWriter.write(String.join(",",dataRows[]) + "\n");
-                }
-                buffWriter.close();
-            }
-            else{
-                System.out.println("Last name not found.")
-            }
-
-        }else if(option == 3){
-            int rowIndex = 2;
-
-            System.out.println("Please confirm your existing email: ");
-            String oldEmail = input.next();
-            System.out.println("Please enter your new email: ");
-            String newEmail = input.next();
-
-            Boolean flag = false;
-
-            for (i=0; i<numOfRows; i++){
-
-                if(dataRows[i][rowIndex].strip().equals(oldEmail.strip())){
-
-                    dataRows[i][rowIndex] = newEmail;
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag == true){
-                BufferedWriter buffWriter = new BufferedWriter(new Filewriter(txtFile));
-
-                for (i=0; i<numOfRows; i++){
-                    buffWriter.write(String.join(",",dataRows[]) + "\n");
-                }
-                buffWriter.close();
-            }
-            else{
-                System.out.println("Name not found.")
-            }
-        }else{
-            System.out.println("Please enter a valid option.");
         }
-
     }
-}
