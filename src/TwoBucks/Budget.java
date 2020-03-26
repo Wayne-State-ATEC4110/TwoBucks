@@ -68,7 +68,7 @@ public class Budget {
 
                 // Add purchase to budget
                 if (userSelection == 1) {
-                    System.out.print("Not yet implemented");
+                    AddToBudget();
                     DisplayBudget();
                     ReceiveUserSelection();
                 }
