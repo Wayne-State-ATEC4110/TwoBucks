@@ -68,7 +68,9 @@ public class Budget {
 
                 // Add purchase to budget
                 if (userSelection == 1) {
+                  
                     AddToBudget();
+
                     DisplayBudget();
                     ReceiveUserSelection();
                 }
@@ -636,7 +638,9 @@ public class Budget {
                 }
                 else {
                     totalIncome -= amount;
+
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 2:
@@ -647,6 +651,7 @@ public class Budget {
                 else{
                     rentExpenses -= amount;
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 3:
@@ -656,7 +661,9 @@ public class Budget {
                 }
                 else{
                     utilitiesExpenses -= amount;
+
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 4:
@@ -667,6 +674,7 @@ public class Budget {
                 else{
                     foodExpenses -= amount;
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 5:
@@ -676,7 +684,9 @@ public class Budget {
                 }
                 else{
                     travelExpenses -= amount;
+
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 6:
@@ -686,7 +696,9 @@ public class Budget {
                 }
                 else{
                     healthcareExpenses -= amount;
+
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 7:
@@ -697,6 +709,7 @@ public class Budget {
                 else{
                     entertainmentExpenses -= amount;
                     budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 8:
@@ -713,7 +726,20 @@ public class Budget {
      * @throws InputMismatchException
      */
     private double getAmount() throws InputMismatchException{
-        double amount = 0;
+
+    double amount = 0;
+
+    // Validate Input - must be Double type
+    while (!scan.hasNextDouble()) {
+        System.out.print("Invalid input. Please enter an amount: $");
+        scan.next();
+    }
+
+    amount = scan.nextDouble();
+
+    // Validate input - must be positive value
+    while (amount <= 0) {
+        System.out.print("Invalid input. Please enter a positive amount: $");
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
@@ -738,5 +764,6 @@ public class Budget {
 
         scan.nextLine();    // Clear input stream
         return amount;
+
     }
 }
