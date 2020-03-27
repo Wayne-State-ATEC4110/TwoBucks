@@ -45,7 +45,7 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 5)
+        while (menu.getOption() != 8)
         {
             menu.showOptions();
             menu.selectOption();
@@ -74,7 +74,42 @@ public class Main
             {
                 calculateDebt.DebtCalculatorMain();
             }
-            if (menu.getOption() == 5){
+            //Display Goals
+            if(menu.getOption() == 5)
+            {
+                DisplayGoals goalDisplay = new DisplayGoals();
+                //goalDisplay.displayGoals();
+            }
+            //Budget
+            if(menu.getOption() == 6)
+            {
+                while(menu.getOption() != 4)
+                {
+                    menu.showBudgetOptions();
+                    menu.selectBudgetOption();
+
+                    Budget budget = new Budget();
+
+                    if (menu.getOption() == 1)
+                    {
+                        //Private
+                        //budget.DisplayBudget();
+                    }
+                    if (menu.getOption() == 2) {
+                        budget.AddToBudget();
+                    }
+                    if (menu.getOption() == 3) {
+                        budget.RemoveFromBudget();
+                    }
+                }
+            }
+            //Update Profile
+            if(menu.getOption() == 7)
+            {
+                UpdateProfile updateProfile = new UpdateProfile();
+                //call
+            }
+            if (menu.getOption() == 8){
                file.saveFile(currentUser);
             }
 
