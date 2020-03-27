@@ -1,5 +1,3 @@
-package TwoBucks;
-
 // Two Bucks
 // US7. Enter Financial Goals
 // By Frino Jais
@@ -13,8 +11,7 @@ public class EnterFinancialGoals {
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public static void enterGoals() {
-        double saveAmt;
+    public double enterSpendGoal() {
         double spendAmt;
 
         Scanner in = new Scanner(System.in);
@@ -34,6 +31,14 @@ public class EnterFinancialGoals {
             }
         }
         System.out.println("Spending amount of $" + df.format(spendAmt) + " has been saved to your user profile!");
+        return spendAmt;
+    }
+
+    public double enterSaveGoal(){
+
+        Scanner in = new Scanner(System.in);
+
+        double saveAmt;
 
         System.out.println("\nHow much would you like to save per week?");
         while (true) {
@@ -50,5 +55,6 @@ public class EnterFinancialGoals {
             }
         }
         System.out.println("Saving amount of $" + df.format(saveAmt) + " has been saved to your user profile!");
+        return saveAmt;
     }
 }
