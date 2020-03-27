@@ -8,7 +8,7 @@
  *
  * @author Mike Shea
  * @version 1.0
- * @since 3/22/20
+ * @since 3/24/20
  */
 
 
@@ -90,9 +90,34 @@ public class Budget {
     }
 
     /**
+     * Resets the class state
+     */
+    public void ResetValues(){
+        totalIncome = 0;
+        rentExpenses = 0;
+        utilitiesExpenses = 0;
+        foodExpenses = 0;
+        travelExpenses = 0;
+        healthcareExpenses = 0;
+        entertainmentExpenses = 0;
+        monthlyNetChange = 0;
+        userSelection = 0;
+    }
+
+    /**
+     * Returns the value of all expenses added together
+     * @return double totalExpenses
+     */
+    public double GetTotalExpenses(){
+        double totalExpenses = getRentExpenses() + getUtilitiesExpenses() + getFoodExpenses() +
+                getTravelExpenses() + getHealthcareExpenses() + getEntertainmentExpenses();
+        return totalExpenses;
+    }
+
+    /**
      * Displays current class members
      */
-    private void DisplayBudget() {
+    public void DisplayBudget() {
         System.out.println("");
         System.out.println("Monthly Budget");
         System.out.println("==========================");
@@ -605,19 +630,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private double getAmount() throws InputMismatchException{
-    double amount = 0;
-
-    // Validate Input - must be Double type
-    while (!scan.hasNextDouble()) {
-        System.out.print("Invalid input. Please enter an amount: $");
-        scan.next();
-    }
-
-    amount = scan.nextDouble();
-
-    // Validate input - must be positive value
-    while (amount <= 0) {
-        System.out.print("Invalid input. Please enter a positive amount: $");
+        double amount = 0;
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
@@ -626,9 +639,21 @@ public class Budget {
         }
 
         amount = scan.nextDouble();
-    }
 
-    scan.nextLine();    // Clear input stream
-    return amount;
+        // Validate input - must be positive value
+        while (amount <= 0) {
+            System.out.print("Invalid input. Please enter a positive amount: $");
+
+            // Validate Input - must be Double type
+            while (!scan.hasNextDouble()) {
+                System.out.print("Invalid input. Please enter an amount: $");
+                scan.next();
+            }
+
+            amount = scan.nextDouble();
+        }
+
+        scan.nextLine();    // Clear input stream
+        return amount;
     }
 }
