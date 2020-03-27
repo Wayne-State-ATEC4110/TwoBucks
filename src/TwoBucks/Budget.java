@@ -8,13 +8,12 @@
  *
  * @author Mike Shea
  * @version 1.0
- * @since 3/22/20
+ * @since 3/27/20
  */
 
+package TwoBucks;
 
 import java.util.*;
-
-package TwoBucks;
 
 public class Budget {
 
@@ -64,11 +63,11 @@ public class Budget {
             DisplayBudget();
             ReceiveUserSelection();
 
-            while(userSelection != 3) {
+            while (userSelection != 3) {
 
                 // Add purchase to budget
                 if (userSelection == 1) {
-                  
+
                     AddToBudget();
 
                     DisplayBudget();
@@ -79,9 +78,8 @@ public class Budget {
                     RemoveFromBudget();
                     DisplayBudget();
                     ReceiveUserSelection();
-                } else {
-                    // Nothing - continue with current budget
                 }
+
             }
         } catch (InputMismatchException e) {
             System.out.println("Error: Unrecoverable input entered.");
@@ -95,7 +93,7 @@ public class Budget {
      * Displays current class members
      */
     private void DisplayBudget() {
-        System.out.println("");
+        System.out.println();
         System.out.println("Monthly Budget");
         System.out.println("==========================");
         System.out.println("Total Income: $" + String.format("%.2f", totalIncome));
@@ -485,17 +483,17 @@ public class Budget {
     }
 
     /**
-     *  User inputs an amount to add to a
-     *  specific budget category, includes
-     *  exception handling
+     * User inputs an amount to add to a
+     * specific budget category, includes
+     * exception handling
+     *
      * @throws InputMismatchException
      */
-    public void AddToBudget() throws InputMismatchException
-    {
+    public void AddToBudget() throws InputMismatchException {
         double amount = 0;
         int selection = 0;
 
-        BudgetReminder budgetReminder = new BudgetReminder;
+        BudgetReminder budgetReminder = new BudgetReminder();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -510,21 +508,18 @@ public class Budget {
         System.out.println("8. Return to previous menu");
 
         //Make sure integer
-        while (!scanner.hasNextInt())
-        {
+        while (!scanner.hasNextInt()) {
             System.out.print("Invalid input. ");
             scanner.next();
         }
         selection = scanner.nextInt();
 
         //Make sure accepted integer
-        while (selection <= 0 || selection > 8)
-        {
+        while (selection <= 0 || selection > 8) {
             System.out.print("Invalid input. ");
 
             // Make sure integer
-            while (!scanner.hasNextInt())
-            {
+            while (!scanner.hasNextInt()) {
                 System.out.print("Invalid input. ");
                 scanner.next();
             }
@@ -537,8 +532,7 @@ public class Budget {
         System.out.print("Enter the amount you would like to add: $");
         amount = getAmount();
 
-        switch(selection)
-        {
+        switch (selection) {
 
             case 1:
                 //Add to total income
@@ -587,13 +581,14 @@ public class Budget {
      * Prompts the user to select a category to remove an amount from,
      * then prompts the user to select an amount to remove. If the amount is greater
      * than what is currently in the category, the category will be reduced to zero.
+     *
      * @throws InputMismatchException
      */
-    public void RemoveFromBudget() throws InputMismatchException{
+    public void RemoveFromBudget() throws InputMismatchException {
         int selection = 0;
         double amount = 0;
 
-        BudgetReminder budgetReminder = new BudgetReminder;
+        BudgetReminder budgetReminder = new BudgetReminder();
 
         System.out.println("Select a category from the menu below to remove an amount from:");
         System.out.println("1. Total Income");
@@ -630,13 +625,12 @@ public class Budget {
         System.out.print("Enter the amount you would like to remove: $");
         amount = getAmount();
 
-        switch(selection){
+        switch (selection) {
             case 1:
                 // Change total income
-                if(amount > totalIncome) {
+                if (amount > totalIncome) {
                     totalIncome = 0;
-                }
-                else {
+                } else {
                     totalIncome -= amount;
 
                     budgetReminder.BudgetRemoveReminder(amount);
@@ -645,10 +639,9 @@ public class Budget {
                 break;
             case 2:
                 // Change Mortage/rent
-                if(amount > rentExpenses){
+                if (amount > rentExpenses) {
                     rentExpenses = 0;
-                }
-                else{
+                } else {
                     rentExpenses -= amount;
                     budgetReminder.BudgetRemoveReminder(amount);
 
@@ -656,10 +649,9 @@ public class Budget {
                 break;
             case 3:
                 // Change Utilities
-                if(amount > utilitiesExpenses){
+                if (amount > utilitiesExpenses) {
                     rentExpenses = 0;
-                }
-                else{
+                } else {
                     utilitiesExpenses -= amount;
 
                     budgetReminder.BudgetRemoveReminder(amount);
@@ -668,10 +660,9 @@ public class Budget {
                 break;
             case 4:
                 // Change Food
-                if(amount > foodExpenses){
+                if (amount > foodExpenses) {
                     foodExpenses = 0;
-                }
-                else{
+                } else {
                     foodExpenses -= amount;
                     budgetReminder.BudgetRemoveReminder(amount);
 
@@ -679,10 +670,9 @@ public class Budget {
                 break;
             case 5:
                 // Change Travel
-                if(amount > travelExpenses){
+                if (amount > travelExpenses) {
                     travelExpenses = 0;
-                }
-                else{
+                } else {
                     travelExpenses -= amount;
 
                     budgetReminder.BudgetRemoveReminder(amount);
@@ -691,10 +681,9 @@ public class Budget {
                 break;
             case 6:
                 // Change Healthcare
-                if(amount > healthcareExpenses){
+                if (amount > healthcareExpenses) {
                     healthcareExpenses = 0;
-                }
-                else{
+                } else {
                     healthcareExpenses -= amount;
 
                     budgetReminder.BudgetRemoveReminder(amount);
@@ -703,10 +692,9 @@ public class Budget {
                 break;
             case 7:
                 // Change Entertainment
-                if(amount > entertainmentExpenses){
+                if (amount > entertainmentExpenses) {
                     entertainmentExpenses = 0;
-                }
-                else{
+                } else {
                     entertainmentExpenses -= amount;
                     budgetReminder.BudgetRemoveReminder(amount);
 
@@ -722,24 +710,13 @@ public class Budget {
 
     /**
      * Prompts the user to enter a dollar amount and returns it
+     *
      * @return double amount
      * @throws InputMismatchException
      */
-    private double getAmount() throws InputMismatchException{
+    private double getAmount() throws InputMismatchException {
 
-    double amount = 0;
-
-    // Validate Input - must be Double type
-    while (!scan.hasNextDouble()) {
-        System.out.print("Invalid input. Please enter an amount: $");
-        scan.next();
-    }
-
-    amount = scan.nextDouble();
-
-    // Validate input - must be positive value
-    while (amount <= 0) {
-        System.out.print("Invalid input. Please enter a positive amount: $");
+        double amount = 0;
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
@@ -760,10 +737,23 @@ public class Budget {
             }
 
             amount = scan.nextDouble();
+
+            // Validate input - must be positive value
+            while (amount <= 0) {
+                System.out.print("Invalid input. Please enter a positive amount: $");
+
+                // Validate Input - must be Double type
+                while (!scan.hasNextDouble()) {
+                    System.out.print("Invalid input. Please enter an amount: $");
+                    scan.next();
+                }
+
+                amount = scan.nextDouble();
+            }
+
+            scan.nextLine();    // Clear input stream
+            return amount;
+
         }
-
-        scan.nextLine();    // Clear input stream
-        return amount;
-
     }
 }
