@@ -11,6 +11,9 @@
  * @version 1.0
  * @since 03-04-2020
  */
+
+package TwoBucks;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Scanner;
