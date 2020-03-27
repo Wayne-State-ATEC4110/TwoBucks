@@ -15,6 +15,8 @@
 import java.util.*;
 import java.io.*;
 
+package TwoBucks;
+
 public class UpdateProfile {
     /***
      * This function will read from the text file where the
@@ -23,7 +25,7 @@ public class UpdateProfile {
      * @param currentUser
      * @return currentUser
      */
-    public User readFile(User currentUser){
+    public User updateInfo(User currentUser){
 
         Scanner scnr = new Scanner(System.in);
         int option;
@@ -35,50 +37,60 @@ public class UpdateProfile {
 
         option = scnr.nextInt();
 
-        if (option == 1){
+        if (option == 1) {
             System.out.println("Please confirm your existing first name: ");
 
+            while (true) {
+                String oldFirstName = scnr.next();
+
             while(true) {
-                String oldFirstName = input.next();
+                String oldFirstName = scnr.next();
+
                 if (oldFirstName != currentUser.getFirstName()) { // check if the user's input matches existing
                     System.out.println("This first name does not exist. Please try again: ");
                 }
 
                 System.out.println("Please enter your new first name: ");
-                currentUser.setFirstName(input.next()); // use set function to set new first name
+
+                currentUser.setFirstName(scnr.next()); // use set function to set new first name
+
+                currentUser.setFirstName(scnr.next()); // use set function to set new first name
             }
 
-            }else if(option == 2){
+            }
+        }
+        else if(option == 2){
 
-                System.out.println("Please confirm your existing last name: ");
+            System.out.println("Please confirm your existing last name: ");
 
-                while(true) {
-                    String oldLastName = input.next();
-                    if(oldLastName != currentUser.getLastName()){
-                        System.out.println("This last name does not exist. Please try again: ");
-                    }
+            while(true) {
+                String oldLastName = scnr.next();
+                if (oldLastName != currentUser.getLastName()) {
+                    System.out.println("This last name does not exist. Please try again: ");
                 }
+
                 System.out.println("Please enter your new last name: ");
-                currentUser.setLastName(input.next());
+                currentUser.setLastName(scnr.next());
+            }
 
-            }else if(option == 3){
+        }else if(option == 3){
 
-                System.out.println("Please confirm your existing email: ");
+            System.out.println("Please confirm your existing email: ");
 
-                while(true) {
-                    String oldEmail = input.next();
-                    if(oldEmail != currentUser.getEmail()){
-                        System.out.println("This email does not exist. Please try again: ");
-                    }
+            while(true) {
+                String oldEmail = scnr.next();
+                if (oldEmail != currentUser.getEmail()) {
+                    System.out.println("This email does not exist. Please try again: ");
                 }
                 System.out.println("Please enter your new first name: ");
-                currentUser.setEmail(input.next());
-
-            }else{
-                System.out.println("Please enter a valid option.");
+                currentUser.setEmail(scnr.next());
             }
 
-            return currentUser;
-
+        }else{
+            System.out.println("Please enter a valid option.");
         }
+
+        return currentUser;
+
     }
+}

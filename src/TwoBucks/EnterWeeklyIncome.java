@@ -1,4 +1,3 @@
-package TwoBucks;
 
 // Two Bucks
 // US8. Enter Weekly Income

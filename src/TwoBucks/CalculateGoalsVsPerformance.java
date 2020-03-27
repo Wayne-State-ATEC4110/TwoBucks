@@ -16,6 +16,8 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.*;
 
+package TwoBucks;
+
 public class CalculateGoalsVsPerformance {
 
     private static DecimalFormat df = new DecimalFormat("0.00"); // to keep the values in the correct format
@@ -26,7 +28,7 @@ public class CalculateGoalsVsPerformance {
      */
     public void PerformanceAnalysis(User currentUser) { // function to show statistics of spending/saving vs actual
 
-        double weeklySavings = (currentUser.getExpenses() - currentUser.getIncome()); // calculating savings
+        double weeklySavings = (currentUser.getIncome() - currentUser.getExpenses()); // calculating savings
 
         System.out.println("Your spending goal for this week was "+ currentUser.getSpendAmount()+".");
         System.out.println("You spent "+ currentUser.getExpenses()+ " this week.");
@@ -45,7 +47,11 @@ public class CalculateGoalsVsPerformance {
 
         System.out.println(" ");
         System.out.println("Your saving goal for this week was "+ currentUser.getSaveAmount()+".");
-        System.out.println("You saved "+ (currentUser.getIncome( - currentUser.getExpenses())+"."));
+
+        System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses())+".");
+
+        System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses())+"."));
+
         System.out.println(" ");
 
         if (currentUser.getSaveAmount() < weeklySavings){
