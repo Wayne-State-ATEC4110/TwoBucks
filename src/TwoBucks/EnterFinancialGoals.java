@@ -32,7 +32,11 @@ public class EnterFinancialGoals {
         }
         System.out.println("Spending amount of $" + df.format(spendAmt) + " has been saved to your user profile!");
         return spendAmt;
+<<<<<<< HEAD
     }
+=======
+        }
+>>>>>>> ddf681b549c1b8fa456c3937086049509f85c590
 
     public double enterSaveGoal(){
 
