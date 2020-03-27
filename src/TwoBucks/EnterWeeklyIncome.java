@@ -1,4 +1,3 @@
-package TwoBucks;
 
 // Two Bucks
 // US8. Enter Weekly Income
@@ -13,7 +12,7 @@ public class EnterWeeklyIncome {
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public static void enterIncome() {
+    public double enterIncome() {
 
         double weeklyIncome;
 
@@ -35,5 +34,6 @@ public class EnterWeeklyIncome {
         }
 
         System.out.println("Weekly income of $" + df.format(weeklyIncome) + " has been saved to your user profile!");
+        return weeklyIncome;
     }
 }
