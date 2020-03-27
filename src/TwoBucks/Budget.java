@@ -8,7 +8,7 @@
  *
  * @author Mike Shea
  * @version 1.0
- * @since 3/24/20
+ * @since 3/22/20
  */
 
 
@@ -68,7 +68,9 @@ public class Budget {
 
                 // Add purchase to budget
                 if (userSelection == 1) {
-                    System.out.print("Not yet implemented");
+                  
+                    AddToBudget();
+
                     DisplayBudget();
                     ReceiveUserSelection();
                 }
@@ -90,34 +92,9 @@ public class Budget {
     }
 
     /**
-     * Resets the class state
-     */
-    public void ResetValues(){
-        totalIncome = 0;
-        rentExpenses = 0;
-        utilitiesExpenses = 0;
-        foodExpenses = 0;
-        travelExpenses = 0;
-        healthcareExpenses = 0;
-        entertainmentExpenses = 0;
-        monthlyNetChange = 0;
-        userSelection = 0;
-    }
-
-    /**
-     * Returns the value of all expenses added together
-     * @return double totalExpenses
-     */
-    public double GetTotalExpenses(){
-        double totalExpenses = getRentExpenses() + getUtilitiesExpenses() + getFoodExpenses() +
-                getTravelExpenses() + getHealthcareExpenses() + getEntertainmentExpenses();
-        return totalExpenses;
-    }
-
-    /**
      * Displays current class members
      */
-    public void DisplayBudget() {
+    private void DisplayBudget() {
         System.out.println("");
         System.out.println("Monthly Budget");
         System.out.println("==========================");
@@ -508,6 +485,105 @@ public class Budget {
     }
 
     /**
+     *  User inputs an amount to add to a
+     *  specific budget category, includes
+     *  exception handling
+     * @throws InputMismatchException
+     */
+    public void AddToBudget() throws InputMismatchException
+    {
+        double amount = 0;
+        int selection = 0;
+
+        BudgetReminder budgetReminder = new BudgetReminder;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select a category from the menu below to add an amount to:");
+        System.out.println("1. Total Income");
+        System.out.println("2. Mortgage/Rent");
+        System.out.println("3. Utilities");
+        System.out.println("4. Food");
+        System.out.println("5. Travel");
+        System.out.println("6. Healthcare");
+        System.out.println("7. Entertainment");
+        System.out.println("8. Return to previous menu");
+
+        //Make sure integer
+        while (!scanner.hasNextInt())
+        {
+            System.out.print("Invalid input. ");
+            scanner.next();
+        }
+        selection = scanner.nextInt();
+
+        //Make sure accepted integer
+        while (selection <= 0 || selection > 8)
+        {
+            System.out.print("Invalid input. ");
+
+            // Make sure integer
+            while (!scanner.hasNextInt())
+            {
+                System.out.print("Invalid input. ");
+                scanner.next();
+            }
+
+            selection = scanner.nextInt();
+        }
+
+        scanner.nextLine();
+
+        System.out.print("Enter the amount you would like to add: $");
+        amount = getAmount();
+
+        switch(selection)
+        {
+
+            case 1:
+                //Add to total income
+                totalIncome += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 2:
+                //Add to rent
+                rentExpenses += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 3:
+                //Add to utilities
+                utilitiesExpenses += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 4:
+                //Add to food
+                foodExpenses += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 5:
+                //Add to travel
+                travelExpenses += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 6:
+                //Add to healthcare
+                healthcareExpenses += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 7:
+                //Add to entertainment
+                entertainmentExpenses += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 8:
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    /**
      * Prompts the user to select a category to remove an amount from,
      * then prompts the user to select an amount to remove. If the amount is greater
      * than what is currently in the category, the category will be reduced to zero.
@@ -516,6 +592,8 @@ public class Budget {
     public void RemoveFromBudget() throws InputMismatchException{
         int selection = 0;
         double amount = 0;
+
+        BudgetReminder budgetReminder = new BudgetReminder;
 
         System.out.println("Select a category from the menu below to remove an amount from:");
         System.out.println("1. Total Income");
@@ -560,6 +638,9 @@ public class Budget {
                 }
                 else {
                     totalIncome -= amount;
+
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 2:
@@ -569,6 +650,8 @@ public class Budget {
                 }
                 else{
                     rentExpenses -= amount;
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 3:
@@ -578,6 +661,9 @@ public class Budget {
                 }
                 else{
                     utilitiesExpenses -= amount;
+
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 4:
@@ -587,6 +673,8 @@ public class Budget {
                 }
                 else{
                     foodExpenses -= amount;
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 5:
@@ -596,6 +684,9 @@ public class Budget {
                 }
                 else{
                     travelExpenses -= amount;
+
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 6:
@@ -605,6 +696,9 @@ public class Budget {
                 }
                 else{
                     healthcareExpenses -= amount;
+
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 7:
@@ -614,6 +708,8 @@ public class Budget {
                 }
                 else{
                     entertainmentExpenses -= amount;
+                    budgetReminder.BudgetRemoveReminder(amount);
+
                 }
                 break;
             case 8:
@@ -630,7 +726,20 @@ public class Budget {
      * @throws InputMismatchException
      */
     private double getAmount() throws InputMismatchException{
-        double amount = 0;
+
+    double amount = 0;
+
+    // Validate Input - must be Double type
+    while (!scan.hasNextDouble()) {
+        System.out.print("Invalid input. Please enter an amount: $");
+        scan.next();
+    }
+
+    amount = scan.nextDouble();
+
+    // Validate input - must be positive value
+    while (amount <= 0) {
+        System.out.print("Invalid input. Please enter a positive amount: $");
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
@@ -655,5 +764,6 @@ public class Budget {
 
         scan.nextLine();    // Clear input stream
         return amount;
+
     }
 }
