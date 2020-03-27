@@ -392,7 +392,7 @@ public class Budget {
     }
 
     /**
-     * @param double totalIncome
+     * @param totalIncome double
      */
     public void setTotalIncome(double totalIncome) {
         this.totalIncome = totalIncome;

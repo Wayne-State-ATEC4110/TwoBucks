@@ -40,13 +40,13 @@ public class UpdateProfile {
 
             while(true) {
                 String oldFirstName = input.next();
-                if(oldFirstName != currentUser.getFirstName()){ // check if the user's input matches existing
+                if (oldFirstName != currentUser.getFirstName()) { // check if the user's input matches existing
                     System.out.println("This first name does not exist. Please try again: ");
                 }
 
                 System.out.println("Please enter your new first name: ");
                 currentUser.setFirstName(input.next()); // use set function to set new first name
-
+            }
 
             }else if(option == 2){
 
