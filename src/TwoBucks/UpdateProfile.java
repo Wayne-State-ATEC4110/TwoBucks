@@ -12,10 +12,13 @@
  * @since 03-04-2020
  */
 
-import java.util.*;
-import java.io.*;
-
 package TwoBucks;
+
+import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
 
 public class UpdateProfile {
     /***
@@ -25,65 +28,80 @@ public class UpdateProfile {
      * @param currentUser
      * @return currentUser
      */
-    public User updateInfo(User currentUser){
+    public User updateInfo(User currentUser)throws IOException{
 
         Scanner scnr = new Scanner(System.in);
+        FileManagement saver = new FileManagement();
+        Menu menu = new Menu();
         int option;
         System.out.println("What would you like to update?"); // menu
         System.out.println("");
         System.out.println("1. First Name");
         System.out.println("2. Last Name");
         System.out.println("3. Email");
+        System.out.println("4. Back To Main Menu");
+
 
         option = scnr.nextInt();
+        String oldFirstName;
 
         if (option == 1) {
             System.out.println("Please confirm your existing first name: ");
+            oldFirstName = scnr.next();
 
-            while(true) {
-                String oldFirstName = scnr.next();
+            while (!(oldFirstName.equals(currentUser.getFirstName()))) {
 
-                if (oldFirstName != currentUser.getFirstName()) { // check if the user's input matches existing
-                    System.out.println("This first name does not exist. Please try again: ");
-                }
-
-                System.out.println("Please enter your new first name: ");
-
-                currentUser.setFirstName(scnr.next()); // use set function to set new first name
-
-                currentUser.setFirstName(scnr.next()); // use set function to set new first name
+                System.out.println("This first name does not exist. Please try again: ");
+                oldFirstName = scnr.next();
             }
 
-            }
+            System.out.println("Please enter your new first name: ");
+            currentUser.setFirstName(scnr.next()); // use set function to set new first name
+
+            System.out.println("Saved Successfully!");
+            updateInfo(currentUser);
+
+
         }
         else if(option == 2){
 
             System.out.println("Please confirm your existing last name: ");
+            String oldLastName = scnr.next();
 
-            while(true) {
-                String oldLastName = scnr.next();
-                if (oldLastName != currentUser.getLastName()) {
-                    System.out.println("This last name does not exist. Please try again: ");
-                }
+            while (!(oldLastName.equals(currentUser.getLastName()))) {
 
-                System.out.println("Please enter your new last name: ");
-                currentUser.setLastName(scnr.next());
+                System.out.println("This first name does not exist. Please try again: ");
+                oldLastName = scnr.next();
             }
+
+            System.out.println("Please enter your new first name: ");
+            currentUser.setLastName(scnr.next()); // use set function to set new first name
+
+            System.out.println("Saved Successfully!");
+            updateInfo(currentUser);
 
         }else if(option == 3){
 
             System.out.println("Please confirm your existing email: ");
+            String oldEmail = scnr.next();
 
-            while(true) {
-                String oldEmail = scnr.next();
-                if (oldEmail != currentUser.getEmail()) {
-                    System.out.println("This email does not exist. Please try again: ");
-                }
-                System.out.println("Please enter your new first name: ");
-                currentUser.setEmail(scnr.next());
+            while (!(oldEmail.equals(currentUser.getFirstName()))) {
+
+                System.out.println("This first name does not exist. Please try again: ");
+                oldEmail = scnr.next();
             }
 
-        }else{
+            System.out.println("Please enter your new first name: ");
+            currentUser.setEmail(scnr.next()); // use set function to set new first name
+
+            System.out.println("Saved Successfully!");
+            updateInfo(currentUser);
+
+        }else if(option == 4){
+            saver.saveFile(currentUser);
+            menu.showOptions();
+        }
+        else{
             System.out.println("Please enter a valid option.");
         }
 

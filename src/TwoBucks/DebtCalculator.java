@@ -93,11 +93,12 @@ public class DebtCalculator {
             }
 
             // Close input stream
-            scan.close();
+            //scan.close();
 
         }
         catch(InputMismatchException e){
             System.out.println("Error: Unrecoverable input encountered.");
+            userSelection = 4;
         }
         finally{
             System.out.println("Returning to the Two Bucks main menu.");

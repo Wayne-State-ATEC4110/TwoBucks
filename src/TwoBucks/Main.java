@@ -1,13 +1,20 @@
+/**
+ * <h1>Main</h1>
+ *
+ * <p>The Main class calls the projects
+ * functions and sends the user to their
+ * designated feature</p>
+ *
+ * @author  Sawyer Kisha
+ * @version 1.5
+ * @since   1.0
+ */
+
 package TwoBucks;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
-/**
- * @author  Sawyer Kisha
- * @version 1.4
- * @since   1.0
- * Main.java
- */
 public class Main
 {
     public static void main(String[] args)throws IOException
@@ -17,6 +24,7 @@ public class Main
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
+        User currentUser = null;
 
         /**
          * Intro Menu
@@ -34,7 +42,7 @@ public class Main
         if (menu.getOption() == 2)
         {
             LoadUserProfile load = new LoadUserProfile();
-            User currentUser = load.loadUser(file.loadFile());
+            currentUser = load.loadUser(file.loadFile());
         }
         //Exiting Application
         if (menu.getOption() == 3)
@@ -45,10 +53,12 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 5)
+        while (menu.getOption() != 9)
         {
             menu.showOptions();
             menu.selectOption();
+
+            User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -74,11 +84,66 @@ public class Main
             {
                 calculateDebt.DebtCalculatorMain();
             }
-            if (menu.getOption() == 5){
+            //Display Goals
+            if(menu.getOption() == 5)
+            {
+                DisplayGoals goalDisplay = new DisplayGoals();
+                goalDisplay.displayGoals(user);
+            }
+            //Calculate Goals vs Performance
+            if(menu.getOption() == 6)
+            {
+                CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
+                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+            }
+            //Budget
+            if(menu.getOption() == 7)
+            {
+                Budget budget = new Budget();
+
+                budget.CreateBudget();
+                //Budget menu
+                while(menu.getOption() != 4)
+                {
+                    menu.showBudgetOptions();
+                    menu.selectBudgetOption();
+
+                    //Display Budget (private function)
+                    if (menu.getOption() == 1)
+                    {
+                        try
+                        {
+                            Method method = Budget.class.getDeclaredMethod("DisplayBudget");
+                            method.setAccessible(true);
+                            method.invoke(budget);
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    //Add to Budget
+                    if (menu.getOption() == 2) {
+                        budget.AddToBudget();
+                    }
+                    //Remove from Budget
+                    if (menu.getOption() == 3) {
+                        budget.RemoveFromBudget();
+                    }
+                }
+            }
+            //Update Profile
+            if(menu.getOption() == 8)
+            {
+                UpdateProfile updateProfile = new UpdateProfile();
+                updateProfile.updateInfo(user);
+            }
+            if (menu.getOption() == 9){
                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...
         }
     }
+
 }
