@@ -11,12 +11,14 @@
  * @version 1.0
  * @since 03-04-2020
  */
+
+
+package TwoBucks;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.*;
-
-package TwoBucks;
 
 public class CalculateGoalsVsPerformance {
 
@@ -50,7 +52,7 @@ public class CalculateGoalsVsPerformance {
 
         System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses())+".");
 
-        System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses())+"."));
+        System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses()+"."));
 
         System.out.println(" ");
 
