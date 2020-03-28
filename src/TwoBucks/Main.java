@@ -1,6 +1,7 @@
 package TwoBucks;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * @author  Sawyer Kisha
@@ -77,8 +78,9 @@ public class Main
             //Display Goals
             if(menu.getOption() == 5)
             {
+                User user = new User();
                 DisplayGoals goalDisplay = new DisplayGoals();
-                //goalDisplay.displayGoals();
+                goalDisplay.displayGoals(user);
             }
             //Budget
             if(menu.getOption() == 6)
@@ -92,8 +94,16 @@ public class Main
 
                     if (menu.getOption() == 1)
                     {
-                        //Private
-                        //budget.DisplayBudget();
+                        try
+                        {
+                            Method method = Budget.class.getDeclaredMethod("DisplayBudget");
+                            method.setAccessible(true);
+                            method.invoke(budget);
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
                     if (menu.getOption() == 2) {
                         budget.AddToBudget();
@@ -106,8 +116,9 @@ public class Main
             //Update Profile
             if(menu.getOption() == 7)
             {
+                User user = new User();
                 UpdateProfile updateProfile = new UpdateProfile();
-                //call
+                updateProfile.updateInfo(user);
             }
             if (menu.getOption() == 8){
                file.saveFile(currentUser);
