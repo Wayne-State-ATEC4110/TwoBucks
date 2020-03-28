@@ -15,13 +15,20 @@ package TwoBucks;
 
 import java.util.Scanner;
 
-public class Week extends User{
+public class Week {
 
-    private User previousWeek = new User();
+
+    private User previousWeek;
+
+
+    Week(){
+        this.previousWeek = new User();
+
+    }
 
     // progress to next week copies user variables and saves them to
     // new User object previousWeek. Previous week cannot be edited.
-    public void toNextWeek(User currentWeek){
+    public User toNextWeek(User currentWeek){
 
         Scanner scan = new Scanner(System.in);
         int input;
@@ -48,11 +55,12 @@ public class Week extends User{
 
                 // copy budget parameters
                 previousWeek.setBudget(currentWeek.getBudget());
+                currentWeek.clearBudget();
 
-                break;
+                return currentWeek;
             }
             else if (input ==2 ){
-                break;
+                return currentWeek;
 
             }
             else{
@@ -86,9 +94,6 @@ public class Week extends User{
 
     @Override
     public String toString() {
-        return "Week{" +
-                "currentWeek=" + //currentWeek +
-                ", previousWeek=" + previousWeek +
-                '}';
+        return this.getPreviousWeek().toString();
     }
 }

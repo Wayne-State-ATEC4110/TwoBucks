@@ -42,6 +42,15 @@ public class User {
      * @param Nothing
      */
     public User(){
+        this.firstName = " ";
+        this.lastName = " ";
+        this.email = " ";
+        this.income = 0;
+        this.expenses = 0;
+        this.saveAmount = 0;
+        this.spendAmount = 0;
+        this.budget = new Budget();
+        this.setWeek(new Week());
 
     }
 
@@ -99,6 +108,19 @@ public class User {
         this.saveAmount = saveAmount;
         this.spendAmount = spendAmount;
         this.budget = budget;
+    }
+
+    public User(String firstName, String lastName, String email, double income, double expenses, double saveAmount,
+                double spendAmount, Budget budget, Week week) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.income = income;
+        this.expenses = expenses;
+        this.saveAmount = saveAmount;
+        this.spendAmount = spendAmount;
+        this.budget = budget;
+        this.week = week;
     }
 
     /**
@@ -283,6 +305,11 @@ public class User {
                 ", " + lastName +
                 ", " + email +
                 ", " + income +
-                ", " + expenses ;
+                ", " + expenses +
+                ", " + saveAmount +
+                ", " + spendAmount +
+                ", " + this.getBudget().toString() +
+                ", " //+ this.getWeek().toString()
+         ;
     }
 }
