@@ -12,8 +12,8 @@
 
 package TwoBucks;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
+        import java.io.IOException;
+        import java.lang.reflect.Method;
 
 public class Main
 {
@@ -24,6 +24,7 @@ public class Main
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
+        User currentUser = null;
 
         /**
          * Intro Menu
@@ -41,7 +42,7 @@ public class Main
         if (menu.getOption() == 2)
         {
             LoadUserProfile load = new LoadUserProfile();
-            User currentUser = load.loadUser(file.loadFile());
+            currentUser = load.loadUser(file.loadFile());
         }
         //Exiting Application
         if (menu.getOption() == 3)
@@ -54,6 +55,7 @@ public class Main
          */
         while (menu.getOption() != 9)
         {
+
             menu.showOptions();
             menu.selectOption();
 
@@ -62,21 +64,21 @@ public class Main
             //Enter Weekly Income
             if (menu.getOption() == 1)
             {
-               EnterWeeklyIncome income = new EnterWeeklyIncome();
-               currentUser.setIncome(income.enterIncome());
+                EnterWeeklyIncome income = new EnterWeeklyIncome();
+                currentUser.setIncome(income.enterIncome());
             }
             //Enter Weekly Expense
             if (menu.getOption() == 2)
             {
-               EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
-               currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
+                EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
+                currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
             }
             //Enter Financial Goals
             if (menu.getOption() == 3)
             {
-               EnterFinancialGoals goals = new EnterFinancialGoals();
-               currentUser.setSpendAmount(goals.enterSpendGoal());
-               currentUser.setSaveAmount(goals.enterSaveGoal());
+                EnterFinancialGoals goals = new EnterFinancialGoals();
+                currentUser.setSpendAmount(goals.enterSpendGoal());
+                currentUser.setSaveAmount(goals.enterSaveGoal());
             }
             //Debt Calculator
             if (menu.getOption() == 4)
@@ -98,37 +100,9 @@ public class Main
             //Budget
             if(menu.getOption() == 7)
             {
-                //Budget menu
-                while(menu.getOption() != 4)
-                {
-                    menu.showBudgetOptions();
-                    menu.selectBudgetOption();
+                Budget budget = new Budget();
 
-                    Budget budget = new Budget();
-
-                    //Display Budget (private function)
-                    if (menu.getOption() == 1)
-                    {
-                        try
-                        {
-                            Method method = Budget.class.getDeclaredMethod("DisplayBudget");
-                            method.setAccessible(true);
-                            method.invoke(budget);
-                        }
-                        catch(Exception e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                    //Add to Budget
-                    if (menu.getOption() == 2) {
-                        budget.AddToBudget();
-                    }
-                    //Remove from Budget
-                    if (menu.getOption() == 3) {
-                        budget.RemoveFromBudget();
-                    }
-                }
+                budget.CreateBudget();
             }
             //Update Profile
             if(menu.getOption() == 8)
@@ -137,7 +111,7 @@ public class Main
                 updateProfile.updateInfo(user);
             }
             if (menu.getOption() == 9){
-               file.saveFile(currentUser);
+                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...

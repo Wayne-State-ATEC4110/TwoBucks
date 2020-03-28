@@ -132,7 +132,6 @@ public class Budget {
             System.out.println("Error: Unrecoverable input entered.");
         } finally {
             // Close input stream
-            scan.close();
         }
     }
 
@@ -165,7 +164,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveWageIncome() throws InputMismatchException {
-        System.out.print("Enter your income from wage (after tax): $");
+        System.out.print("Enter your income from wages (after tax): $");
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
@@ -176,7 +175,7 @@ public class Budget {
         wageIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (totalIncome <= 0) {
+        while (wageIncome <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for your wages: $");
 
             // Validate Input - must be Double type
@@ -207,7 +206,7 @@ public class Budget {
         otherIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (totalIncome <= 0) {
+        while (otherIncome <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the income: $");
 
             // Validate Input - must be Double type
@@ -426,7 +425,7 @@ public class Budget {
      * Calculates the total income
      */
     private void CalculateTotalIncome(){
-       totalIncome = wageIncome + otherIncome;
+        totalIncome = wageIncome + otherIncome;
     }
 
     /**
