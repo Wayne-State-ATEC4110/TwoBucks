@@ -9,6 +9,8 @@
  * @since 3/27/20
  */
 
+// Fix javadocs comments
+
 package TwoBucks;
 
 import java.util.*;
@@ -17,12 +19,15 @@ public class Budget {
 
     // Budget members
     private double totalIncome;
+    private double wageIncome;
+    private double otherIncome;
     private double rentExpenses;
     private double utilitiesExpenses;
     private double foodExpenses;
     private double travelExpenses;
     private double healthcareExpenses;
     private double entertainmentExpenses;
+    private double totalExpenses;
     private double monthlyNetChange;    // (Income - Expenses)
     private int userSelection = 0;
     private Scanner scan = new Scanner(System.in);
@@ -31,6 +36,8 @@ public class Budget {
      * Default Constructor to initialize fields
      */
     public Budget(){
+        wageIncome = 0.0;
+        otherIncome = 0.0;
         totalIncome = 0.0;
         rentExpenses = 0.0;
         utilitiesExpenses = 0.0;
@@ -38,6 +45,7 @@ public class Budget {
         travelExpenses = 0.0;
         healthcareExpenses = 0.0;
         entertainmentExpenses = 0.0;
+        totalExpenses = 0.0;
         monthlyNetChange = 0.0;
         userSelection = 0;
     }
@@ -45,16 +53,22 @@ public class Budget {
     /**
      * Argument Constructor to initialize fields without user input
      */
-    public Budget(double income, double rent, double utilities,
+    public Budget(double wages, double otherIncomeSource, double totalIncome, double rent, double utilities,
                   double food, double travel, double health,
-                  double entertainment){
-        this.totalIncome = income;
+                  double entertainment, double totalExpenses){
+        this.wageIncome = wages;
+        this.otherIncome = otherIncomeSource;
+        this.totalIncome = totalIncome;
         this.rentExpenses = rent;
         this.utilitiesExpenses = utilities;
         this.foodExpenses = food;
-        this.travelExpenses = food;
+        this.travelExpenses = travel;
+        this.foodExpenses = food;
         this.healthcareExpenses = health;
         this.entertainmentExpenses = entertainment;
+        this.totalExpenses = totalExpenses;
+
+        CalculateMonthlyNetChange();
     }
 
     /**
@@ -65,9 +79,9 @@ public class Budget {
 
     @Override
     public String toString() {
-        return totalIncome + ", " + rentExpenses + ", " + utilitiesExpenses + ", "
+        return wageIncome + ", " + otherIncome + ", " + totalIncome + ", " + rentExpenses + ", " + utilitiesExpenses + ", "
                 + foodExpenses + ", " + travelExpenses + ", " + healthcareExpenses
-                + ", " + entertainmentExpenses + ", " + monthlyNetChange;
+                + ", " + entertainmentExpenses + ", " + ", " + totalExpenses + ", " + monthlyNetChange;
     }
 
     /**
@@ -78,19 +92,24 @@ public class Budget {
 
     public void CreateBudget() {
         try {
-            ReceiveTotalIncome();
+            // Receive User Input
+            ReceiveWageIncome();
+            ReceiveOtherIncome();
             ReceiveRentExpenses();
             ReceiveUtilitiesExpenses();
             ReceiveFoodExpenses();
             ReceiveTravelExpenses();
             ReceiveHealthcareExpenses();
             ReceiveEntertainmentExpenses();
+
+            // Calculate & Display
+            CalculateTotalIncome();
+            CalculateTotalExpenses();
             CalculateMonthlyNetChange();
-
-            // Display Budget
             DisplayBudget();
-            ReceiveUserSelection();
 
+            // User Control Flow
+            ReceiveUserSelection();
             while (userSelection != 3) {
 
                 // Add purchase to budget
@@ -120,49 +139,84 @@ public class Budget {
     /**
      * Displays current class members
      */
-    private void DisplayBudget() {
+    public void DisplayBudget() {
         System.out.println();
-        System.out.println("Monthly Budget");
+        System.out.println("MONTHLY BUDGET:");
+        System.out.println("Wage Income: $" + String.format("%.2f", wageIncome));
+        System.out.println("Other Income: $" + String.format("%.2f", otherIncome));
         System.out.println("==========================");
         System.out.println("Total Income: $" + String.format("%.2f", totalIncome));
+        System.out.println();
         System.out.println("Rent/mortgage: $" + String.format("%.2f", rentExpenses));
         System.out.println("Utilities: $" + String.format("%.2f", utilitiesExpenses));
         System.out.println("Food: $" + String.format("%.2f", foodExpenses));
         System.out.println("Travel: $" + String.format("%.2f", travelExpenses));
         System.out.println("Healthcare: $" + String.format("%.2f", healthcareExpenses));
         System.out.println("Entertainment: $" + String.format("%.2f", entertainmentExpenses));
+        System.out.println("==========================");
+        System.out.println("Total Expenses: " + String.format("%.2f", totalExpenses));
+        System.out.println();
         System.out.println("Net change: $" + String.format("%.2f", monthlyNetChange));
         System.out.println();
     }
 
     /**
-     * Prompts the user to enter their monthly total income
-     *
+     * Prompts the user to enter their monthly wages
      * @throws InputMismatchException
      */
-
-    private void ReceiveTotalIncome() throws InputMismatchException {
-        System.out.print("Enter your total income (include all sources of income): $");
+    public void ReceiveWageIncome() throws InputMismatchException {
+        System.out.print("Enter your income from wage (after tax): $");
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
-            System.out.print("Invalid input. Please enter a numerical value for the total income: $");
+            System.out.print("Invalid input. Please enter a numerical value for your wages: $");
             scan.next();
         }
 
-        totalIncome = scan.nextDouble();
+        wageIncome = scan.nextDouble();
 
         // Validate input - must be positive value
         while (totalIncome <= 0) {
-            System.out.print("Invalid input. Please enter a positive numerical value for the total income: $");
+            System.out.print("Invalid input. Please enter a positive numerical value for your wages: $");
 
             // Validate Input - must be Double type
             while (!scan.hasNextDouble()) {
-                System.out.print("Invalid input. Please enter a numerical value for the total income: $");
+                System.out.print("Invalid input. Please enter a numerical value for your wages: $");
                 scan.next();
             }
 
-            totalIncome = scan.nextDouble();
+            wageIncome = scan.nextDouble();
+        }
+
+        scan.nextLine();    // Clear input stream
+    }
+
+    /**
+     * Prompts the user to enter their income from all other sources
+     * @throws InputMismatchException
+     */
+    public void ReceiveOtherIncome() throws InputMismatchException {
+        System.out.print("Enter your income all other sources: $");
+
+        // Validate Input - must be Double type
+        while (!scan.hasNextDouble()) {
+            System.out.print("Invalid input. Please enter a numerical value for the income: $");
+            scan.next();
+        }
+
+        otherIncome = scan.nextDouble();
+
+        // Validate input - must be positive value
+        while (totalIncome <= 0) {
+            System.out.print("Invalid input. Please enter a positive numerical value for the income: $");
+
+            // Validate Input - must be Double type
+            while (!scan.hasNextDouble()) {
+                System.out.print("Invalid input. Please enter a numerical value for the income: $");
+                scan.next();
+            }
+
+            otherIncome = scan.nextDouble();
         }
 
         scan.nextLine();    // Clear input stream
@@ -173,7 +227,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveRentExpenses() throws InputMismatchException {
+    public void ReceiveRentExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on this month's rent/mortgage: $");
 
         // Validate Input - must be Double type
@@ -205,7 +259,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveUtilitiesExpenses() throws InputMismatchException {
+    public void ReceiveUtilitiesExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on utilities (electric, water, phone, ect): $");
 
         // Validate Input - must be Double type
@@ -238,7 +292,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveFoodExpenses() throws InputMismatchException {
+    public void ReceiveFoodExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on food: $");
 
@@ -272,7 +326,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveTravelExpenses() throws InputMismatchException {
+    public void ReceiveTravelExpenses() throws InputMismatchException {
         System.out.print("Enter the total spent on travel (car payments/repairs, gasoline, public transport, ect): $");
 
         // Validate Input - must be Double type
@@ -305,7 +359,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveHealthcareExpenses() throws InputMismatchException {
+    public void ReceiveHealthcareExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on healthcare expenses (including insurance): $");
 
@@ -339,7 +393,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveEntertainmentExpenses() throws InputMismatchException {
+    public void ReceiveEntertainmentExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on entertainment: $");
 
@@ -369,13 +423,26 @@ public class Budget {
     }
 
     /**
-     * Calculates the monthly net change (income - expenses)
-     *
-     * @throws InputMismatchException
+     * Calculates the total income
      */
-    private void CalculateMonthlyNetChange() throws InputMismatchException {
-        monthlyNetChange = totalIncome - (rentExpenses + utilitiesExpenses +
-                foodExpenses + travelExpenses + healthcareExpenses + entertainmentExpenses);
+    public void CalculateTotalIncome(){
+        totalIncome = wageIncome + otherIncome;
+    }
+
+    /**
+     * Calculates the total expenses
+     */
+    public void CalculateTotalExpenses(){
+        totalExpenses = rentExpenses + utilitiesExpenses +
+                foodExpenses + travelExpenses + healthcareExpenses + entertainmentExpenses;
+    }
+
+    /**
+     * Calculates the monthly net change (income - expenses)
+     */
+    public void CalculateMonthlyNetChange() {
+
+        monthlyNetChange = totalIncome - totalExpenses;
     }
 
     /**
@@ -383,7 +450,6 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-
     public void ReceiveUserSelection() throws InputMismatchException {
         // User Menu
         System.out.println("Enter an option from the menu below.");
@@ -412,103 +478,7 @@ public class Budget {
 
     }
 
-    /**
-     * @return double totalIncome
-     */
-    public double getTotalIncome() {
-        return totalIncome;
-    }
 
-    /**
-     * @param totalIncome double
-     */
-    public void setTotalIncome(double totalIncome) {
-        this.totalIncome = totalIncome;
-    }
-
-    /**
-     * @return double rentExpenses
-     */
-    public double getRentExpenses() {
-        return rentExpenses;
-    }
-
-    /**
-     * @param double rentExpenses
-     */
-    public void setRentExpenses(double rentExpenses) {
-        this.rentExpenses = rentExpenses;
-    }
-
-    /**
-     * @return double utilitiesExpenses
-     */
-    public double getUtilitiesExpenses() {
-        return utilitiesExpenses;
-    }
-
-    /**
-     * @param double utilitiesExpenses
-     */
-    public void setUtilitiesExpenses(double utilitiesExpenses) {
-        this.utilitiesExpenses = utilitiesExpenses;
-    }
-
-    /**
-     * @return double foodExpenses
-     */
-    public double getFoodExpenses() {
-        return foodExpenses;
-    }
-
-    /**
-     * @param double foodExpenses
-     */
-    public void setFoodExpenses(double foodExpenses) {
-        this.foodExpenses = foodExpenses;
-    }
-
-    /**
-     * @return double travelExpenses
-     */
-    public double getTravelExpenses() {
-        return travelExpenses;
-    }
-
-    /**
-     * @param double travelExpenses
-     */
-    public void setTravelExpenses(double travelExpenses) {
-        this.travelExpenses = travelExpenses;
-    }
-
-    /**
-     * @return double healthcareExpenses
-     */
-    public double getHealthcareExpenses() {
-        return healthcareExpenses;
-    }
-
-    /**
-     * @param double healthcareExpenses
-     */
-    public void setHealthcareExpenses(double healthcareExpenses) {
-        this.healthcareExpenses = healthcareExpenses;
-    }
-
-    /**
-     * @return double healthcareExpenses
-     */
-    public double getEntertainmentExpenses() {
-        return entertainmentExpenses;
-    }
-
-    /**
-     * @param double entertainmentExpenses
-     */
-    public void setEntertainmentExpenses(double entertainmentExpenses) {
-        this.entertainmentExpenses = entertainmentExpenses;
-    }
 
     /**
      * User inputs an amount to add to a
@@ -784,5 +754,158 @@ public class Budget {
 
         scan.nextLine();    // Clear input stream
         return amount;
+    }
+
+    /**
+     * GETTERS AND SETTERS
+     */
+
+    /**
+     *
+     * @return wageIncome double
+     */
+    public double getWageIncome(){ return wageIncome; }
+
+    /**
+     * @param  wageIncome double
+     */
+    public void setWageIncome(double wageIncome){this.wageIncome = wageIncome;}
+
+    /**
+     * @return otherIncome double
+     */
+    public double getOtherIncome() {return otherIncome; }
+
+    /**
+     * @param otherIncome double
+     */
+    public void setOtherIncome(double otherIncome){this.otherIncome = otherIncome;}
+
+
+    /**
+     * @return totalIncome double
+     */
+    public double getTotalIncome() {
+        return totalIncome;
+    }
+
+    /**
+     * @param totalIncome double
+     */
+    public void setTotalIncome(double totalIncome) {
+        this.totalIncome = totalIncome;
+    }
+
+    /**
+     * @return rentExpenses double
+     */
+    public double getRentExpenses() {
+        return rentExpenses;
+    }
+
+    /**
+     * @param rentExpenses double
+     */
+    public void setRentExpenses(double rentExpenses) {
+        this.rentExpenses = rentExpenses;
+    }
+
+    /**
+     * @return utilitiesExpenses double
+     */
+    public double getUtilitiesExpenses() {
+        return utilitiesExpenses;
+    }
+
+    /**
+     * @param utilitiesExpenses double
+     */
+    public void setUtilitiesExpenses(double utilitiesExpenses) {
+        this.utilitiesExpenses = utilitiesExpenses;
+    }
+
+    /**
+     * @return foodExpenses double
+     */
+    public double getFoodExpenses() {
+        return foodExpenses;
+    }
+
+    /**
+     * @param foodExpenses double
+     */
+    public void setFoodExpenses(double foodExpenses) {
+        this.foodExpenses = foodExpenses;
+    }
+
+    /**
+     * @return travelExpenses double
+     */
+    public double getTravelExpenses() {
+        return travelExpenses;
+    }
+
+    /**
+     * @param travelExpenses double
+     */
+    public void setTravelExpenses(double travelExpenses) {
+        this.travelExpenses = travelExpenses;
+    }
+
+    /**
+     * @return healthcareExpenses double
+     */
+    public double getHealthcareExpenses() {
+        return healthcareExpenses;
+    }
+
+    /**
+     * @param healthcareExpenses double
+     */
+    public void setHealthcareExpenses(double healthcareExpenses) {
+        this.healthcareExpenses = healthcareExpenses;
+    }
+
+    /**
+     * @return healthcareExpenses double
+     */
+    public double getEntertainmentExpenses() {
+        return entertainmentExpenses;
+    }
+
+    /**
+     * @param entertainmentExpenses double
+     */
+    public void setEntertainmentExpenses(double entertainmentExpenses) {
+        this.entertainmentExpenses = entertainmentExpenses;
+    }
+
+    /**
+     *
+     * @return totalExpenses double
+     */
+    public double getTotalExpenses(){return totalExpenses;}
+
+    /**
+     * @param totalExpenses double
+     */
+    public void setTotalExpenses(double totalExpenses){
+        this.totalExpenses = totalExpenses;
+    }
+
+    /**
+     *
+     * @return monthlyNewChange double
+     */
+    public double getMonthlyNetChange() {
+        return monthlyNetChange;
+    }
+
+    /**
+     *
+     * @param monthlyNetChange
+     */
+    public void setMonthlyNetChange(double monthlyNetChange){
+        monthlyNetChange = monthlyNetChange;
     }
 }
