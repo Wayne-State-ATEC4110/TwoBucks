@@ -13,8 +13,6 @@
 
 package TwoBucks;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 import java.util.*;
 
 public class Budget {
@@ -65,7 +63,7 @@ public class Budget {
         this.utilitiesExpenses = utilities;
         this.foodExpenses = food;
         this.travelExpenses = travel;
-        this.travelExpenses = food;
+        this.foodExpenses = food;
         this.healthcareExpenses = health;
         this.entertainmentExpenses = entertainment;
         this.totalExpenses = totalExpenses;
@@ -166,7 +164,7 @@ public class Budget {
      * Prompts the user to enter their monthly wages
      * @throws InputMismatchException
      */
-    private void ReceiveWageIncome() throws InputMismatchException {
+    public void ReceiveWageIncome() throws InputMismatchException {
         System.out.print("Enter your income from wage (after tax): $");
 
         // Validate Input - must be Double type
@@ -197,7 +195,7 @@ public class Budget {
      * Prompts the user to enter their income from all other sources
      * @throws InputMismatchException
      */
-    private void ReceiveOtherIncome() throws InputMismatchException {
+    public void ReceiveOtherIncome() throws InputMismatchException {
         System.out.print("Enter your income all other sources: $");
 
         // Validate Input - must be Double type
@@ -229,7 +227,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveRentExpenses() throws InputMismatchException {
+    public void ReceiveRentExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on this month's rent/mortgage: $");
 
         // Validate Input - must be Double type
@@ -261,7 +259,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveUtilitiesExpenses() throws InputMismatchException {
+    public void ReceiveUtilitiesExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on utilities (electric, water, phone, ect): $");
 
         // Validate Input - must be Double type
@@ -294,7 +292,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveFoodExpenses() throws InputMismatchException {
+    public void ReceiveFoodExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on food: $");
 
@@ -328,7 +326,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveTravelExpenses() throws InputMismatchException {
+    public void ReceiveTravelExpenses() throws InputMismatchException {
         System.out.print("Enter the total spent on travel (car payments/repairs, gasoline, public transport, ect): $");
 
         // Validate Input - must be Double type
@@ -361,7 +359,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveHealthcareExpenses() throws InputMismatchException {
+    public void ReceiveHealthcareExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on healthcare expenses (including insurance): $");
 
@@ -395,7 +393,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveEntertainmentExpenses() throws InputMismatchException {
+    public void ReceiveEntertainmentExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on entertainment: $");
 
@@ -434,7 +432,7 @@ public class Budget {
     /**
      * Calculates the total expenses
      */
-    private void CalculateTotalExpenses(){
+    public void CalculateTotalExpenses(){
         totalExpenses = rentExpenses + utilitiesExpenses +
                 foodExpenses + travelExpenses + healthcareExpenses + entertainmentExpenses;
     }
@@ -442,9 +440,8 @@ public class Budget {
     /**
      * Calculates the monthly net change (income - expenses)
      */
-    private void CalculateMonthlyNetChange() {
-        CalculateTotalIncome();
-        CalculateTotalExpenses();
+    public void CalculateMonthlyNetChange() {
+
         monthlyNetChange = totalIncome - totalExpenses;
     }
 
