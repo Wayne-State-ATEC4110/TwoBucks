@@ -53,7 +53,7 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9)
+        while (menu.getOption() != 9 || currentUser != null)
         {
 
             menu.showOptions();
@@ -108,7 +108,7 @@ public class Main
             if(menu.getOption() == 8)
             {
                 UpdateProfile updateProfile = new UpdateProfile();
-                updateProfile.updateInfo(user);
+                updateProfile.updateInfo(currentUser);
             }
             if (menu.getOption() == 9){
                 file.saveFile(currentUser);
