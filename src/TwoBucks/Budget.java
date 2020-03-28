@@ -4,8 +4,6 @@
  * <p>The Budget class allows for a budget to be created or edited after initially created
  * It belongs to the User class.</p>
  *
- * TODO:    Let user know when amount removed exceeds current category amount
- *
  * @author Mike Shea
  * @version 1.0
  * @since 3/27/20
@@ -28,6 +26,36 @@ public class Budget {
     private double monthlyNetChange;    // (Income - Expenses)
     private int userSelection = 0;
     private Scanner scan = new Scanner(System.in);
+
+    /**
+     * Default Constructor to initialize fields
+     */
+    public Budget(){
+        totalIncome = 0.0;
+        rentExpenses = 0.0;
+        utilitiesExpenses = 0.0;
+        foodExpenses = 0.0;
+        travelExpenses = 0.0;
+        healthcareExpenses = 0.0;
+        entertainmentExpenses = 0.0;
+        monthlyNetChange = 0.0;
+        userSelection = 0;
+    }
+
+    /**
+     * Argument Constructor to initialize fields without user input
+     */
+    public Budget(double income, double rent, double utilities,
+                  double food, double travel, double health,
+                  double entertainment){
+        this.totalIncome = income;
+        this.rentExpenses = rent;
+        this.utilitiesExpenses = utilities;
+        this.foodExpenses = food;
+        this.travelExpenses = food;
+        this.healthcareExpenses = health;
+        this.entertainmentExpenses = entertainment;
+    }
 
     /**
      * Class toString method used to export class members into one string for saving
