@@ -1,13 +1,21 @@
+/**
+ * <h1>Menu</h1>
+ *
+ * <p>The Menu class interacts with the user
+ * in the form of interfaces which include
+ * gathering inputs, exception handling and
+ * switch cases to send the user to their
+ * designated interface.</p>
+ *
+ * @author  Sawyer Kisha
+ * @version 1.6
+ * @since   1.0
+ */
+
 package TwoBucks;
 
 import java.util.Scanner;
 
-/**
- * @author  Sawyer Kisha
- * @version 1.3
- * @since   1.0
- * Menu.java
- */
 public class Menu
 {
 
@@ -35,9 +43,10 @@ public class Menu
         System.out.println("3. Financial Goals ");
         System.out.println("4. Debt Calculator ");
         System.out.println("5. Display Goals ");
-        System.out.println("6. Budget ");
-        System.out.println("7. Update Profile ");
-        System.out.println("8. Exit ");
+        System.out.println("6. Goals vs Performance ");
+        System.out.println("7. Budget ");
+        System.out.println("8. Update Profile ");
+        System.out.println("9. Exit ");
     }
 
     /**
@@ -213,24 +222,28 @@ public class Menu
                 System.out.println("Display Goals: ");
                 break;
             case 6:
-                //Budget
+                //Goals vs Performance
                 this.option = 6;
-                System.out.println("Budget: ");
+                System.out.println("Goals vs Performance: ");
                 break;
             case 7:
-                //Display Goals
+                //Budget
                 this.option = 7;
-                System.out.println("Update Profile: ");
+                System.out.println("Budget: ");
                 break;
             case 8:
-                //Exiting the application
+                //Display Goals
                 this.option = 8;
+                System.out.println("Update Profile: ");
+                break;
+            case 9:
+                //Exiting the application
+                this.option = 9;
                 System.out.println("TwoBucks application closing...");
                 break;
             default:
                 //If invalid input
                 System.out.println("Invalid option");
-                selectOption();
                 break;
         }
         return choice;

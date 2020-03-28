@@ -1,14 +1,20 @@
+/**
+ * <h1>Main</h1>
+ *
+ * <p>The Main class calls the projects
+ * functions and sends the user to their
+ * designated feature</p>
+ *
+ * @author  Sawyer Kisha
+ * @version 1.5
+ * @since   1.0
+ */
+
 package TwoBucks;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-/**
- * @author  Sawyer Kisha
- * @version 1.4
- * @since   1.0
- * Main.java
- */
 public class Main
 {
     public static void main(String[] args)throws IOException
@@ -46,10 +52,12 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 8)
+        while (menu.getOption() != 9)
         {
             menu.showOptions();
             menu.selectOption();
+
+            User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -78,13 +86,19 @@ public class Main
             //Display Goals
             if(menu.getOption() == 5)
             {
-                User user = new User();
                 DisplayGoals goalDisplay = new DisplayGoals();
                 goalDisplay.displayGoals(user);
             }
-            //Budget
+            //Calculate Goals vs Performance
             if(menu.getOption() == 6)
             {
+                CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
+                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+            }
+            //Budget
+            if(menu.getOption() == 7)
+            {
+                //Budget menu
                 while(menu.getOption() != 4)
                 {
                     menu.showBudgetOptions();
@@ -92,6 +106,7 @@ public class Main
 
                     Budget budget = new Budget();
 
+                    //Display Budget (private function)
                     if (menu.getOption() == 1)
                     {
                         try
@@ -105,22 +120,23 @@ public class Main
                             e.printStackTrace();
                         }
                     }
+                    //Add to Budget
                     if (menu.getOption() == 2) {
                         budget.AddToBudget();
                     }
+                    //Remove from Budget
                     if (menu.getOption() == 3) {
                         budget.RemoveFromBudget();
                     }
                 }
             }
             //Update Profile
-            if(menu.getOption() == 7)
+            if(menu.getOption() == 8)
             {
-                User user = new User();
                 UpdateProfile updateProfile = new UpdateProfile();
                 updateProfile.updateInfo(user);
             }
-            if (menu.getOption() == 8){
+            if (menu.getOption() == 9){
                file.saveFile(currentUser);
             }
 
