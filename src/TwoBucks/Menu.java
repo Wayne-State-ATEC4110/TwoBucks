@@ -244,6 +244,7 @@ public class Menu
             default:
                 //If invalid input
                 System.out.println("Invalid option");
+
                 break;
         }
         return choice;
