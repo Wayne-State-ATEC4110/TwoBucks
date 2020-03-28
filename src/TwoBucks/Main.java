@@ -99,13 +99,14 @@ public class Main
             //Budget
             if(menu.getOption() == 7)
             {
+                Budget budget = new Budget();
+
+                budget.CreateBudget();
                 //Budget menu
                 while(menu.getOption() != 4)
                 {
                     menu.showBudgetOptions();
                     menu.selectBudgetOption();
-
-                    Budget budget = new Budget();
 
                     //Display Budget (private function)
                     if (menu.getOption() == 1)
