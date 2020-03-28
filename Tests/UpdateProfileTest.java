@@ -1,11 +1,13 @@
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class UpdateProfileTest {
 
     @Test
-    public void updateFirstName() { // User must choose option 1 to test
+    public void updateFirstName()throws IOException { // User must choose option 1 to test
         UpdateProfile uP = new UpdateProfile();
         User User1 = new User();
         User User2 = new User();
@@ -20,7 +22,7 @@ public class UpdateProfileTest {
 
     }
 
-    public void updateLastName(){ // User must choose option 2 to test
+    public void updateLastName()throws IOException{ // User must choose option 2 to test
         UpdateProfile uP = new UpdateProfile();
         User User1 = new User();
         User User2 = new User();
@@ -34,7 +36,7 @@ public class UpdateProfileTest {
         assertEquals(User2,User1); // testing if the variable currently in user 1 can be changed to user 2
     }
 
-    public void updateEmail(){ // User must choose option 2 to test
+    public void updateEmail()throws IOException{ // User must choose option 2 to test
         UpdateProfile uP = new UpdateProfile();
         User User1 = new User();
         User User2 = new User();
