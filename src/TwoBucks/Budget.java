@@ -30,7 +30,6 @@ public class Budget {
     private double totalExpenses;
     private double monthlyNetChange;    // (Income - Expenses)
     private int userSelection = 0;
-    private Scanner scan = new Scanner(System.in);
 
     /**
      * Default Constructor to initialize fields
@@ -132,7 +131,6 @@ public class Budget {
             System.out.println("Error: Unrecoverable input entered.");
         } finally {
             // Close input stream
-            scan.close();
         }
     }
 
@@ -165,6 +163,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveWageIncome() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter your income from wages (after tax): $");
 
         // Validate Input - must be Double type
@@ -196,6 +195,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveOtherIncome() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter your income all other sources: $");
 
         // Validate Input - must be Double type
@@ -228,6 +228,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveRentExpenses() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the amount spent on this month's rent/mortgage: $");
 
         // Validate Input - must be Double type
@@ -260,6 +261,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveUtilitiesExpenses() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the amount spent on utilities (electric, water, phone, ect): $");
 
         // Validate Input - must be Double type
@@ -293,7 +295,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveFoodExpenses() throws InputMismatchException {
-
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the amount spent on food: $");
 
         // Validate Input - must be Double type
@@ -327,6 +329,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveTravelExpenses() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the total spent on travel (car payments/repairs, gasoline, public transport, ect): $");
 
         // Validate Input - must be Double type
@@ -360,7 +363,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveHealthcareExpenses() throws InputMismatchException {
-
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the amount spent on healthcare expenses (including insurance): $");
 
         // Validate Input - must be Double type
@@ -394,7 +397,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private void ReceiveEntertainmentExpenses() throws InputMismatchException {
-
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the amount spent on entertainment: $");
 
         // Validate Input - must be Double type
@@ -452,6 +455,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     public void ReceiveUserSelection() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         // User Menu
         System.out.println("Enter an option from the menu below.");
         System.out.println("1. Add purchase to budget");
@@ -584,6 +588,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     public void RemoveFromBudget() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
         int selection = 0;
         double amount = 0;
 
@@ -714,6 +719,7 @@ public class Budget {
      * @throws InputMismatchException
      */
     private double getAmount() throws InputMismatchException {
+        Scanner scan = new Scanner(System.in);
 
         double amount = 0;
 
