@@ -121,59 +121,6 @@ public class Menu
      * Uses the user input integer choice
      * which is then used for a switch case
      * in order to send the user to their
-     * desired budget interface
-     * @return
-     */
-    public int selectBudgetOption()
-    {
-        //Getting user input
-        int choice = -1;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Select an option: ");
-        try
-        {
-            choice = scanner.nextInt();
-        }
-        catch(Exception e)
-        {
-            System.out.println("Please enter a numerical value ");
-        }
-
-        switch(choice)
-        {
-            case 1:
-                //
-                this.option = 1;
-                System.out.println("Display Budget: ");
-                break;
-            case 2:
-                //Add to Budget
-                this.option = 2;
-                System.out.println("Add to Budget: ");
-                break;
-            case 3:
-                //Remove from Budget
-                this.option = 3;
-                System.out.println("Remove from Budget: ");
-                break;
-            case 4:
-                //Exiting the application
-                this.option = 4;
-                System.out.println("Returning to main menu...");
-                break;
-            default:
-                //If invalid input
-                System.out.println("Invalid option");
-                selectIntroOption();
-                break;
-        }
-        return choice;
-    }
-
-    /**
-     * Uses the user input integer choice
-     * which is then used for a switch case
-     * in order to send the user to their
      * desired interface
      * @return choice
      */
@@ -244,7 +191,6 @@ public class Menu
             default:
                 //If invalid input
                 System.out.println("Invalid option");
-
                 break;
         }
         return choice;
