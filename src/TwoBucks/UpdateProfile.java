@@ -40,9 +40,6 @@ public class UpdateProfile {
         if (option == 1) {
             System.out.println("Please confirm your existing first name: ");
 
-            while (true) {
-                String oldFirstName = scnr.next();
-
             while(true) {
                 String oldFirstName = scnr.next();
 
