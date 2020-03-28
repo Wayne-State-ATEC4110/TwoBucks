@@ -12,10 +12,11 @@
  * @since 03-04-2020
  */
 
+package TwoBucks;
+
 import java.util.*;
 import java.io.*;
 
-package TwoBucks;
 
 public class UpdateProfile {
     /***
@@ -43,8 +44,6 @@ public class UpdateProfile {
             while (true) {
                 String oldFirstName = scnr.next();
 
-            while(true) {
-                String oldFirstName = scnr.next();
 
                 if (oldFirstName != currentUser.getFirstName()) { // check if the user's input matches existing
                     System.out.println("This first name does not exist. Please try again: ");
@@ -58,7 +57,6 @@ public class UpdateProfile {
             }
 
             }
-        }
         else if(option == 2){
 
             System.out.println("Please confirm your existing last name: ");

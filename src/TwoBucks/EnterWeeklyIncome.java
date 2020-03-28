@@ -3,6 +3,8 @@
 // US8. Enter Weekly Income
 // By Frino Jais
 
+package TwoBucks;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Scanner;

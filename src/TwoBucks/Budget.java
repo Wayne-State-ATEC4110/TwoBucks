@@ -751,9 +751,10 @@ public class Budget {
                 amount = scan.nextDouble();
             }
 
-            scan.nextLine();    // Clear input stream
-            return amount;
 
         }
+
+        scan.nextLine();    // Clear input stream
+        return amount;
     }
 }
