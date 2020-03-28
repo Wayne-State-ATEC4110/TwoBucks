@@ -24,6 +24,7 @@ public class Main
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
+        User currentUser = null;
 
         /**
          * Intro Menu
@@ -41,7 +42,7 @@ public class Main
         if (menu.getOption() == 2)
         {
             LoadUserProfile load = new LoadUserProfile();
-            User currentUser = load.loadUser(file.loadFile());
+            currentUser = load.loadUser(file.loadFile());
         }
         //Exiting Application
         if (menu.getOption() == 3)
