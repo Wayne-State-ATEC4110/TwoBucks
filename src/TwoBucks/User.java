@@ -50,7 +50,7 @@ public class User {
         this.saveAmount = 0;
         this.spendAmount = 0;
         this.budget = new Budget();
-        this.setWeek(new Week());
+        //this.week = new Week();
 
     }
 
@@ -290,6 +290,8 @@ public class User {
         this.budget.setRentExpenses(0);
         this.budget.setTravelExpenses(0);
         this.budget.setUtilitiesExpenses(0);
+        this.budget.setTotalExpenses(0);
+        this.budget.setMonthlyNetChange(0);
     }
 
     /**
@@ -308,8 +310,8 @@ public class User {
                 ", " + expenses +
                 ", " + saveAmount +
                 ", " + spendAmount +
-                ", " + this.getBudget().toString() +
-                ", " //+ this.getWeek().toString()
+                ", " + this.getBudget().toString()
+                //+ "Week:"+ this.getWeek().toString()
          ;
     }
 }

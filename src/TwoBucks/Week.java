@@ -18,11 +18,11 @@ import java.util.Scanner;
 public class Week {
 
 
-    private User previousWeek;
+    private User previousWeek = new User(null,null,null,0,0,0,0,new Budget());
 
 
-    Week(){
-        this.previousWeek = new User();
+    public Week(){
+
 
     }
 
@@ -92,8 +92,10 @@ public class Week {
         return this.previousWeek;
     }
 
-    @Override
-    public String toString() {
-        return this.getPreviousWeek().toString();
-    }
+    //@Override
+    //public String toString() {
+     //   return "Week{" +
+     //           "previousWeek=" + previousWeek.toString() +
+     //           '}';
+    //}
 }

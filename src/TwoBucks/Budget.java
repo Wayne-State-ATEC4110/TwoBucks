@@ -80,7 +80,7 @@ public class Budget {
     public String toString() {
         return wageIncome + ", " + otherIncome + ", " + totalIncome + ", " + rentExpenses + ", " + utilitiesExpenses + ", "
                 + foodExpenses + ", " + travelExpenses + ", " + healthcareExpenses
-                + ", " + entertainmentExpenses + ", " + ", " + totalExpenses + ", " + monthlyNetChange;
+                + ", " + entertainmentExpenses + ", " + totalExpenses + ", " + monthlyNetChange;
     }
 
     /**
@@ -913,6 +913,6 @@ public class Budget {
      * @param monthlyNetChange
      */
     public void setMonthlyNetChange(double monthlyNetChange){
-        monthlyNetChange = monthlyNetChange;
+        this.monthlyNetChange = monthlyNetChange;
     }
 }
