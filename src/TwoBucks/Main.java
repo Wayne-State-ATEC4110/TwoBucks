@@ -1,3 +1,4 @@
+
 /**
  * <h1>Main</h1>
  *
@@ -12,8 +13,8 @@
 
 package TwoBucks;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
+        import java.io.IOException;
+        import java.lang.reflect.Method;
 
 public class Main
 {
@@ -53,8 +54,9 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9)
+        while (menu.getOption() != 9 || currentUser != null)
         {
+
             menu.showOptions();
             menu.selectOption();
 
@@ -63,21 +65,21 @@ public class Main
             //Enter Weekly Income
             if (menu.getOption() == 1)
             {
-               EnterWeeklyIncome income = new EnterWeeklyIncome();
-               currentUser.setIncome(income.enterIncome());
+                EnterWeeklyIncome income = new EnterWeeklyIncome();
+                currentUser.setIncome(income.enterIncome());
             }
             //Enter Weekly Expense
             if (menu.getOption() == 2)
             {
-               EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
-               currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
+                EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
+                currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
             }
             //Enter Financial Goals
             if (menu.getOption() == 3)
             {
-               EnterFinancialGoals goals = new EnterFinancialGoals();
-               currentUser.setSpendAmount(goals.enterSpendGoal());
-               currentUser.setSaveAmount(goals.enterSaveGoal());
+                EnterFinancialGoals goals = new EnterFinancialGoals();
+                currentUser.setSpendAmount(goals.enterSpendGoal());
+                currentUser.setSaveAmount(goals.enterSaveGoal());
             }
             //Debt Calculator
             if (menu.getOption() == 4)
@@ -102,44 +104,15 @@ public class Main
                 Budget budget = new Budget();
 
                 budget.CreateBudget();
-                //Budget menu
-                while(menu.getOption() != 4)
-                {
-                    menu.showBudgetOptions();
-                    menu.selectBudgetOption();
-
-                    //Display Budget (private function)
-                    if (menu.getOption() == 1)
-                    {
-                        try
-                        {
-                            Method method = Budget.class.getDeclaredMethod("DisplayBudget");
-                            method.setAccessible(true);
-                            method.invoke(budget);
-                        }
-                        catch(Exception e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                    //Add to Budget
-                    if (menu.getOption() == 2) {
-                        budget.AddToBudget();
-                    }
-                    //Remove from Budget
-                    if (menu.getOption() == 3) {
-                        budget.RemoveFromBudget();
-                    }
-                }
             }
             //Update Profile
             if(menu.getOption() == 8)
             {
                 UpdateProfile updateProfile = new UpdateProfile();
-                updateProfile.updateInfo(user);
+                updateProfile.updateInfo(currentUser);
             }
             if (menu.getOption() == 9){
-               file.saveFile(currentUser);
+                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...
