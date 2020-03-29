@@ -1,8 +1,8 @@
-package TwoBucks;
-
 // Two Bucks
 // US7. Enter Financial Goals
 // By Frino Jais
+
+package TwoBucks;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -34,7 +34,8 @@ public class EnterFinancialGoals {
         }
         System.out.println("Spending amount of $" + df.format(spendAmt) + " has been saved to your user profile!");
         return spendAmt;
-        }
+    }
+
 
     public double enterSaveGoal(){
 

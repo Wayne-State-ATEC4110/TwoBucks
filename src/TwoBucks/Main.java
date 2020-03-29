@@ -1,35 +1,65 @@
+/**
+ * <h1>Main</h1>
+ *
+ * <p>The Main class calls the projects
+ * functions and sends the user to their
+ * designated feature</p>
+ *
+ * @author  Sawyer Kisha
+ * @version 1.5
+ * @since   1.0
+ */
+
 package TwoBucks;
 
-import java.io.IOException;
+        import java.io.IOException;
+        import java.lang.reflect.Method;
 
-/**
- * @author  Sawyer Kisha
- * @version 1.3
- * @since   1.0
- * Main.java
- */
 public class Main
 {
     public static void main(String[] args)throws IOException
     {
-        //save user
+        //Save user
         FileManagement file = new FileManagement();
-
-        //create user profile
-        CreateUserProfile create = new CreateUserProfile();
-        file.saveFile(create.createUser().toString());
-
-        //load user profile
-        LoadUserProfile load = new LoadUserProfile();
-        User currentUser = load.loadUser(file.loadFile());
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
+        User currentUser = null;
 
-        while (menu.getOption() != 5)
+        /**
+         * Intro Menu
+         */
+        menu.showIntroOptions();
+        menu.selectIntroOption();
+
+        //Create New User Profile
+        if (menu.getOption() == 1)
         {
+            CreateUserProfile create = new CreateUserProfile();
+            file.saveFile(create.createUser());
+        }
+        //Load User Profile
+        if (menu.getOption() == 2)
+        {
+            LoadUserProfile load = new LoadUserProfile();
+            currentUser = load.loadUser(file.loadFile());
+        }
+        //Exiting Application
+        if (menu.getOption() == 3)
+        {
+            System.exit(0);
+        }
+
+        /**
+         * Main Menu
+         */
+        while (menu.getOption() != 9 || currentUser != null)
+        {
+
             menu.showOptions();
             menu.selectOption();
+
+            User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -55,13 +85,37 @@ public class Main
             {
                 calculateDebt.DebtCalculatorMain();
             }
-            if (menu.getOption()== 5){
-                file.saveFile(currentUser.toString());
+            //Display Goals
+            if(menu.getOption() == 5)
+            {
+                DisplayGoals goalDisplay = new DisplayGoals();
+                goalDisplay.displayGoals(user);
+            }
+            //Calculate Goals vs Performance
+            if(menu.getOption() == 6)
+            {
+                CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
+                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+            }
+            //Budget
+            if(menu.getOption() == 7)
+            {
+                Budget budget = new Budget();
+
+                budget.CreateBudget();
+            }
+            //Update Profile
+            if(menu.getOption() == 8)
+            {
+                UpdateProfile updateProfile = new UpdateProfile();
+                updateProfile.updateInfo(currentUser);
+            }
+            if (menu.getOption() == 9){
+                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...
         }
     }
+
 }
-
-

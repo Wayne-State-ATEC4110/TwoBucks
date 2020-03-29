@@ -1,33 +1,39 @@
-/*
-Two Bucks
-DebtCalculator.java
-Author: Mike Shea
-
-To access the DebtCalculator from an outside scope,
-simply initialize a DebtCalculator object (no args)
-and call the DebtCalculatorMain() method on it.
-
+/**
+ * <h1>DebtCalculator</h1>
+ *
+ * <p>The DebtCalculator class allows a user to enter a debt principle and interest rate. It then
+ * allows the user to enter a monthly payment amount and calculates how many months it will take
+ * to pay off the debt.</p>
+ *
+ * @author Mike Shea
+ * @version 1.0
+ * @since 3/22/20
  */
+
+
 package TwoBucks;
 
-import java.util.Scanner;
-
+import java.util.*;
 
 public class DebtCalculator {
 
     // private DebtCalculator members
     private Scanner scan = new Scanner(System.in);
-    private double debtPrincipal;
-    private double debtInterestRate;
-    private double monthlyInterestRate;
-    private double debtInterestAmount;
-    private double debtMonthlyPayment;
-    private double totalInterestPaid;
-    private int weeksRemaining;
-    private int userSelection;
+    private double debtPrincipal;       // Principal value of debt
+    private double debtInterestRate;    // Debt interest rate (APR)
+    private double monthlyInterestRate; // Monthly interest rate (APR / periods)
+    private double debtInterestAmount;  // Amount paid each month in interest
+    private double debtMonthlyPayment;  // Amount to be paid against the debt each month
+    private double totalInterestPaid;   // Total amount paid in interest
+    private int monthsRemaining;         // Months required to pay off debt
     private final int numberOfPeriods = 12; // Number of payment periods
+    private int userSelection;
     private boolean firstPass = true;
 
+    /**
+     * Main method for DebtCalculator class. Calling this method from an outside scope
+     * will allow the DebtCalculator class to run, perform all necessary functions, and then stop.
+     */
     public void DebtCalculatorMain() {  // Interface for module
 
         if(firstPass){
@@ -35,67 +41,82 @@ public class DebtCalculator {
             firstPass = false;
         }
 
-        // Receive Initial Input
-        ReceiveDebtPrincipal();
-        ReceiveDebtInterestRate();
+        try {
+            // Receive Initial Input
+            ReceiveDebtPrincipal();
+            ReceiveDebtInterestRate();
 
-        // Calculate and display monthly interest amount
-        CalculateDebtInterestAmount();
-        DisplayDebt();
+            // Calculate and display monthly interest amount
+            CalculateDebtInterestAmount();
+            DisplayDebt();
 
-        // Present menu and receive user selection
-        DebtCalculatorMenu();
-        ReceiveUserSelection();
+            // Present menu and receive user selection
+            DebtCalculatorMenu();
+            ReceiveUserSelection();
 
-        while(userSelection != 4){
-            if(userSelection == 1){
-                // Calculate how long it will take to pay off the debt with a given monthly payment. //
-                ReceiveMonthlyPaymentAmount();
-                CalculateRemainingWeeks();
 
-                // Menu and user input
-                DebtCalculatorMenu();
-                ReceiveUserSelection();
+            while (userSelection != 4) {
+                if (userSelection == 1) {
+                    // Calculate how long it will take to pay off the debt with a given monthly payment. //
+                    ReceiveMonthlyPaymentAmount();
+
+                    CalculateRemainingMonths();
+
+                    // Menu and user input
+                    DebtCalculatorMenu();
+                    ReceiveUserSelection();
+                } else if (userSelection == 2) {
+                    // Display the debt information already received
+                    DisplayDebt();
+
+                    // Menu and user input
+                    DebtCalculatorMenu();
+                    ReceiveUserSelection();
+                } else if (userSelection == 3) {
+                    // Calculate the monthly interest amount for another debt
+                    ReceiveDebtPrincipal();
+                    ReceiveDebtInterestRate();
+
+                    // Calculate and display monthly interest amount
+                    CalculateDebtInterestAmount();
+                    DisplayDebt();
+
+                    // Present menu and receive user selection
+                    DebtCalculatorMenu();
+                    ReceiveUserSelection();
+
+                } else {
+                    System.out.println("Invalid input.");
+                    ReceiveUserSelection();
+                }
+
             }
-            else if(userSelection == 2){
-                // Display the debt information already received
-                DisplayDebt();
 
-                // Menu and user input
-                DebtCalculatorMenu();
-                ReceiveUserSelection();
-            }
-            else if(userSelection == 3){
-                // Calculate the monthly interest amount for another debt
-                ReceiveDebtPrincipal();
-                ReceiveDebtInterestRate();
-
-                // Calculate and display monthly interest amount
-                CalculateDebtInterestAmount();
-                DisplayDebt();
-
-                // Present menu and receive user selection
-                DebtCalculatorMenu();
-                ReceiveUserSelection();
-
-            }
+            // Close input stream
+            //scan.close();
 
         }
-
-        // Close input stream
-        scan.close();
-
-        System.out.println("Returning to the Two Bucks main menu.");
-        System.out.println("=========================================");
+        catch(InputMismatchException e){
+            System.out.println("Error: Unrecoverable input encountered.");
+            userSelection = 4;
+        }
+        finally{
+            System.out.println("Returning to the Two Bucks main menu.");
+            System.out.println("=========================================");
+        }
     }
 
-    // Display introduction message
+    /**
+     * Displays introduction message before entering a debt for the first time (for this instance of the class)
+     */
     private void DisplayIntroductionMessage(){
         System.out.println("=========================================");
         System.out.println("Welcome to the Two Bucks Debt Calculator.");
     }
 
-    // Display debt calculator menu
+    /**
+     * Displays a menu with options for the user to select from.
+     */
     private void DebtCalculatorMenu() {
         System.out.println();
         System.out.println("Please select an option from the menu below:");
@@ -106,121 +127,200 @@ public class DebtCalculator {
         System.out.println();
     }
 
-    // Receive the debt principal from the user
-    private void ReceiveDebtPrincipal() {
+    /**
+     * Prompts the user to enter a debt principal. Only accepts positive doubles.
+     * @throws InputMismatchException
+     */
+    private void ReceiveDebtPrincipal() throws InputMismatchException {
         System.out.print("Enter the principal of the debt: $");
 
-        // Validate input
-        while (!scan.hasNextDouble()){  // Must be Double type
-            System.out.print("Invalid input. Enter the principal of the debt: $");
-            scan.nextLine();    // Disregard bad input
+        // Validate Input - must be Double type
+        while(!scan.hasNextDouble()){
+            System.out.print("Invalid input. Please enter a numerical value for the debt principal: $");
+            scan.next();
         }
 
         debtPrincipal = scan.nextDouble();
+
+        // Validate input - must be positive value
+        while(debtPrincipal <=0){
+            System.out.print("Invalid input. Please enter a positive numerical value for the debt principal: $");
+
+            // Validate Input - must be Double type
+            while(!scan.hasNextDouble()){
+                System.out.print("Invalid input. Please enter a numerical value for the debt principal: $");
+                scan.next();
+            }
+
+            debtPrincipal = scan.nextDouble();
+        }
+
         scan.nextLine();    // Clear input stream
     }
 
+    /**
+     * Prompts the user to enter an annual interest rate (APR). Only accepts positive doubles.
+     * @throws InputMismatchException
+     */
     // Receive the debt interest rate from the user
-    private void ReceiveDebtInterestRate() {
+    private void ReceiveDebtInterestRate() throws InputMismatchException {
         System.out.print("Enter the annual percentage rate (APR) of the debt: ");
 
-        // Validate Input
-        while (!scan.hasNextDouble()){  // Must be Double type
-            System.out.print("Invalid input. Enter the annual percentage rate (APR) of the debt: ");
-            scan.nextLine();    // Ignore bad input
-            }
+        // Validate Input - must be Double type
+        while(!scan.hasNextDouble()){
+            System.out.print("Invalid input. Please enter a numerical value for the APR: ");
+            scan.next();
+        }
 
         debtInterestRate = scan.nextDouble();
 
+        // Validate input - must be positive value
+        while(debtInterestRate <=0){
+            System.out.print("Invalid input. Please enter a positive numerical value for the APR: ");
+
+            // Validate Input - must be Double type
+            while(!scan.hasNextDouble()){
+                System.out.print("Invalid input. Please enter a numerical value for the APR: ");
+                scan.next();
+            }
+
+            debtInterestRate = scan.nextDouble();
+        }
+
         // Formula for monthly interest rate = (principal / periods) / 100
         monthlyInterestRate = debtInterestRate / numberOfPeriods;
-        monthlyInterestRate /= 100;
 
         scan.nextLine();    // Clear input stream
 
     }
 
+    /**
+     * Prompts the user to enter a monthly payment amount. Only accepts positive doubles.
+     * @throws InputMismatchException
+     */
     // Receive the monthly payment amount from the user
-    private void ReceiveMonthlyPaymentAmount() {
+    private void ReceiveMonthlyPaymentAmount()  throws InputMismatchException {
+
         System.out.print("Enter a monthly payment amount: $");
 
-        // Validate input
-        while (!scan.hasNextDouble()){  // Must be Double type
-            System.out.print("Invalid input. Enter the monthly payment amount: $");
-            scan.nextLine();    // Disregard bad input
+        // Validate Input - must be Double type
+        while(!scan.hasNextDouble()){
+            System.out.print("Invalid input. Please enter a numerical value for the monthly payment amount: $");
+            scan.next();
         }
 
         debtMonthlyPayment = scan.nextDouble();
+
+        // Validate input - must be positive value
+        while(debtMonthlyPayment <=0){
+            System.out.print("Invalid input. Please enter a positive numerical value for the monthly payment amount: $");
+
+            // Validate Input - must be Double type
+            while(!scan.hasNextDouble()){
+                System.out.print("Invalid input. Please enter a numerical value for the monthly payment amount: $");
+                scan.next();
+            }
+
+            debtMonthlyPayment = scan.nextDouble();
+        }
+
     }
 
+    /**
+     * Prompts the user to make a selection from the menu. Must be an integer between 1 and 4 (inclusive)
+     * @throws InputMismatchException
+     */
     // Receive user selection from the user for navigating the debt calculator menu
-    private void ReceiveUserSelection() {
+    private void ReceiveUserSelection() throws InputMismatchException {
 
-        // Validate input
-        while(!scan.hasNextInt()){  // must be integer
-            System.out.println("Invalid input.");
-            DebtCalculatorMenu();
-            scan.nextLine(); // Ignore bad input
-        }
-        while(scan.nextInt() < 1 || scan.nextInt() > 4){
-            System.out.println("Invalid input.");
-            DebtCalculatorMenu();
-            scan.nextLine(); // Ignore bad input
+        int temporarySelection = 0;
+
+        // Must in an integer
+        while(!scan.hasNextInt()){
+            System.out.print("Invalid input. Please enter a valid numerical option as shown in the menu.");
+            scan.next();
         }
 
-        userSelection = scan.nextInt();
-        scan.nextLine(); // Clear stream
+        temporarySelection = scan.nextInt();
+
+        while(temporarySelection <= 0 || temporarySelection >4){
+            System.out.print("Invalid input. Please enter a valid numerical option as shown in the menu.");
+
+            while(!scan.hasNextInt()){
+                System.out.print("Invalid input. Please enter a valid numerical option as shown in the menu.");
+                scan.next();
+            }
+
+            temporarySelection = scan.nextInt();
+        }
+
+        userSelection = temporarySelection;
     }
 
+    /**
+     * Calculates the monthly amount paid in interest
+     */
     // Calculate the debt interest amount
     private void CalculateDebtInterestAmount() {
 
-        debtInterestAmount =  monthlyInterestRate * debtPrincipal;
+        debtInterestAmount =  (monthlyInterestRate / 100) * debtPrincipal;
     }
 
-    // Display data already entered by the user
+    /**
+     * Displays the current debt information held by the class
+     */
     private void DisplayDebt() {
         System.out.println();
         System.out.println("Debt Principal: $" + String.format("%.2f", debtPrincipal));
         System.out.println("Annual Percentage Rate (APR): " + String.format("%.2f", debtInterestRate) + "%");
-        System.out.println("Monthly Interest Rate: " + String.format("%.4f", monthlyInterestRate) + "%");
+        System.out.println("Monthly Interest Rate: " + String.format("%.2f", monthlyInterestRate) + "%");
         System.out.println("Interest Paid Monthly: $" + String.format("%.2f", (debtInterestAmount)));
     }
 
-    // Calculate the weeks required to pay off the debt
-    private void CalculateRemainingWeeks() {
+    /**
+     * Calculates the months remaining until the debt will be paid with current debt information
+     * held by the class.
+     */
+    private void CalculateRemainingMonths() {
         if (debtMonthlyPayment <= debtInterestAmount) {
-            System.out.println("The monthly payment of $" + debtMonthlyPayment + " is not enough to cover the monthly interest amount of $" + debtInterestAmount + ".");
+            System.out.println("The monthly payment of " + "$" + debtMonthlyPayment + " is not enough to overcome the monthly interest amount of $" + String.format("%.2f", (debtInterestAmount)));
+            System.out.println("Returning to the TwoBucks Debt Calculator main menu.");
         } else {
+            // Initialize
             double temporaryDebtCounter = debtPrincipal;
-            weeksRemaining = 0;
+            double temporaryDebtAmount;
+            monthsRemaining = 0;
 
             while (temporaryDebtCounter >= 0) {
 
-                // Apply Payment to tempDebt
-                temporaryDebtCounter -= debtMonthlyPayment;
-
                 // Calculate this month's interest amount (monthly rate * current total)
-                double temporaryDebtAmount = temporaryDebtCounter * monthlyInterestRate;
+                temporaryDebtAmount = temporaryDebtCounter * (monthlyInterestRate / 100);
 
                 // Add interest to account and running total
                 temporaryDebtCounter += temporaryDebtAmount;
                 totalInterestPaid += temporaryDebtAmount;
 
-                // Increment week
-                weeksRemaining++;
+                // Apply Payment to tempDebt
+                temporaryDebtCounter -= debtMonthlyPayment;
 
-                //Display results
-                DisplayRemainingWeeks();
+                // Increment month
+                monthsRemaining++;
+
             }
+
+            // Output Results
+            this.DisplayRemainingMonths();
 
         }
 
     }
 
-    // Display the weeks remaining until the debt is paid off
-    private void DisplayRemainingWeeks(){
-        System.out.println("It will take " + weeksRemaining + " weeks to pay off the debt at $" + String.format("%.2f", debtMonthlyPayment) + " per month.");
+    /**
+     * Displays the months remaining until the debt will be paid with current debt information
+     * held by the class.
+     */
+    private void DisplayRemainingMonths(){
+        System.out.println("It will take " + monthsRemaining + " months to pay off the debt at $" + String.format("%.2f", debtMonthlyPayment) + " per month.");
         System.out.println("Total interest paid: $" + String.format("%.2f", totalInterestPaid));
         System.out.println("Total amount paid: $" + String.format("%.2f", debtPrincipal + totalInterestPaid));
     }
