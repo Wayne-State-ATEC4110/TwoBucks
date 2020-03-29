@@ -90,7 +90,7 @@ public class Main
             if(menu.getOption() == 5)
             {
                 DisplayGoals goalDisplay = new DisplayGoals();
-                goalDisplay.displayGoals(user);
+                goalDisplay.displayGoals(currentUser);
             }
             //Calculate Goals vs Performance
             if(menu.getOption() == 6)
