@@ -1,3 +1,4 @@
+
 /**
  * <h1>Budget</h1>
  *
@@ -908,4 +909,5 @@ public class Budget {
     public void setMonthlyNetChange(double monthlyNetChange){
         monthlyNetChange = monthlyNetChange;
     }
+
 }
