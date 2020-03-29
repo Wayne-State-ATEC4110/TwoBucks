@@ -25,7 +25,11 @@ public class Main
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
-        User currentUser = null;
+        User currentUser = new User();
+
+        // Initialize budget as member of currentUser
+        Budget budget = new Budget();
+        currentUser.setBudget(budget);
 
         /**
          * Intro Menu
@@ -54,7 +58,7 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9 || currentUser != null)
+        while (menu.getOption() != 9)
         {
 
             menu.showOptions();
@@ -101,8 +105,10 @@ public class Main
             //Budget
             if(menu.getOption() == 7)
             {
-                Budget budget = new Budget();
+                BudgetReminder budgetReminder = new BudgetReminder();
+                budgetReminder.setSpendGoal(currentUser.getSpendAmount());
 
+                budget.setBudgetReminder(budgetReminder);
                 budget.CreateBudget();
             }
             //Update Profile
