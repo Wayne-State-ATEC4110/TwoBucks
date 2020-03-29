@@ -54,7 +54,19 @@ public class Week {
                 previousWeek.setSpendAmount(currentWeek.getSpendAmount());      // spendAmount
 
                 // copy budget parameters
-                previousWeek.setBudget(currentWeek.getBudget());
+                previousWeek.getBudget().setTotalIncome(currentWeek.getBudget().getTotalIncome());
+                previousWeek.getBudget().setWageIncome(currentWeek.getBudget().getWageIncome());
+                previousWeek.getBudget().setOtherIncome(currentWeek.getBudget().getOtherIncome());
+                previousWeek.getBudget().setRentExpenses(currentWeek.getBudget().getRentExpenses());
+                previousWeek.getBudget().setUtilitiesExpenses(currentWeek.getBudget().getUtilitiesExpenses());
+                previousWeek.getBudget().setFoodExpenses(currentWeek.getBudget().getFoodExpenses());
+                previousWeek.getBudget().setTravelExpenses(currentWeek.getBudget().getTravelExpenses());
+                previousWeek.getBudget().setHealthcareExpenses(currentWeek.getBudget().getHealthcareExpenses());
+                previousWeek.getBudget().setEntertainmentExpenses(currentWeek.getBudget().getEntertainmentExpenses());
+                previousWeek.getBudget().setTotalExpenses(currentWeek.getBudget().getTotalExpenses());
+                previousWeek.getBudget().setMonthlyNetChange(currentWeek.getBudget().getMonthlyNetChange());
+
+
                 currentWeek.clearBudget();
 
                 return currentWeek;
