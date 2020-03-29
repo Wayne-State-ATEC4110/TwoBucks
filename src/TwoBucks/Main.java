@@ -60,7 +60,7 @@ public class Main
             menu.showOptions();
             menu.selectOption();
 
-            User user = new User();
+            //User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -96,7 +96,7 @@ public class Main
             if(menu.getOption() == 6)
             {
                 CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
-                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+                calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
             }
             //Budget
             if(menu.getOption() == 7)
