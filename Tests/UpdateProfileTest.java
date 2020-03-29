@@ -21,7 +21,7 @@ public class UpdateProfileTest {
         assertEquals(User2,User1); // testing if the variable currently in user 1 can be changed to user 2
 
     }
-
+    @Test
     public void updateLastName()throws IOException{ // User must choose option 2 to test
         UpdateProfile uP = new UpdateProfile();
         User User1 = new User();
@@ -35,7 +35,7 @@ public class UpdateProfileTest {
         uP.updateInfo(User1); // choose 2 and enter "Marley"
         assertEquals(User2,User1); // testing if the variable currently in user 1 can be changed to user 2
     }
-
+    @Test
     public void updateEmail()throws IOException{ // User must choose option 2 to test
         UpdateProfile uP = new UpdateProfile();
         User User1 = new User();
