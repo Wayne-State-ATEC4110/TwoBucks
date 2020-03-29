@@ -98,6 +98,8 @@ public class CreateUserProfile {
 
         //create and return new user class.
         User user = new User(firstName,lastName,email);
+        Budget budget = new Budget();
+        user.setBudget(budget);
         return user;
 
 
