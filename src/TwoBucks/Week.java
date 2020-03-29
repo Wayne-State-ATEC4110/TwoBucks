@@ -13,51 +13,65 @@
 
 package TwoBucks;
 
+import java.util.Scanner;
+
 public class Week {
 
-    private User currentWeek = new User();
-    private User previousWeek = new User();
+
+    private User previousWeek = new User(null,null,null,0,0,0,0,new Budget());
+
+
+    public Week(){
+
+
+    }
 
     // progress to next week copies user variables and saves them to
     // new User object previousWeek. Previous week cannot be edited.
-    public void toNextWeek(User currentWeek){
+    public User toNextWeek(User currentWeek){
 
-        // Copy all current user parameters from 'currentWeek' to 'previousWeek'
-        previousWeek.setFirstName(currentWeek.getFirstName());          // first name
-        previousWeek.setLastName(currentWeek.getLastName());            // last name
-        previousWeek.setEmail(currentWeek.getEmail());                  // email
-        previousWeek.setIncome(currentWeek.getIncome());                // income
-        previousWeek.setSaveAmount(currentWeek.getSaveAmount());        // saveAmount
-        previousWeek.setSpendAmount(currentWeek.getSpendAmount());      // spendAmount
+        Scanner scan = new Scanner(System.in);
+        int input;
 
-        // copy budget parameters
+        while(true) {
 
 
-        // Reset all expenses and weekly savings in current week
+            System.out.println("Are you sure you want to Progress to next week?");
+            System.out.println("You will not be able to make further edits for this week");
+            System.out.println("==========================================================");
+            System.out.println("1. Proceed to next week");
+            System.out.println("2. Return to main");
+            input = scan.nextInt();
+
+
+            if(input == 1) {
+                // Copy all current user parameters from 'currentWeek' to 'previousWeek'
+                previousWeek.setFirstName(currentWeek.getFirstName());          // first name
+                previousWeek.setLastName(currentWeek.getLastName());            // last name
+                previousWeek.setEmail(currentWeek.getEmail());                  // email
+                previousWeek.setIncome(currentWeek.getIncome());                // income
+                previousWeek.setSaveAmount(currentWeek.getSaveAmount());        // saveAmount
+                previousWeek.setSpendAmount(currentWeek.getSpendAmount());      // spendAmount
+
+                // copy budget parameters
+                previousWeek.setBudget(currentWeek.getBudget());
+                currentWeek.clearBudget();
+
+                return currentWeek;
+            }
+            else if (input ==2 ){
+                return currentWeek;
+
+            }
+            else{
+                System.out.println("Invalid Input");
+            }
+        }
 
 
     }
 
 
-    /**
-     * currentWeek setter method
-     *
-     * @param currentWeek
-     */
-    public void setCurrentWeek(User currentWeek) {
-        this.currentWeek = currentWeek;
-
-    }
-
-    /**
-     * currentWeek getter method
-     *
-     * @return currentWeek
-     */
-    public User getCurrentWeek(){
-        return this.currentWeek;
-
-    }
 
     /**
      * previousWeek setter method
@@ -77,4 +91,11 @@ public class Week {
     public User getPreviousWeek() {
         return this.previousWeek;
     }
+
+    //@Override
+    //public String toString() {
+     //   return "Week{" +
+     //           "previousWeek=" + previousWeek.toString() +
+     //           '}';
+    //}
 }

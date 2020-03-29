@@ -28,14 +28,20 @@ public class DisplayGoals {
         System.out.println("Weekly spending goal: " + user.getSpendAmount());   //print save goal
 
         System.out.println("======== Current Progress to Spending Goal ========");
-        System.out.println("Total Weekly Expenses: " );                          //print week's total spending
+        double total = user.getBudget().getRentExpenses()
+                + user.getBudget().getUtilitiesExpenses() + user.getBudget().getFoodExpenses()
+                + user.getBudget().getFoodExpenses() + user.getBudget().getHealthcareExpenses()
+                + user.getBudget().getEntertainmentExpenses();
+
+        System.out.println("Total Weekly Expenses: " + total);                   //print week's total spending
                                                                                  // (user.budget.getExpenses)
-        System.out.println("Progress to Spending Goal: ");                       //print difference from goal
+        System.out.println("Progress to Spending Goal: "+ (user.getSpendAmount() - total));                       //print difference from goal
                                                                                  // (user.getSpendAmount() - user.budget.getExpenses)
 
         System.out.println("======== Current Progress to Savings Goal ========");
-        System.out.println("Total Weekly Savings: ");                           //print week's total spending
-        System.out.println("Progress to Savings Goal: ");                       //print difference from goal (goal - saved)
+        double saved = user.getIncome()-total;
+        System.out.println("Total Weekly Savings: "+ saved);                           //print week's total savings
+        System.out.println("Progress to Savings Goal: "+ (saved - user.getSaveAmount()));                       //print difference from goal (goal - saved)
 
 
 
