@@ -30,6 +30,7 @@ public class Main
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
         currentUser.setBudget(new Budget());
+        currentUser.setWeek(new Week());
 
         /**
          * Intro Menu
@@ -119,8 +120,6 @@ public class Main
                 updateProfile.updateInfo(currentUser);
             }
             if (menu.getOption() == 9){
-                Week week = new Week();
-                currentUser.setWeek(week);
                 currentUser= currentUser.getWeek().toNextWeek(currentUser);
 
             }
