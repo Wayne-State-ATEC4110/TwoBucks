@@ -25,7 +25,11 @@ public class Main
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
-        User currentUser = null;
+        User currentUser = new User();
+
+        // Initialize budget as member of currentUser
+        Budget budget = new Budget();
+        currentUser.setBudget(budget);
 
         /**
          * Intro Menu
@@ -54,13 +58,13 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9 || currentUser != null)
+        while (menu.getOption() != 9)
         {
 
             menu.showOptions();
             menu.selectOption();
 
-            User user = new User();
+            //User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -96,13 +100,15 @@ public class Main
             if(menu.getOption() == 6)
             {
                 CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
-                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+                calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
             }
             //Budget
             if(menu.getOption() == 7)
             {
-                Budget budget = new Budget();
+                BudgetReminder budgetReminder = new BudgetReminder();
+                budgetReminder.setSpendGoal(currentUser.getSpendAmount());
 
+                budget.setBudgetReminder(budgetReminder);
                 budget.CreateBudget();
             }
             //Update Profile
