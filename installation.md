@@ -34,4 +34,4 @@ Open the project source code in IntelliJ. Then, from the main menu, navigate to 
 From the main IDE menu, select "Build" and then "Build Artifacts...". Select "Main.java" and then "Build"
 
 ## Run Application ##
-To run the application, open the command line and navigate to the TwoBucks project folder. If the above steps have been followed successfully, the JAR file will be located in "TwoBucks/out/Artifacts/Main_jar/". Navigate inside this directory using the command line and then type the command: "java -jar Main.jar"
+To run the application, open the command line and navigate to the TwoBucks project folder. If the above steps have been followed successfully, the JAR file will be located in "TwoBucks/out/Artifacts/TwoBucks_jar/". Navigate inside this directory using the command line and then type the command: "java -jar TwoBucks.jar"
