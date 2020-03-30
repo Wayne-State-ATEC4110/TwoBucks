@@ -29,11 +29,12 @@ public class Main
 
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
-        currentUser.setBudget(budget);
+        currentUser.setBudget(new Budget());
 
         /**
          * Intro Menu
          */
+
         menu.showIntroOptions();
         menu.selectIntroOption();
 
@@ -58,9 +59,8 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9)
+        while (menu.getOption() != 10)
         {
-
             menu.showOptions();
             menu.selectOption();
 
@@ -110,6 +110,7 @@ public class Main
 
                 budget.setBudgetReminder(budgetReminder);
                 budget.CreateBudget();
+                currentUser.setBudget(budget);
             }
             //Update Profile
             if(menu.getOption() == 8)
@@ -118,6 +119,12 @@ public class Main
                 updateProfile.updateInfo(currentUser);
             }
             if (menu.getOption() == 9){
+                Week week = new Week();
+                currentUser.setWeek(week);
+                currentUser= currentUser.getWeek().toNextWeek(currentUser);
+
+            }
+            if (menu.getOption() == 10){
                 file.saveFile(currentUser);
             }
 
