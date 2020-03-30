@@ -35,3 +35,5 @@ From the main IDE menu, select "Build" and then "Build Artifacts...". Select "Ma
 
 ## Run Application ##
 To run the application, open the command line and navigate to the TwoBucks project folder. If the above steps have been followed successfully, the JAR file will be located in "TwoBucks/out/Artifacts/TwoBucks_jar/". Navigate inside this directory using the command line and then type the command: "java -jar TwoBucks.jar"
+
+Currently, the application requires that the Users.txt file be present in the same directory as the TwoBucks.jar file. You may copy the Jar into the main TwoBucks directory or alternativey, copy the Users.txt file to where the Jar file is located.
