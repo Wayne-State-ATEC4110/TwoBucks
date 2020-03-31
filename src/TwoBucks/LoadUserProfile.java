@@ -31,6 +31,7 @@ public class LoadUserProfile {
     public User loadUser(ArrayList<String> users){
         //initialize user class
         User loadUser = new User();
+        Budget budget = new Budget();
 
         //initialize string array to check for user name
         String[] check;
@@ -56,12 +57,18 @@ public class LoadUserProfile {
             }
 
             //splits user string into separate pieces to represent User variables.
-            check = users.get(i).split(", ",5);
+            check = users.get(i).split(", ",18);
 
             //if user found load user
             if(check[2].equals(email)){
                 System.out.println("Welcome "+check[0]+" "+check[1]);
-                loadUser = new User(check[0],check[1],check[2],Double.parseDouble(check[3]),Double.parseDouble(check[4]));
+                loadUser = new User(check[0],check[1],check[2],Double.parseDouble(check[3]),Double.parseDouble(check[4]),
+                        Double.parseDouble(check[5]), Double.parseDouble(check[6]),
+                        new Budget(Double.parseDouble(check[7]), Double.parseDouble(check[8]),Double.parseDouble(check[9]),
+                        Double.parseDouble(check[10]),Double.parseDouble(check[11]),Double.parseDouble(check[12]),
+                        Double.parseDouble(check[13]),Double.parseDouble(check[14]), Double.parseDouble(check[15]),
+                                Double.parseDouble(check[16]),Double.parseDouble(check[17])));
+
                 break;
             }
 

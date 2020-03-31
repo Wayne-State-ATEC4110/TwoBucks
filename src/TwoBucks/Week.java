@@ -1,7 +1,6 @@
 /**
  * <h1>Week</h1>
- * The DisplayGoals class prints to the screen the user's current saving
- * and spending goals and their current progress toward those goals.
+ * The Week class is a subclass of user that holds another user class and
  *
  * <p>
  *

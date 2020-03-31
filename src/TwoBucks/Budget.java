@@ -63,11 +63,12 @@ public class Budget {
     /**
      * Argument Constructor to initialize fields without user input
      */
-    public Budget(double wages, double otherIncomeSource, double rent, double utilities,
+    public Budget(double wages, double otherIncomeSource, double totalIncome, double rent, double utilities,
                   double food, double travel, double health,
-                  double entertainment){
+                  double entertainment, double totalExpenses, double monthlyNetChange){
         this.wageIncome = wages;
         this.otherIncome = otherIncomeSource;
+        this.totalIncome = totalIncome;
         this.rentExpenses = rent;
         this.utilitiesExpenses = utilities;
         this.foodExpenses = food;
@@ -75,10 +76,12 @@ public class Budget {
         this.travelExpenses = food;
         this.healthcareExpenses = health;
         this.entertainmentExpenses = entertainment;
+        this.totalExpenses = totalExpenses;
+        this.monthlyNetChange = monthlyNetChange;
 
-        CalculateTotalIncome();
-        CalculateTotalExpenses();
-        CalculateMonthlyNetChange();
+        //CalculateTotalIncome();
+        //CalculateTotalExpenses();
+        //CalculateMonthlyNetChange();
     }
 
     /**
