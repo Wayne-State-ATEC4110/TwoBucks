@@ -120,7 +120,8 @@ public class Main
                 updateProfile.updateInfo(currentUser);
             }
             if (menu.getOption() == 9){
-                currentUser= currentUser.getWeek().toNextWeek(currentUser);
+                Week week = new Week();
+                currentUser = week.toNextWeek(currentUser);
 
             }
             if (menu.getOption() == 10){
