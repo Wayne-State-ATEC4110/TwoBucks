@@ -29,28 +29,18 @@ public class ReportToText {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
+        String[] reportInfo = CreateReport.reportContents(currentUser); // creating an object for the report data for the current user
+
+
+
         File file = new File("TwoBucks User Report.txt"); //reading data from this file
         try {
             PrintWriter write = new PrintWriter(file);
-            write.println("******** TwoBucks User Profile Data Report *********");
-            write.println(" ");
-            write.println("Date: ");
-            write.println(dateFormatter.format(now));
-            write.println(" ");
-            write.println("Name: " + currentUser.getFirstName() + " " + currentUser.getLastName());
-            write.println("Email: " + currentUser.getEmail());
-            write.println("Weekly Income: "+ currentUser.getIncome());
-            write.println("Spending goal for this week: "+ currentUser.getSpendAmount());
-            write.println("Your expenses this week: " + currentUser.getExpenses());
-            write.println("Saving goal for this week: "+ currentUser.getSaveAmount());
-            write.println("Your savings this week: "+ (currentUser.getIncome() - currentUser.getExpenses()));
-            write.println("Budget for this week: ");
-            write.println("    - Rent: "+ currentUser.getBudget().getRentExpenses());
-            write.println("    - Utilities: "+ currentUser.getBudget().getUtilitiesExpenses());
-            write.println("    - Food: "+ currentUser.getBudget().getFoodExpenses());
-            write.println("    - Travel: "+ currentUser.getBudget().getTravelExpenses());
-            write.println("    - Healthcare: "+ currentUser.getBudget().getHealthcareExpenses());
-            write.println("    - Entertainment: "+ currentUser.getBudget().getEntertainmentExpenses());
+
+            for (String element:reportInfo){ // for loop to write to the txt file
+                write.println(element);
+            }
+
             write.close();
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
