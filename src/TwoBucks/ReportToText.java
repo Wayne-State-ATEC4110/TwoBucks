@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class ReportToText {
 
@@ -26,14 +27,14 @@ public class ReportToText {
      */
     void printInfoToFile(User currentUser) {
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
+        long millis=System.currentTimeMillis();
+        java.sql.Date date=new java.sql.Date(millis); // Using a different time stamp than CreateReport.java because txt files cannot be saved using characters like '/'
 
         String[] reportInfo = CreateReport.reportContents(currentUser); // creating an object for the report data for the current user
 
 
 
-        File file = new File("TwoBucks User Report.txt"); //reading data from this file
+        File file = new File(currentUser.getFirstName()+" "+currentUser.getLastName()+" TwoBucks User Report "+ date+".txt"); //reading data from this file
         try {
             PrintWriter write = new PrintWriter(file);
 
