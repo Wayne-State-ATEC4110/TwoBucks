@@ -22,35 +22,55 @@ import java.time.LocalDateTime;
 
 public class CreateReport {
 
+
+    /**
+     * @param currentUser
+     * @return contents which is an array that will contain the information for the report contents
+     */
+    public static String[] reportContents(User currentUser){
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+
+        String title = ("******** TwoBucks User Profile Data Report *********");
+        String space = (" ");
+        String date = (dateFormatter.format(now));
+        String name =  ("Name: " + currentUser.getFirstName() + " " + currentUser.getLastName());
+        String email = ("Email: " + currentUser.getEmail());
+        String income = ("Weekly Income: "+ currentUser.getIncome());
+        String spendingGoal = ("Spending goal for this week: "+ currentUser.getSpendAmount());
+        String expenses = ("Your expenses this week: " + currentUser.getExpenses());
+        String savingGoal = ("Your savings this week: "+ (currentUser.getIncome() - currentUser.getExpenses()));
+        String savings = ("Your savings this week: "+ (currentUser.getIncome() - currentUser.getExpenses()));
+        String budgetTitle = ("Budget for this week: ");
+        String rent = ("    - Rent: "+ currentUser.getBudget().getRentExpenses());
+        String utilities = ("    - Utilities: "+ currentUser.getBudget().getUtilitiesExpenses());
+        String food = ("    - Food: "+ currentUser.getBudget().getFoodExpenses());
+        String travel = ("    - Travel: "+ currentUser.getBudget().getTravelExpenses());
+        String healthcare = ("    - Healthcare: "+ currentUser.getBudget().getHealthcareExpenses());
+        String entertainment = ("    - Entertainment: "+ currentUser.getBudget().getEntertainmentExpenses());
+
+        String[] contents = {title,space,date,space,name,email,income,spendingGoal,expenses,savingGoal,savings,budgetTitle,rent,utilities,food,travel,healthcare,entertainment};
+
+        return contents;
+    }
+
     /**
      * This method will output a report of the User's full profile and analysis
      *
      * @param currentUser
      */
+
     public void showReport(User currentUser){
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        String[] reportInfo = reportContents(currentUser);
 
-        Budget userBudget;
-
-        System.out.println("******** TwoBucks User Profile Data Report *********");
-        System.out.println("");
-        System.out.println("Name: " + currentUser.getFirstName() + " " + currentUser.getLastName());
-        System.out.println("Email: " + currentUser.getEmail());
-        System.out.println("Weekly Income: "+ currentUser.getIncome());
-        System.out.println("Spending goal for this week: "+ currentUser.getSpendAmount());
-        System.out.println("Your expenses this week: " + currentUser.getExpenses());
-        System.out.println("Saving goal for this week: "+ currentUser.getSaveAmount());
-        System.out.println("Your savings this week: "+ (currentUser.getIncome() - currentUser.getExpenses()));
-        System.out.println("Budget for this week: ");
-        System.out.println("    - Rent: "+ currentUser.getBudget().getRentExpenses());
-        System.out.println("    - Utilities: "+ currentUser.getBudget().getUtilitiesExpenses());
-        System.out.println("    - Food: "+ currentUser.getBudget().getFoodExpenses());
-        System.out.println("    - Travel: "+ currentUser.getBudget().getTravelExpenses());
-        System.out.println("    - Healthcare: "+ currentUser.getBudget().getHealthcareExpenses());
-        System.out.println("    - Entertainment: "+ currentUser.getBudget().getEntertainmentExpenses());
-
-
+        for (String element:reportInfo){
+            System.out.println(element);
+        }
 
     }
 
