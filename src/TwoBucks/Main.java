@@ -27,6 +27,8 @@ public class Main
         DebtCalculator calculateDebt = new DebtCalculator();
         User currentUser = new User();
 
+        DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
+
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
         currentUser.setBudget(new Budget());
@@ -60,12 +62,16 @@ public class Main
         /**
          * Main Menu
          */
+
+        // Display Score and Rank on initial menu display
+        displayScoreAndRank.outputScoreAndRank(currentUser);
+
         while (menu.getOption() != 10)
         {
+
+            // Display menu and receive user selection
             menu.showOptions();
             menu.selectOption();
-
-            //User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -119,11 +125,24 @@ public class Main
                 UpdateProfile updateProfile = new UpdateProfile();
                 updateProfile.updateInfo(currentUser);
             }
+            // Progress to Next Week
             if (menu.getOption() == 9){
+                // Save initial week (if applicable)
+                if(currentUser.isFirstWeek()){
+                    currentUser.setInitialWeek(currentUser.week);
+                }
+                // Save week ending as previous week
                 Week week = new Week();
                 currentUser = week.toNextWeek(currentUser);
 
+                // Update User Score and Rank
+                currentUser.calculateScore();
+                currentUser.calculateRank();
+
+                // Display User Score and Rank
+                displayScoreAndRank.outputScoreAndRank(currentUser);
             }
+            // Exit Application
             if (menu.getOption() == 10){
                 file.saveFile(currentUser);
             }

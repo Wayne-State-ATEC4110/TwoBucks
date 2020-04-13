@@ -11,6 +11,7 @@
  * @since 04-01-2020
  */
 
+package TwoBucks;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;

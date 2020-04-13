@@ -185,7 +185,7 @@ public class Menu
                 System.out.println("Update Profile: ");
                 break;
             case 9:
-                //Display Goals
+                //Progress to Next Week
                 this.option = 9;
                 System.out.println("To Next Week: ");
                 break;
