@@ -9,7 +9,7 @@
  *
  *
  * @author  Alex Gonzalez
- * @version 1.0
+ * @version 1.5
  * @since   03-04-2020
  */
 
@@ -19,12 +19,11 @@ package TwoBucks;
 public class User {
     private String firstName;
     private String lastName;
-    //private String password;      //may use in future sprint
     private String email;
-    private double income;
-    private double expenses;
-    private double saveAmount;
-    private double spendAmount;
+    protected double income;
+    protected double expenses;
+    protected double saveAmount;
+    protected double spendAmount;
     //Budget
     protected Budget budget;
 
@@ -32,9 +31,16 @@ public class User {
     private double score;
 
     //Rank
+    String rank;
 
     //Week Class
+    protected Week previousWeek;
+    protected Week initialWeek;
+
     protected Week week;
+
+    // Initial Week Boolean
+    private boolean firstWeek = true;
 
 
     /**
@@ -50,7 +56,9 @@ public class User {
         this.saveAmount = 0;
         this.spendAmount = 0;
         this.budget = new Budget();
-        //this.week = new Week();
+        this.week = new Week();
+        this.previousWeek = new Week();
+        this.initialWeek = new Week();
 
     }
 
@@ -65,6 +73,8 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.initialWeek = new Week();
+        this.previousWeek = new Week();
     }
 
 
@@ -111,7 +121,7 @@ public class User {
     }
 
     public User(String firstName, String lastName, String email, double income, double expenses, double saveAmount,
-                double spendAmount, Budget budget, Week week) {
+                double spendAmount, Budget budget, Week initialWeek, Week previousWeek) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -120,7 +130,8 @@ public class User {
         this.saveAmount = saveAmount;
         this.spendAmount = spendAmount;
         this.budget = budget;
-        this.week = week;
+        this.initialWeek = initialWeek;
+        this.previousWeek = previousWeek;
     }
 
     /**
@@ -267,12 +278,75 @@ public class User {
         this.budget = budget;
     }
 
+    public void calculateScore(){
+        double scoreCalc = ((this.spendAmount - this.getBudget().getTotalExpenses()) +
+                ((this.getIncome() - this.getBudget().getTotalExpenses()) - this.getSaveAmount()));
+        scoreCalc += getScore();
+
+        if(scoreCalc<0){
+            this.setScore(0);
+        }
+        else{
+            this.setScore(scoreCalc);
+        }
+
+    }
+
+    /**
+     * getScore method
+     * @return score
+     */
     public double getScore() {
         return score;
     }
 
+    /**
+     * setScore method
+     * @param score
+     */
     public void setScore(double score) {
         this.score = score;
+    }
+
+    /**
+     * Method calculates and sets the rank for the user
+     * Method uses, getScore and bases their rank on their score
+     * To protect the user from falling below 0, if the score is
+     * negative, the score is reset to 0.
+     */
+    public void calculateRank(){
+        if(this.getScore()<= 500){
+            this.setRank("Financial Novice");
+        }
+        else if(500 < this.getScore() && this.getScore() <= 1500){
+            this.setRank("Financial Rookie");
+        }
+        else if(1500 < this.getScore() && this.getScore() <= 4000){
+            this.setRank("Intermediate Financier");
+        }
+        else if(4000 < this.getScore() && this.getScore() <= 8000){
+            this.setRank("Grand Master Financier");
+        }
+        else if(8000 < this.getScore() && this.getScore() <= 1600){
+            this.setRank("Financial Guru");
+        }
+
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public boolean isFirstWeek() {
+        return firstWeek;
+    }
+
+    public void setFirstWeek(boolean firstWeek) {
+        this.firstWeek = firstWeek;
     }
 
     public Week getWeek() {
@@ -281,6 +355,22 @@ public class User {
 
     public void setWeek(Week week) {
         this.week = week;
+    }
+
+    public Week getPreviousWeek() {
+        return previousWeek;
+    }
+
+    public void setPreviousWeek(Week previousWeek) {
+        this.previousWeek = previousWeek;
+    }
+
+    public Week getInitialWeek() {
+        return initialWeek;
+    }
+
+    public void setInitialWeek(Week initialWeek) {
+        this.initialWeek = initialWeek;
     }
 
     public void clearBudget(){
@@ -310,8 +400,9 @@ public class User {
                 ", " + expenses +
                 ", " + saveAmount +
                 ", " + spendAmount +
-                ", " + this.getBudget().toString()
-                //+ "Week:"+ this.getWeek().toString()
+                ", " + this.getBudget().toString()+
+                 ", "+ this.getInitialWeek().toString()+
+                ", "+ this.getPreviousWeek().toString()
          ;
     }
 }
