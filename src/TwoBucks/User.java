@@ -40,7 +40,7 @@ public class User {
     protected Week week;
 
     // Initial Week Boolean
-    private boolean firstWeek = true;
+    private boolean firstWeek;
 
 
     /**
@@ -75,6 +75,7 @@ public class User {
         this.email = email;
         this.initialWeek = new Week();
         this.previousWeek = new Week();
+        this.firstWeek = true;
     }
 
 
@@ -325,9 +326,12 @@ public class User {
             this.setRank("Intermediate Financier");
         }
         else if(4000 < this.getScore() && this.getScore() <= 8000){
+            this.setRank("Master Financier");
+        }
+        else if(8000 < this.getScore() && this.getScore() <= 16000){
             this.setRank("Grand Master Financier");
         }
-        else if(8000 < this.getScore() && this.getScore() <= 1600){
+        else if(this.getScore() > 16000){
             this.setRank("Financial Guru");
         }
 
