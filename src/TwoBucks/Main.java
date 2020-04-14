@@ -23,9 +23,12 @@ public class Main
         //Save user
         FileManagement file = new FileManagement();
 
+        // Menu and Display object initialization
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
         User currentUser = new User();
+        DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
+        DisplayResults displayResults = new DisplayResults();
 
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
@@ -60,12 +63,16 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 10)
+
+
+        while (menu.getOption() != 11)
         {
+            // Display User Score and Rank
+            displayScoreAndRank.outputScoreAndRank(currentUser);
+
+            // Display menu and receive user selection
             menu.showOptions();
             menu.selectOption();
-
-            //User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -119,12 +126,28 @@ public class Main
                 UpdateProfile updateProfile = new UpdateProfile();
                 updateProfile.updateInfo(currentUser);
             }
+            // Progress to Next Week
             if (menu.getOption() == 9){
+                // Save initial week (if applicable)
+                if(currentUser.isFirstWeek()){
+                    currentUser.setInitialWeek(currentUser.week);
+                }
+
+                // Save week ending as previous week
                 Week week = new Week();
                 currentUser = week.toNextWeek(currentUser);
 
+                // Update User Score and Rank
+                currentUser.calculateScore();
+                currentUser.calculateRank();
+
             }
-            if (menu.getOption() == 10){
+            // Display Results (Current, Previous, Initial Weeks)
+            if(menu.getOption() == 10){
+                displayResults.outputResults(currentUser);
+            }
+            // Exit Application
+            if (menu.getOption() == 11){
                 file.saveFile(currentUser);
             }
 

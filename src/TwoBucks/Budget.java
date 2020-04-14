@@ -152,8 +152,6 @@ public class Budget {
      * Displays current class members
      */
     public void DisplayBudget() {
-        System.out.println();
-        System.out.println("MONTHLY BUDGET:");
         System.out.println("Wage Income: $" + String.format("%.2f", wageIncome));
         System.out.println("Other Income: $" + String.format("%.2f", otherIncome));
         System.out.println("==========================");

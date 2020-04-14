@@ -47,7 +47,8 @@ public class Menu
         System.out.println("7. Budget ");
         System.out.println("8. Update Profile ");
         System.out.println("9. Progress to Next Week");
-        System.out.println("10. Exit ");
+        System.out.println("10. Display Results (initial, previous, current weekly budgets)");
+        System.out.println("11. Exit ");
     }
 
     /**
@@ -185,13 +186,18 @@ public class Menu
                 System.out.println("Update Profile: ");
                 break;
             case 9:
-                //Display Goals
+                //Progress to Next Week
                 this.option = 9;
                 System.out.println("To Next Week: ");
                 break;
             case 10:
-                //Exiting the application
+                // Display Results
                 this.option = 10;
+                System.out.println("Displaying results...");
+                break;
+            case 11:
+                //Exiting the application
+                this.option = 11;
                 System.out.println("TwoBucks application closing...");
                 break;
             default:
