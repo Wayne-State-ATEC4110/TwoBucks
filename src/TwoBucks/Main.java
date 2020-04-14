@@ -23,11 +23,12 @@ public class Main
         //Save user
         FileManagement file = new FileManagement();
 
+        // Menu and Display object initialization
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
         User currentUser = new User();
-
         DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
+        DisplayResults displayResults = new DisplayResults();
 
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
@@ -63,11 +64,11 @@ public class Main
          * Main Menu
          */
 
-        // Display Score and Rank on initial menu display
-        displayScoreAndRank.outputScoreAndRank(currentUser);
 
-        while (menu.getOption() != 10)
+        while (menu.getOption() != 11)
         {
+            // Display User Score and Rank
+            displayScoreAndRank.outputScoreAndRank(currentUser);
 
             // Display menu and receive user selection
             menu.showOptions();
@@ -131,6 +132,7 @@ public class Main
                 if(currentUser.isFirstWeek()){
                     currentUser.setInitialWeek(currentUser.week);
                 }
+
                 // Save week ending as previous week
                 Week week = new Week();
                 currentUser = week.toNextWeek(currentUser);
@@ -139,11 +141,13 @@ public class Main
                 currentUser.calculateScore();
                 currentUser.calculateRank();
 
-                // Display User Score and Rank
-                displayScoreAndRank.outputScoreAndRank(currentUser);
+            }
+            // Display Results (Current, Previous, Initial Weeks)
+            if(menu.getOption() == 10){
+                displayResults.outputResults(currentUser);
             }
             // Exit Application
-            if (menu.getOption() == 10){
+            if (menu.getOption() == 11){
                 file.saveFile(currentUser);
             }
 
