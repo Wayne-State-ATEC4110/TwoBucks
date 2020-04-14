@@ -46,7 +46,8 @@ public class Menu
         System.out.println("6. Goals vs Performance ");
         System.out.println("7. Budget ");
         System.out.println("8. Update Profile ");
-        System.out.println("9. Exit ");
+        System.out.println("9. Progress to Next Week");
+        System.out.println("10. Exit ");
     }
 
     /**
@@ -107,59 +108,6 @@ public class Menu
                 //Exiting the application
                 this.option = 3;
                 System.out.println("TwoBucks application closing...");
-                break;
-            default:
-                //If invalid input
-                System.out.println("Invalid option");
-                selectIntroOption();
-                break;
-        }
-        return choice;
-    }
-
-    /**
-     * Uses the user input integer choice
-     * which is then used for a switch case
-     * in order to send the user to their
-     * desired budget interface
-     * @return
-     */
-    public int selectBudgetOption()
-    {
-        //Getting user input
-        int choice = -1;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Select an option: ");
-        try
-        {
-            choice = scanner.nextInt();
-        }
-        catch(Exception e)
-        {
-            System.out.println("Please enter a numerical value ");
-        }
-
-        switch(choice)
-        {
-            case 1:
-                //
-                this.option = 1;
-                System.out.println("Display Budget: ");
-                break;
-            case 2:
-                //Add to Budget
-                this.option = 2;
-                System.out.println("Add to Budget: ");
-                break;
-            case 3:
-                //Remove from Budget
-                this.option = 3;
-                System.out.println("Remove from Budget: ");
-                break;
-            case 4:
-                //Exiting the application
-                this.option = 4;
-                System.out.println("Returning to main menu...");
                 break;
             default:
                 //If invalid input
@@ -237,14 +185,18 @@ public class Menu
                 System.out.println("Update Profile: ");
                 break;
             case 9:
-                //Exiting the application
+                //Display Goals
                 this.option = 9;
+                System.out.println("To Next Week: ");
+                break;
+            case 10:
+                //Exiting the application
+                this.option = 10;
                 System.out.println("TwoBucks application closing...");
                 break;
             default:
                 //If invalid input
                 System.out.println("Invalid option");
-
                 break;
         }
         return choice;

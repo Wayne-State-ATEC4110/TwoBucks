@@ -1,3 +1,4 @@
+
 /**
  * <h1>Main</h1>
  *
@@ -12,8 +13,8 @@
 
 package TwoBucks;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
+        import java.io.IOException;
+        import java.lang.reflect.Method;
 
 public class Main
 {
@@ -24,11 +25,17 @@ public class Main
 
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
-        User currentUser = null;
+        User currentUser = new User();
+
+        // Initialize budget as member of currentUser
+        Budget budget = new Budget();
+        currentUser.setBudget(new Budget());
+        currentUser.setWeek(new Week());
 
         /**
          * Intro Menu
          */
+
         menu.showIntroOptions();
         menu.selectIntroOption();
 
@@ -53,31 +60,31 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9)
+        while (menu.getOption() != 10)
         {
             menu.showOptions();
             menu.selectOption();
 
-            User user = new User();
+            //User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
             {
-               EnterWeeklyIncome income = new EnterWeeklyIncome();
-               currentUser.setIncome(income.enterIncome());
+                EnterWeeklyIncome income = new EnterWeeklyIncome();
+                currentUser.setIncome(income.enterIncome());
             }
             //Enter Weekly Expense
             if (menu.getOption() == 2)
             {
-               EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
-               currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
+                EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
+                currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
             }
             //Enter Financial Goals
             if (menu.getOption() == 3)
             {
-               EnterFinancialGoals goals = new EnterFinancialGoals();
-               currentUser.setSpendAmount(goals.enterSpendGoal());
-               currentUser.setSaveAmount(goals.enterSaveGoal());
+                EnterFinancialGoals goals = new EnterFinancialGoals();
+                currentUser.setSpendAmount(goals.enterSpendGoal());
+                currentUser.setSaveAmount(goals.enterSaveGoal());
             }
             //Debt Calculator
             if (menu.getOption() == 4)
@@ -88,58 +95,37 @@ public class Main
             if(menu.getOption() == 5)
             {
                 DisplayGoals goalDisplay = new DisplayGoals();
-                goalDisplay.displayGoals(user);
+                goalDisplay.displayGoals(currentUser);
             }
             //Calculate Goals vs Performance
             if(menu.getOption() == 6)
             {
                 CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
-                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+                calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
             }
             //Budget
             if(menu.getOption() == 7)
             {
-                Budget budget = new Budget();
+                BudgetReminder budgetReminder = new BudgetReminder();
+                budgetReminder.setSpendGoal(currentUser.getSpendAmount());
 
+                budget.setBudgetReminder(budgetReminder);
                 budget.CreateBudget();
-                //Budget menu
-                while(menu.getOption() != 4)
-                {
-                    menu.showBudgetOptions();
-                    menu.selectBudgetOption();
-
-                    //Display Budget (private function)
-                    if (menu.getOption() == 1)
-                    {
-                        try
-                        {
-                            Method method = Budget.class.getDeclaredMethod("DisplayBudget");
-                            method.setAccessible(true);
-                            method.invoke(budget);
-                        }
-                        catch(Exception e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                    //Add to Budget
-                    if (menu.getOption() == 2) {
-                        budget.AddToBudget();
-                    }
-                    //Remove from Budget
-                    if (menu.getOption() == 3) {
-                        budget.RemoveFromBudget();
-                    }
-                }
+                currentUser.setBudget(budget);
             }
             //Update Profile
             if(menu.getOption() == 8)
             {
                 UpdateProfile updateProfile = new UpdateProfile();
-                updateProfile.updateInfo(user);
+                updateProfile.updateInfo(currentUser);
             }
             if (menu.getOption() == 9){
-               file.saveFile(currentUser);
+                Week week = new Week();
+                currentUser = week.toNextWeek(currentUser);
+
+            }
+            if (menu.getOption() == 10){
+                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...
