@@ -11,6 +11,7 @@
  * @since 04-01-2020
  */
 
+package TwoBucks;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -27,7 +28,7 @@ public class CreateReport {
      * @param currentUser
      * @return contents which is an array that will contain the information for the report contents
      */
-    public static String[] reportContents(User currentUser){
+    public String[] reportContents(User currentUser){
 
         DecimalFormat df = new DecimalFormat("0.00");
 
