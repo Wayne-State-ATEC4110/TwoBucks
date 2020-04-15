@@ -71,4 +71,76 @@ class BudgetTest {
     }
 
 
+    @Test
+    void receiveWageIncome() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveWageIncome();
+        assert(testClass.getWageIncome() == 1.0);
+    }
+
+    @Test
+    void receiveOtherIncome() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveOtherIncome();
+        assert(testClass.getOtherIncome() == 1.0);
+    }
+
+    @Test
+    void receiveRentExpenses() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveRentExpenses();
+        assert(testClass.getRentExpenses() == 1.0);
+    }
+
+    @Test
+    void receiveUtilitiesExpenses() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveUtilitiesExpenses();
+        assert(testClass.getUtilitiesExpenses() == 1.0);
+    }
+
+    @Test
+    void receiveFoodExpenses() {
+
+    }
+
+    @Test
+    void receiveTravelExpenses() {
+    }
+
+    @Test
+    void receiveHealthcareExpenses() {
+    }
+
+    @Test
+    void receiveEntertainmentExpenses() {
+    }
+
+    @Test
+    void receiveUserSelection() {
+    }
 }

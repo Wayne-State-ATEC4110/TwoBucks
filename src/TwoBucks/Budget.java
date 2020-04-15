@@ -169,27 +169,31 @@ public class Budget {
 
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
-            System.out.print("Invalid input. Please enter a numerical value for your wages: $");
+            System.out.print("Invalid input. Please enter a numerical value.");
             scan.next();
         }
 
         wageIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (totalIncome <= 0) {
-            System.out.print("Invalid input. Please enter a positive numerical value for your wages: $");
+        while (wageIncome <= 0) {
+            System.out.print("Invalid input. Please enter a positive numerical value.");
 
             // Validate Input - must be Double type
             while (!scan.hasNextDouble()) {
-                System.out.print("Invalid input. Please enter a numerical value for your wages: $");
+                System.out.print("Invalid input. Please enter a numerical value.");
                 scan.next();
             }
 
             wageIncome = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
     }
+
+
+
+
+
 
     /**
      * Prompts the user to enter their income from all other sources
@@ -207,7 +211,7 @@ public class Budget {
         otherIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (totalIncome <= 0) {
+        while (otherIncome <= 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the income: $");
 
             // Validate Input - must be Double type
@@ -219,7 +223,6 @@ public class Budget {
             otherIncome = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
     }
 
     /**
@@ -250,8 +253,6 @@ public class Budget {
 
             rentExpenses = scan.nextDouble();
         }
-
-        scan.nextLine();    // Clear input stream
     }
 
     /**
@@ -283,7 +284,6 @@ public class Budget {
             utilitiesExpenses = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
 
     }
 
@@ -317,7 +317,6 @@ public class Budget {
             foodExpenses = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
 
     }
 
