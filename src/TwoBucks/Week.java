@@ -1,6 +1,7 @@
 /**
  * <h1>Week</h1>
- * The Week class is a subclass of user that holds another user class and
+ * The Week class is a subclass of user that holds income of the previous week
+ * and initial week for the user to compare with their current progress.
  *
  * <p>
  *
