@@ -27,7 +27,7 @@ public class ReportToText {
      * if they have multiple reports saved.
      * @param currentUser
      */
-    void printInfoToFile(User currentUser) {
+    public void printInfoToFile(User currentUser) {
 
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis); // Using a different time stamp than CreateReport.java because txt files cannot be saved using characters like '/'

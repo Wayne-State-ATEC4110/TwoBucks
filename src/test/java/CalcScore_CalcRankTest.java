@@ -1,12 +1,13 @@
-package TwoBucks;
-
+import TwoBucks.Budget;
+import TwoBucks.User;
+import TwoBucks.Week;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CalcScore_CalcRank {
+class CalcScore_CalcRankTest {
 
     User user;
 

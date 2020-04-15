@@ -1,5 +1,4 @@
-package TwoBucks;
-
+import TwoBucks.DebtCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -11,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DebtCalculatorTest {
 
     @Test
-    public void receiveDebtPrincipal() {
+    public void TestReceiveDebtPrincipal() {
         // Create input stream to simulate user input until accepted value
         // (tests String, char, negative number, positive double)
         ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
@@ -24,7 +23,7 @@ class DebtCalculatorTest {
     }
 
     @Test
-    public void receiveDebtInterestRate(){
+    public void TestReceiveDebtInterestRate(){
         // Create input stream to simulate user input until accepted value
         // (tests String, char, negative number, positive double)
         ByteArrayInputStream simulatedInput = new ByteArrayInputStream((

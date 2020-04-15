@@ -1,5 +1,5 @@
-package TwoBucks;
-
+import TwoBucks.UpdateProfile;
+import TwoBucks.User;
 import org.junit.Test;
 
 import java.io.IOException;

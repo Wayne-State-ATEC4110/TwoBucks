@@ -1,5 +1,4 @@
-package TwoBucks;
-
+import TwoBucks.Budget;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

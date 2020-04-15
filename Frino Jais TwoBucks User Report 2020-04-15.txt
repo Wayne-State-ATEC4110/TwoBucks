@@ -1,0 +1,18 @@
+******** TwoBucks User Profile Data Report *********
+ 
+04/15/2020 17:42:54
+ 
+Name: Frino Jais
+Email: frinojais@gmail.com
+Weekly Income: 2000.0
+Spending goal for this week: 500.0
+Your expenses this week: 450.0
+Your savings this week: 600.0
+Your savings this week: 1550.0
+Budget for this week: 
+    - Rent: 120.0
+    - Utilities: 60.0
+    - Food: 50.0
+    - Travel: 50.0
+    - Healthcare: 70.0
+    - Entertainment: 10.0

@@ -44,7 +44,7 @@ public class CreateReport {
         String income = ("Weekly Income: "+ currentUser.getIncome());
         String spendingGoal = ("Spending goal for this week: "+ currentUser.getSpendAmount());
         String expenses = ("Your expenses this week: " + currentUser.getExpenses());
-        String savingGoal = ("Your savings this week: "+ (currentUser.getIncome() - currentUser.getExpenses()));
+        String savingGoal = ("Your savings this week: "+ (currentUser.getSaveAmount()));
         String savings = ("Your savings this week: "+ (currentUser.getIncome() - currentUser.getExpenses()));
         String budgetTitle = ("Budget for this week: ");
         String rent = ("    - Rent: "+ currentUser.getBudget().getRentExpenses());

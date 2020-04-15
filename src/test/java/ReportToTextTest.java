@@ -1,5 +1,7 @@
-package TwoBucks;
-
+import TwoBucks.Budget;
+import TwoBucks.CreateReport;
+import TwoBucks.ReportToText;
+import TwoBucks.User;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
