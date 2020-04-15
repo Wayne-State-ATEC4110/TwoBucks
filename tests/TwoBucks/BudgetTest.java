@@ -27,20 +27,20 @@ class BudgetTest {
     }
 
 
-    @Test
-    public void TestArgConstructor() {
-        Budget b = new Budget(1000.00, 500.00, 100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0);
-        assert (b.getWageIncome() == 1000.0);
-        assert (b.getOtherIncome() == 500.0);
-        assert (b.getTotalIncome() == 100.0);
-        assert (b.getRentExpenses() == 200.0);
-        assert (b.getUtilitiesExpenses() == 300.0);
-        assert (b.getFoodExpenses() == 400.0);
-        assert (b.getTravelExpenses() == 500.0);
-        assert (b.getHealthcareExpenses() == 600.0);
-        assert (b.getEntertainmentExpenses() == 700.0);
-        assert (b.getTotalExpenses() == 800.0);
-        assert (b.getMonthlyNetChange() == b.getTotalIncome() - b.getTotalExpenses());
+    @Test public void TestArgConstructor(){
+        Budget b = new Budget(1000.00, 500.00, 100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0, 900.0);
+        assert(b.getWageIncome() == 1000.0);
+        assert(b.getOtherIncome() == 500.0);
+        assert(b.getTotalIncome() == 100.0);
+        assert(b.getRentExpenses() == 200.0);
+        assert(b.getUtilitiesExpenses() == 300.0);
+        assert(b.getFoodExpenses() == 400.0);
+        assert(b.getTravelExpenses() == 500.0);
+        assert(b.getHealthcareExpenses() == 600.0);
+        assert(b.getEntertainmentExpenses() == 700.0);
+        assert(b.getTotalExpenses() == 800.0);
+        assert(b.getMonthlyNetChange() == 900.0);
+
     }
 
     @Test
@@ -74,7 +74,6 @@ class BudgetTest {
         b.CalculateMonthlyNetChange();
         assert (b.getMonthlyNetChange() == 500.00);
     }
-
 
     @Test
     void receiveWageIncome() {
@@ -130,22 +129,57 @@ class BudgetTest {
 
     @Test
     void receiveFoodExpenses() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveFoodExpenses();
+        assert(testClass.getFoodExpenses() == 1.0);
 
     }
 
     @Test
     void receiveTravelExpenses() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveTravelExpenses();
+        assert(testClass.getTravelExpenses() == 1.0);
     }
 
     @Test
     void receiveHealthcareExpenses() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveHealthcareExpenses();
+        assert(testClass.getHealthcareExpenses() == 1.0);
     }
 
     @Test
     void receiveEntertainmentExpenses() {
+        // Create input stream to simulate user input until accepted value
+        // (tests String, char, negative number, positive double)
+        ByteArrayInputStream simulatedInput = new ByteArrayInputStream((
+                "Hello" + System.lineSeparator() + 'a' + System.lineSeparator() +"-1" + System.lineSeparator() + "1").getBytes());
+        System.setIn(simulatedInput);
+
+        Budget testClass = new Budget();
+        testClass.ReceiveEntertainmentExpenses();
+        assert(testClass.getEntertainmentExpenses() == 1.0);
     }
 
-    @Test
-    void receiveUserSelection() {
-    }
+
+
 }
