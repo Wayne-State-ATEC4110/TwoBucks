@@ -1,0 +1,14 @@
+CalculateCurrentVsInitialTest.class
+CalculateGoalsVsPerformanceTest.class
+WeekTest.class
+UpdateProfileTest.class
+BudgetTest.class
+DebtCalculatorTest.class
+TwoBucks\CreateReportTest.class
+CalculateCurrentVsPreviousTest.class
+DisplayGoalsTest.class
+BudgetReminderTest.class
+EnterWeeklyIncomeTest.class
+EnterFinancialGoalsTest.class
+CalcScore_CalcRankTest.class
+ReportToTextTest.class
