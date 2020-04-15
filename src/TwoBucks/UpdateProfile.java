@@ -28,7 +28,7 @@ public class UpdateProfile {
      * @param currentUser
      * @return currentUser
      */
-    public User updateInfo(User currentUser)throws IOException{
+    public User updateInfo(User currentUser) throws IOException {
 
         Scanner scnr = new Scanner(System.in);
         FileManagement saver = new FileManagement();
@@ -62,8 +62,7 @@ public class UpdateProfile {
             updateInfo(currentUser);
 
 
-        }
-        else if(option == 2){
+        } else if (option == 2) {
 
             System.out.println("Please confirm your existing last name: ");
             String oldLastName = scnr.next();
@@ -80,7 +79,7 @@ public class UpdateProfile {
             System.out.println("Saved Successfully!");
             updateInfo(currentUser);
 
-        }else if(option == 3){
+        } else if (option == 3) {
 
             System.out.println("Please confirm your existing email: ");
             String oldEmail = scnr.next();
@@ -97,11 +96,10 @@ public class UpdateProfile {
             System.out.println("Saved Successfully!");
             updateInfo(currentUser);
 
-        }else if(option == 4){
+        } else if (option == 4) {
             saver.saveFile(currentUser);
             menu.showOptions();
-        }
-        else{
+        } else {
             System.out.println("Please enter a valid option.");
         }
 

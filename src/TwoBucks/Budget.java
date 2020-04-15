@@ -1,4 +1,3 @@
-
 /**
  * <h1>Budget</h1>
  *
@@ -45,7 +44,7 @@ public class Budget {
     /**
      * Default Constructor to initialize fields
      */
-    public Budget(){
+    public Budget() {
         wageIncome = 0.0;
         otherIncome = 0.0;
         totalIncome = 0.0;
@@ -65,7 +64,7 @@ public class Budget {
      */
     public Budget(double wages, double otherIncomeSource, double totalIncome, double rent, double utilities,
                   double food, double travel, double health,
-                  double entertainment, double totalExpenses, double monthlyNetChange){
+                  double entertainment, double totalExpenses, double monthlyNetChange) {
 
         this.wageIncome = wages;
         this.otherIncome = otherIncomeSource;
@@ -173,6 +172,7 @@ public class Budget {
 
     /**
      * Prompts the user to enter their monthly wages
+     *
      * @throws InputMismatchException
      */
 
@@ -206,12 +206,9 @@ public class Budget {
     }
 
 
-
-
-
-
     /**
      * Prompts the user to enter their income from all other sources
+     *
      * @throws InputMismatchException
      */
     public void ReceiveOtherIncome() throws InputMismatchException {
@@ -435,6 +432,7 @@ public class Budget {
      */
 
     public void CalculateTotalIncome(){
+
         totalIncome = wageIncome + otherIncome;
 
     }
@@ -442,7 +440,7 @@ public class Budget {
     /**
      * Calculates the total expenses
      */
-    public void CalculateTotalExpenses(){
+    public void CalculateTotalExpenses() {
         totalExpenses = rentExpenses + utilitiesExpenses +
                 foodExpenses + travelExpenses + healthcareExpenses + entertainmentExpenses;
     }
@@ -487,7 +485,6 @@ public class Budget {
         }
 
     }
-
 
 
     /**
@@ -793,25 +790,32 @@ public class Budget {
      */
 
     /**
-     *
      * @return wageIncome double
      */
-    public double getWageIncome(){ return wageIncome; }
+    public double getWageIncome() {
+        return wageIncome;
+    }
 
     /**
-     * @param  wageIncome double
+     * @param wageIncome double
      */
-    public void setWageIncome(double wageIncome){this.wageIncome = wageIncome;}
+    public void setWageIncome(double wageIncome) {
+        this.wageIncome = wageIncome;
+    }
 
     /**
      * @return otherIncome double
      */
-    public double getOtherIncome() {return otherIncome; }
+    public double getOtherIncome() {
+        return otherIncome;
+    }
 
     /**
      * @param otherIncome double
      */
-    public void setOtherIncome(double otherIncome){this.otherIncome = otherIncome;}
+    public void setOtherIncome(double otherIncome) {
+        this.otherIncome = otherIncome;
+    }
 
 
     /**
@@ -913,20 +917,20 @@ public class Budget {
     }
 
     /**
-     *
      * @return totalExpenses double
      */
-    public double getTotalExpenses(){return totalExpenses;}
+    public double getTotalExpenses() {
+        return totalExpenses;
+    }
 
     /**
      * @param totalExpenses double
      */
-    public void setTotalExpenses(double totalExpenses){
+    public void setTotalExpenses(double totalExpenses) {
         this.totalExpenses = totalExpenses;
     }
 
     /**
-     *
      * @return monthlyNewChange double
      */
     public double getMonthlyNetChange() {
@@ -934,18 +938,16 @@ public class Budget {
     }
 
     /**
-     *
      * @param monthlyNetChange
      */
-    public void setMonthlyNetChange(double monthlyNetChange){
+    public void setMonthlyNetChange(double monthlyNetChange) {
         this.monthlyNetChange = monthlyNetChange;
     }
 
     /**
-     *
      * @param reminder BudgetReminder
      */
-    public void setBudgetReminder(BudgetReminder reminder){
+    public void setBudgetReminder(BudgetReminder reminder) {
         budgetReminder = reminder;
     }
 

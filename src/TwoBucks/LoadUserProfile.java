@@ -28,7 +28,7 @@ public class LoadUserProfile {
      * @param ArrayList users
      * @return User loadUser
      */
-    public User loadUser(ArrayList<String> users){
+    public User loadUser(ArrayList<String> users) {
         //initialize user class
         User loadUser = new User();
         Budget budget = new Budget();
@@ -42,7 +42,7 @@ public class LoadUserProfile {
         Scanner scan = new Scanner(System.in);
 
         boolean profileOption = true;
-        while(profileOption == true) {
+        while (profileOption == true) {
 
             //prompt user for first and last name separated by space
             System.out.println("Login: Enter your email address");
