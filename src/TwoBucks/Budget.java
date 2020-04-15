@@ -73,7 +73,6 @@ public class Budget {
         this.utilitiesExpenses = utilities;
         this.foodExpenses = food;
         this.travelExpenses = travel;
-        this.travelExpenses = food;
         this.healthcareExpenses = health;
         this.entertainmentExpenses = entertainment;
         this.totalExpenses = totalExpenses;
