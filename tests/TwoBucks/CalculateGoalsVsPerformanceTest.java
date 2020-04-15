@@ -1,6 +1,8 @@
 // Unit Test for US10. CalculateGoalsVsPerformance
 // By Frino Jais
 
+package TwoBucks;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 

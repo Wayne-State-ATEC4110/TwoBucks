@@ -1,9 +1,12 @@
+package TwoBucks;
+
 import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.*;
+
 
 public class CreateReportTest {
 
@@ -33,7 +36,7 @@ public class CreateReportTest {
         CreateReport CR = new CreateReport();
 
         String testString[] = {"******** TwoBucks User Profile Data Report *********", " ",(dateFormatter.format(now))," ","Name: Frino Jais", "Email: frinojais@gmail.com", "Weekly Income: 2000.0", "Spending goal for this week: 500.0", "Your expenses this week: 450.0", "Your savings goal this week: 600.0","Your savings this week: 1550.0", "Budget for this week: ", "    - Rent: 120.0","    - Utilities: 60.0","    - Food: 50.0","    - Travel: 50.0","    - Healthcare: 70.0","    - Entertainment: 10.0"};
-        assertEquals(testString,(CR.reportContents(currentUser))); // check if the test array is equal to the actual array outputted by the test
+        assert(testString.equals(CR.reportContents(currentUser))); // check if the test array is equal to the actual array outputted by the test
     }
 
     @Test
