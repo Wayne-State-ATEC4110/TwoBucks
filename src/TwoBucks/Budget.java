@@ -74,11 +74,9 @@ public class Budget {
         this.utilitiesExpenses = utilities;
         this.foodExpenses = food;
         this.travelExpenses = travel;
-        this.foodExpenses = food;
         this.healthcareExpenses = health;
         this.entertainmentExpenses = entertainment;
         this.totalExpenses = totalExpenses;
-
         this.monthlyNetChange = monthlyNetChange;
 
         //CalculateTotalIncome();
@@ -178,7 +176,7 @@ public class Budget {
      * @throws InputMismatchException
      */
 
-    private void ReceiveWageIncome() throws InputMismatchException {
+    public void ReceiveWageIncome() throws InputMismatchException {
         System.out.print("Enter your income from wages (after tax): $");
 
 
@@ -366,8 +364,6 @@ public class Budget {
             travelExpenses = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
-
     }
 
     /**
@@ -399,8 +395,6 @@ public class Budget {
 
             healthcareExpenses = scan.nextDouble();
         }
-
-        scan.nextLine();    // Clear input stream
 
     }
 
@@ -434,15 +428,13 @@ public class Budget {
             entertainmentExpenses = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
-
     }
 
     /**
      * Calculates the total income
      */
 
-    private void CalculateTotalIncome(){
+    public void CalculateTotalIncome(){
         totalIncome = wageIncome + otherIncome;
 
     }
