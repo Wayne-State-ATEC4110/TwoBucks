@@ -1,15 +1,21 @@
-package TwoBucks;
-
 /**
+ * <h>BudgetReminder</h>
+ *
+ * <p>Takes from the user's inputted financial goal
+ * and the user's inputed budget expense to calculate
+ * how much more spending the user has until they reach
+ * their goal inside the budget</p>
+ *
  * @author Sawyer Kisha
  * @version 1.0
  * @since 1.0
- * BudgetReminder.java
  */
+
+package TwoBucks;
+
 public class BudgetReminder
 {
-    EnterFinancialGoals enterFinancialGoals = new EnterFinancialGoals();
-    double spendGoal  = enterFinancialGoals.enterSpendGoal();
+    double spendGoal;
 
     /**
      *  Takes the spendAmt from EnterFinancialGoals.java
@@ -52,4 +58,14 @@ public class BudgetReminder
             System.out.println("Current goal: $" + spendGoal);
         }
     }
+
+    /**
+     *
+     * @param spendGoal double
+     */
+    public void setSpendGoal(double spendGoal){
+        this.spendGoal = spendGoal;
+    }
+
+
 }

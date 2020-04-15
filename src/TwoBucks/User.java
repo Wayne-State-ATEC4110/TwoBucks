@@ -9,7 +9,7 @@
  *
  *
  * @author  Alex Gonzalez
- * @version 1.0
+ * @version 1.5
  * @since   03-04-2020
  */
 
@@ -19,32 +19,48 @@ package TwoBucks;
 public class User {
     private String firstName;
     private String lastName;
-    //private String password;      //may use in future sprint
     private String email;
-    private double income;
-    private double expenses;
-    private double saveAmount;
-    private double spendAmount;
+    protected double income;
+    protected double expenses;
+    protected double saveAmount;
+    protected double spendAmount;
     //Budget
+    protected Budget budget;
 
     //Score
+    private double score;
 
     //Rank
+    String rank;
 
     //Week Class
+    protected Week previousWeek;
+    protected Week initialWeek;
 
-    //previous week
+    protected Week week;
 
-    //Curent week
+    // Initial Week Boolean
+    private boolean firstWeek = true;
 
-    //Initial week
 
     /**
      * Constructor used when no parameters are passed
      * @param Nothing
      */
     public User(){
-
+        this.firstName = " ";
+        this.lastName = " ";
+        this.email = " ";
+        this.income = 0;
+        this.expenses = 0;
+        this.saveAmount = 0;
+        this.spendAmount = 0;
+        this.budget = new Budget();
+        this.week = new Week();
+        this.previousWeek = new Week();
+        this.initialWeek = new Week();
+        this.score = 0.0;
+        this.rank = "Financial Novice";
     }
 
     /**
@@ -58,6 +74,8 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.initialWeek = new Week();
+        this.previousWeek = new Week();
     }
 
 
@@ -77,6 +95,44 @@ public class User {
         this.email = email;
         this.income = income;
         this.expenses = expenses;
+    }
+
+    /**
+     *
+     *
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param income
+     * @param expenses
+     * @param saveAmount
+     * @param spendAmount
+     * @param budget
+     */
+    public User(String firstName, String lastName, String email, double income, double expenses, double saveAmount,
+                double spendAmount, Budget budget) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.income = income;
+        this.expenses = expenses;
+        this.saveAmount = saveAmount;
+        this.spendAmount = spendAmount;
+        this.budget = budget;
+    }
+
+    public User(String firstName, String lastName, String email, double income, double expenses, double saveAmount,
+                double spendAmount, Budget budget, Week initialWeek, Week previousWeek) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.income = income;
+        this.expenses = expenses;
+        this.saveAmount = saveAmount;
+        this.spendAmount = spendAmount;
+        this.budget = budget;
+        this.initialWeek = initialWeek;
+        this.previousWeek = previousWeek;
     }
 
     /**
@@ -215,6 +271,120 @@ public class User {
         this.spendAmount = spendAmount;
     }
 
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
+
+    public void calculateScore(){
+        double scoreCalc = ((this.spendAmount - this.getBudget().getTotalExpenses()) +
+                ((this.getIncome() - this.getBudget().getTotalExpenses()) - this.getSaveAmount()));
+        scoreCalc += getScore();
+
+        if(scoreCalc<0){
+            this.setScore(0);
+        }
+        else{
+            this.setScore(scoreCalc);
+        }
+
+    }
+
+    /**
+     * getScore method
+     * @return score
+     */
+    public double getScore() {
+        return score;
+    }
+
+    /**
+     * setScore method
+     * @param score
+     */
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    /**
+     * Method calculates and sets the rank for the user
+     * Method uses, getScore and bases their rank on their score
+     * To protect the user from falling below 0, if the score is
+     * negative, the score is reset to 0.
+     */
+    public void calculateRank(){
+        if(this.getScore()<= 500){
+            this.setRank("Financial Novice");
+        }
+        else if(500 < this.getScore() && this.getScore() <= 1500){
+            this.setRank("Financial Rookie");
+        }
+        else if(1500 < this.getScore() && this.getScore() <= 4000){
+            this.setRank("Intermediate Financier");
+        }
+        else if(4000 < this.getScore() && this.getScore() <= 8000){
+            this.setRank("Grand Master Financier");
+        }
+        else if(8000 < this.getScore() && this.getScore() <= 1600){
+            this.setRank("Financial Guru");
+        }
+
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public boolean isFirstWeek() {
+        return firstWeek;
+    }
+
+    public void setFirstWeek(boolean firstWeek) {
+        this.firstWeek = firstWeek;
+    }
+
+    public Week getWeek() {
+        return week;
+    }
+
+    public void setWeek(Week week) {
+        this.week = week;
+    }
+
+    public Week getPreviousWeek() {
+        return previousWeek;
+    }
+
+    public void setPreviousWeek(Week previousWeek) {
+        this.previousWeek = previousWeek;
+    }
+
+    public Week getInitialWeek() {
+        return initialWeek;
+    }
+
+    public void setInitialWeek(Week initialWeek) {
+        this.initialWeek = initialWeek;
+    }
+
+    public void clearBudget(){
+        this.budget.setEntertainmentExpenses(0);
+        this.budget.setFoodExpenses(0);
+        this.budget.setHealthcareExpenses(0);
+        this.budget.setRentExpenses(0);
+        this.budget.setTravelExpenses(0);
+        this.budget.setUtilitiesExpenses(0);
+        this.budget.setTotalExpenses(0);
+        this.budget.setMonthlyNetChange(0);
+    }
+
     /**
      * Override to string method in order to save
      * and load user data.
@@ -228,6 +398,12 @@ public class User {
                 ", " + lastName +
                 ", " + email +
                 ", " + income +
-                ", " + expenses ;
+                ", " + expenses +
+                ", " + saveAmount +
+                ", " + spendAmount +
+                ", " + this.getBudget().toString()+
+                 ", "+ this.getInitialWeek().toString()+
+                ", "+ this.getPreviousWeek().toString()
+         ;
     }
 }

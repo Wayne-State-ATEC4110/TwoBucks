@@ -52,8 +52,6 @@ public class CalculateGoalsVsPerformance {
 
         System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses())+".");
 
-        System.out.println("You saved "+ (currentUser.getIncome() - currentUser.getExpenses()+"."));
-
         System.out.println(" ");
 
         if (currentUser.getSaveAmount() < weeklySavings){

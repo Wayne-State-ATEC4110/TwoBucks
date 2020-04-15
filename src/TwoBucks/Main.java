@@ -1,13 +1,21 @@
-package TwoBucks;
-
-import java.io.IOException;
 
 /**
+ * <h1>Main</h1>
+ *
+ * <p>The Main class calls the projects
+ * functions and sends the user to their
+ * designated feature</p>
+ *
  * @author  Sawyer Kisha
- * @version 1.4
+ * @version 1.5
  * @since   1.0
- * Main.java
  */
+
+package TwoBucks;
+
+        import java.io.IOException;
+        import java.lang.reflect.Method;
+
 public class Main
 {
     public static void main(String[] args)throws IOException
@@ -15,14 +23,22 @@ public class Main
         //Save user
         FileManagement file = new FileManagement();
 
+        // Menu and Display object initialization
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
-        LoadUserProfile load = new LoadUserProfile();
-        User currentUser = load.loadUser(file.loadFile());
+        User currentUser = new User();
+        DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
+        DisplayResults displayResults = new DisplayResults();
+
+        // Initialize budget as member of currentUser
+        Budget budget = new Budget();
+        currentUser.setBudget(new Budget());
+        currentUser.setWeek(new Week());
 
         /**
          * Intro Menu
          */
+
         menu.showIntroOptions();
         menu.selectIntroOption();
 
@@ -35,6 +51,7 @@ public class Main
         //Load User Profile
         if (menu.getOption() == 2)
         {
+            LoadUserProfile load = new LoadUserProfile();
             currentUser = load.loadUser(file.loadFile());
         }
         //Exiting Application
@@ -46,40 +63,96 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 5)
+
+
+        while (menu.getOption() != 11)
         {
+            // Display User Score and Rank
+            displayScoreAndRank.outputScoreAndRank(currentUser);
+
+            // Display menu and receive user selection
             menu.showOptions();
             menu.selectOption();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
             {
-               EnterWeeklyIncome income = new EnterWeeklyIncome();
-               currentUser.setIncome(income.enterIncome());
+                EnterWeeklyIncome income = new EnterWeeklyIncome();
+                currentUser.setIncome(income.enterIncome());
             }
             //Enter Weekly Expense
             if (menu.getOption() == 2)
             {
-               EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
-               currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
+                EnterWeeklyExpense enterWeeklyExpense = new EnterWeeklyExpense();
+                currentUser.setExpenses(enterWeeklyExpense.setUserExpenses());
             }
             //Enter Financial Goals
             if (menu.getOption() == 3)
             {
-               EnterFinancialGoals goals = new EnterFinancialGoals();
-               currentUser.setSpendAmount(goals.enterSpendGoal());
-               currentUser.setSaveAmount(goals.enterSaveGoal());
+                EnterFinancialGoals goals = new EnterFinancialGoals();
+                currentUser.setSpendAmount(goals.enterSpendGoal());
+                currentUser.setSaveAmount(goals.enterSaveGoal());
             }
             //Debt Calculator
             if (menu.getOption() == 4)
             {
                 calculateDebt.DebtCalculatorMain();
             }
-            if (menu.getOption() == 5){
-               file.saveFile(currentUser);
+            //Display Goals
+            if(menu.getOption() == 5)
+            {
+                DisplayGoals goalDisplay = new DisplayGoals();
+                goalDisplay.displayGoals(currentUser);
+            }
+            //Calculate Goals vs Performance
+            if(menu.getOption() == 6)
+            {
+                CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
+                calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
+            }
+            //Budget
+            if(menu.getOption() == 7)
+            {
+                BudgetReminder budgetReminder = new BudgetReminder();
+                budgetReminder.setSpendGoal(currentUser.getSpendAmount());
+
+                budget.setBudgetReminder(budgetReminder);
+                budget.CreateBudget();
+                currentUser.setBudget(budget);
+            }
+            //Update Profile
+            if(menu.getOption() == 8)
+            {
+                UpdateProfile updateProfile = new UpdateProfile();
+                updateProfile.updateInfo(currentUser);
+            }
+            // Progress to Next Week
+            if (menu.getOption() == 9){
+                // Save initial week (if applicable)
+                if(currentUser.isFirstWeek()){
+                    currentUser.setInitialWeek(currentUser.week);
+                }
+
+                // Save week ending as previous week
+                Week week = new Week();
+                currentUser = week.toNextWeek(currentUser);
+
+                // Update User Score and Rank
+                currentUser.calculateScore();
+                currentUser.calculateRank();
+
+            }
+            // Display Results (Current, Previous, Initial Weeks)
+            if(menu.getOption() == 10){
+                displayResults.outputResults(currentUser);
+            }
+            // Exit Application
+            if (menu.getOption() == 11){
+                file.saveFile(currentUser);
             }
 
             //Create more paths for future features...
         }
     }
+
 }
