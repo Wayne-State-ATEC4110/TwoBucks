@@ -50,23 +50,23 @@ public class CreateUserProfile {
         //create scanner
         Scanner scan = new Scanner(System.in);
 
-        while (true) {
-            try {
-                //prompt user for first name
-                System.out.println("Enter your first name: ");
-                firstName = scan.nextLine();
-                if (checkAlpha(firstName) == true) {
-                    break;
+            while (true) {
+                try {
+                    //prompt user for first name
+                    System.out.println("Enter your first name: ");
+                    firstName = scan.nextLine();
+                    if (checkAlpha(firstName) == true) {
+                        break;
+                    }
+                    else
+                        throw new Exception("Invalid Input");
                 }
-                else
-                    throw new Exception("Invalid Input");
-            }
-            catch (Exception e){
-                System.out.println("Please enter name with only Alphabet characters");
+                catch (Exception e){
+                    System.out.println("Please enter name with only Alphabet characters");
+
+                }
 
             }
-
-        }
 
 
         while(true) {
@@ -98,14 +98,12 @@ public class CreateUserProfile {
 
         //create and return new user class.
         User user = new User(firstName,lastName,email);
+        Budget budget = new Budget();
+        user.setBudget(budget);
         return user;
 
 
     }
-
-
-
-
 
 
 }
