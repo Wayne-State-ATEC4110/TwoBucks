@@ -37,7 +37,7 @@ public class EnterFinancialGoals {
     }
 
 
-    public double enterSaveGoal(){
+    public double enterSaveGoal() {
 
         Scanner in = new Scanner(System.in);
 
@@ -60,3 +60,4 @@ public class EnterFinancialGoals {
         System.out.println("Saving amount of $" + df.format(saveAmt) + " has been saved to your user profile!");
         return saveAmt;
     }
+}
