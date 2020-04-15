@@ -49,6 +49,7 @@ public class Menu
         System.out.println("9. Progress to Next Week");
         System.out.println("10. Display Results (initial, previous, current weekly budgets)");
         System.out.println("11. Exit ");
+
     }
 
     /**
@@ -186,6 +187,7 @@ public class Menu
                 System.out.println("Update Profile: ");
                 break;
             case 9:
+
                 //Progress to Next Week
                 this.option = 9;
                 System.out.println("To Next Week: ");

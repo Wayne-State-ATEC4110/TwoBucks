@@ -38,4 +38,3 @@ public class EnterWeeklyIncome {
         System.out.println("Weekly income of $" + df.format(weeklyIncome) + " has been saved to your user profile!");
         return weeklyIncome;
     }
-}

@@ -15,6 +15,7 @@ package TwoBucks;
 
 public class BudgetReminder
 {
+
     double spendGoal;
 
     /**

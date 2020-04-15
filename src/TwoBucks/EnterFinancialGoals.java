@@ -60,4 +60,3 @@ public class EnterFinancialGoals {
         System.out.println("Saving amount of $" + df.format(saveAmt) + " has been saved to your user profile!");
         return saveAmt;
     }
-}
