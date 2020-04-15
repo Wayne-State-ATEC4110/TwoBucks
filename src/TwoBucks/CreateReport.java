@@ -28,7 +28,7 @@ public class CreateReport {
      * @param currentUser
      * @return contents which is an array that will contain the information for the report contents
      */
-    public String[] reportContents(User currentUser){
+    public static String[] reportContents(User currentUser){
 
         DecimalFormat df = new DecimalFormat("0.00");
 
