@@ -23,13 +23,22 @@ public class Main
         //Save user
         FileManagement file = new FileManagement();
 
+        // Menu and Display object initialization
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
-        User currentUser = null;
+        User currentUser = new User();
+        DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
+        DisplayResults displayResults = new DisplayResults();
+
+        // Initialize budget as member of currentUser
+        Budget budget = new Budget();
+        currentUser.setBudget(new Budget());
+        currentUser.setWeek(new Week());
 
         /**
          * Intro Menu
          */
+
         menu.showIntroOptions();
         menu.selectIntroOption();
 
@@ -54,13 +63,16 @@ public class Main
         /**
          * Main Menu
          */
-        while (menu.getOption() != 9 || currentUser != null)
-        {
 
+
+        while (menu.getOption() != 11)
+        {
+            // Display User Score and Rank
+            displayScoreAndRank.outputScoreAndRank(currentUser);
+
+            // Display menu and receive user selection
             menu.showOptions();
             menu.selectOption();
-
-            User user = new User();
 
             //Enter Weekly Income
             if (menu.getOption() == 1)
@@ -90,20 +102,23 @@ public class Main
             if(menu.getOption() == 5)
             {
                 DisplayGoals goalDisplay = new DisplayGoals();
-                goalDisplay.displayGoals(user);
+                goalDisplay.displayGoals(currentUser);
             }
             //Calculate Goals vs Performance
             if(menu.getOption() == 6)
             {
                 CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
-                calculateGoalsVsPerformance.PerformanceAnalysis(user);
+                calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
             }
             //Budget
             if(menu.getOption() == 7)
             {
-                Budget budget = new Budget();
+                BudgetReminder budgetReminder = new BudgetReminder();
+                budgetReminder.setSpendGoal(currentUser.getSpendAmount());
 
+                budget.setBudgetReminder(budgetReminder);
                 budget.CreateBudget();
+                currentUser.setBudget(budget);
             }
             //Update Profile
             if(menu.getOption() == 8)
@@ -111,7 +126,28 @@ public class Main
                 UpdateProfile updateProfile = new UpdateProfile();
                 updateProfile.updateInfo(currentUser);
             }
+            // Progress to Next Week
             if (menu.getOption() == 9){
+                // Save initial week (if applicable)
+                if(currentUser.isFirstWeek()){
+                    currentUser.setInitialWeek(currentUser.week);
+                }
+
+                // Save week ending as previous week
+                Week week = new Week();
+                currentUser = week.toNextWeek(currentUser);
+
+                // Update User Score and Rank
+                currentUser.calculateScore();
+                currentUser.calculateRank();
+
+            }
+            // Display Results (Current, Previous, Initial Weeks)
+            if(menu.getOption() == 10){
+                displayResults.outputResults(currentUser);
+            }
+            // Exit Application
+            if (menu.getOption() == 11){
                 file.saveFile(currentUser);
             }
 

@@ -16,6 +16,14 @@ package TwoBucks;
 
 import java.util.*;
 
+/**
+ * Composition: Member of User class (HAS-A relationship)
+ *
+ * The Budget class handles all categorized budgeting.
+ * The user enters income and expenses by category
+ * The user can add or remove from categories after initial input
+ */
+
 public class Budget {
 
     // Budget members
@@ -32,6 +40,7 @@ public class Budget {
     private double monthlyNetChange;    // (Income - Expenses)
     private int userSelection = 0;
     private Scanner scan = new Scanner(System.in);
+    private BudgetReminder budgetReminder;
 
     /**
      * Default Constructor to initialize fields
@@ -54,22 +63,28 @@ public class Budget {
     /**
      * Argument Constructor to initialize fields without user input
      */
-    public Budget(double wages, double otherIncomeSource, double rent, double utilities,
+    public Budget(double wages, double otherIncomeSource, double totalIncome, double rent, double utilities,
                   double food, double travel, double health,
-                  double entertainment){
+                  double entertainment, double totalExpenses, double monthlyNetChange){
+
         this.wageIncome = wages;
         this.otherIncome = otherIncomeSource;
+        this.totalIncome = totalIncome;
         this.rentExpenses = rent;
         this.utilitiesExpenses = utilities;
         this.foodExpenses = food;
         this.travelExpenses = travel;
-        this.travelExpenses = food;
+        this.foodExpenses = food;
         this.healthcareExpenses = health;
         this.entertainmentExpenses = entertainment;
+        this.totalExpenses = totalExpenses;
 
-        CalculateTotalIncome();
-        CalculateTotalExpenses();
-        CalculateMonthlyNetChange();
+        this.monthlyNetChange = monthlyNetChange;
+
+        //CalculateTotalIncome();
+        //CalculateTotalExpenses();
+        //CalculateMonthlyNetChange();
+
     }
 
     /**
@@ -82,7 +97,7 @@ public class Budget {
     public String toString() {
         return wageIncome + ", " + otherIncome + ", " + totalIncome + ", " + rentExpenses + ", " + utilitiesExpenses + ", "
                 + foodExpenses + ", " + travelExpenses + ", " + healthcareExpenses
-                + ", " + entertainmentExpenses + ", " + ", " + totalExpenses + ", " + monthlyNetChange;
+                + ", " + entertainmentExpenses + ", " + totalExpenses + ", " + monthlyNetChange;
     }
 
     /**
@@ -140,8 +155,6 @@ public class Budget {
      * Displays current class members
      */
     public void DisplayBudget() {
-        System.out.println();
-        System.out.println("MONTHLY BUDGET:");
         System.out.println("Wage Income: $" + String.format("%.2f", wageIncome));
         System.out.println("Other Income: $" + String.format("%.2f", otherIncome));
         System.out.println("==========================");
@@ -164,12 +177,14 @@ public class Budget {
      * Prompts the user to enter their monthly wages
      * @throws InputMismatchException
      */
+
     private void ReceiveWageIncome() throws InputMismatchException {
         System.out.print("Enter your income from wages (after tax): $");
 
+
         // Validate Input - must be Double type
         while (!scan.hasNextDouble()) {
-            System.out.print("Invalid input. Please enter a numerical value for your wages: $");
+            System.out.print("Invalid input. Please enter a numerical value.");
             scan.next();
         }
 
@@ -177,25 +192,31 @@ public class Budget {
 
         // Validate input - must be positive value
         while (wageIncome <= 0) {
+
             System.out.print("Invalid input. Please enter a positive numerical value for your wages: $");
+
 
             // Validate Input - must be Double type
             while (!scan.hasNextDouble()) {
-                System.out.print("Invalid input. Please enter a numerical value for your wages: $");
+                System.out.print("Invalid input. Please enter a numerical value.");
                 scan.next();
             }
 
             wageIncome = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
     }
+
+
+
+
+
 
     /**
      * Prompts the user to enter their income from all other sources
      * @throws InputMismatchException
      */
-    private void ReceiveOtherIncome() throws InputMismatchException {
+    public void ReceiveOtherIncome() throws InputMismatchException {
         System.out.print("Enter your income all other sources: $");
 
         // Validate Input - must be Double type
@@ -219,7 +240,6 @@ public class Budget {
             otherIncome = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
     }
 
     /**
@@ -227,7 +247,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveRentExpenses() throws InputMismatchException {
+    public void ReceiveRentExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on this month's rent/mortgage: $");
 
         // Validate Input - must be Double type
@@ -250,8 +270,6 @@ public class Budget {
 
             rentExpenses = scan.nextDouble();
         }
-
-        scan.nextLine();    // Clear input stream
     }
 
     /**
@@ -259,7 +277,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveUtilitiesExpenses() throws InputMismatchException {
+    public void ReceiveUtilitiesExpenses() throws InputMismatchException {
         System.out.print("Enter the amount spent on utilities (electric, water, phone, ect): $");
 
         // Validate Input - must be Double type
@@ -283,7 +301,6 @@ public class Budget {
             utilitiesExpenses = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
 
     }
 
@@ -292,7 +309,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveFoodExpenses() throws InputMismatchException {
+    public void ReceiveFoodExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on food: $");
 
@@ -317,7 +334,6 @@ public class Budget {
             foodExpenses = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
 
     }
 
@@ -326,7 +342,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveTravelExpenses() throws InputMismatchException {
+    public void ReceiveTravelExpenses() throws InputMismatchException {
         System.out.print("Enter the total spent on travel (car payments/repairs, gasoline, public transport, ect): $");
 
         // Validate Input - must be Double type
@@ -359,7 +375,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveHealthcareExpenses() throws InputMismatchException {
+    public void ReceiveHealthcareExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on healthcare expenses (including insurance): $");
 
@@ -393,7 +409,7 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    private void ReceiveEntertainmentExpenses() throws InputMismatchException {
+    public void ReceiveEntertainmentExpenses() throws InputMismatchException {
 
         System.out.print("Enter the amount spent on entertainment: $");
 
@@ -425,14 +441,16 @@ public class Budget {
     /**
      * Calculates the total income
      */
+
     private void CalculateTotalIncome(){
         totalIncome = wageIncome + otherIncome;
+
     }
 
     /**
      * Calculates the total expenses
      */
-    private void CalculateTotalExpenses(){
+    public void CalculateTotalExpenses(){
         totalExpenses = rentExpenses + utilitiesExpenses +
                 foodExpenses + travelExpenses + healthcareExpenses + entertainmentExpenses;
     }
@@ -440,9 +458,8 @@ public class Budget {
     /**
      * Calculates the monthly net change (income - expenses)
      */
-    private void CalculateMonthlyNetChange() {
-        CalculateTotalIncome();
-        CalculateTotalExpenses();
+    public void CalculateMonthlyNetChange() {
+
         monthlyNetChange = totalIncome - totalExpenses;
     }
 
@@ -496,15 +513,16 @@ public class Budget {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Select a category from the menu below to add an amount to:");
-        System.out.println("1. Total Income");
-        System.out.println("2. Mortgage/Rent");
-        System.out.println("3. Utilities");
-        System.out.println("4. Food");
-        System.out.println("5. Travel");
-        System.out.println("6. Healthcare");
-        System.out.println("7. Entertainment");
-        System.out.println("8. Return to previous menu");
+        System.out.println("Select a category from the menu below to remove an amount from:");
+        System.out.println("1. Wage Income");
+        System.out.println("2. Other Income");
+        System.out.println("3. Mortgage/Rent");
+        System.out.println("4. Utilities");
+        System.out.println("5. Food");
+        System.out.println("6. Travel");
+        System.out.println("7. Healthcare");
+        System.out.println("8. Entertainment");
+        System.out.println("9. Return to previous menu");
 
         //Make sure integer
         while (!scanner.hasNextInt()) {
@@ -535,45 +553,53 @@ public class Budget {
 
             case 1:
                 //Add to total income
-                totalIncome += amount;
+                wageIncome += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
             case 2:
+                otherIncome += amount;
+                budgetReminder.BudgetAddReminder(amount);
+                break;
+            case 3:
                 //Add to rent
                 rentExpenses += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
-            case 3:
+            case 4:
                 //Add to utilities
                 utilitiesExpenses += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
-            case 4:
+            case 5:
                 //Add to food
                 foodExpenses += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
-            case 5:
+            case 6:
                 //Add to travel
                 travelExpenses += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
-            case 6:
+            case 7:
                 //Add to healthcare
                 healthcareExpenses += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
-            case 7:
+            case 8:
                 //Add to entertainment
                 entertainmentExpenses += amount;
                 budgetReminder.BudgetAddReminder(amount);
                 break;
-            case 8:
+            case 9:
                 break;
             default:
                 break;
 
         }
+
+        CalculateTotalExpenses();
+        CalculateTotalIncome();
+        CalculateMonthlyNetChange();
     }
 
     /**
@@ -587,17 +613,17 @@ public class Budget {
         int selection = 0;
         double amount = 0;
 
-        BudgetReminder budgetReminder = new BudgetReminder();
 
         System.out.println("Select a category from the menu below to remove an amount from:");
-        System.out.println("1. Total Income");
-        System.out.println("2. Mortgage/Rent");
-        System.out.println("3. Utilities");
-        System.out.println("4. Food");
-        System.out.println("5. Travel");
-        System.out.println("6. Healthcare");
-        System.out.println("7. Entertainment");
-        System.out.println("8. Return to previous menu");
+        System.out.println("1. Wage Income");
+        System.out.println("2. Other Income");
+        System.out.println("3. Mortgage/Rent");
+        System.out.println("4. Utilities");
+        System.out.println("5. Food");
+        System.out.println("6. Travel");
+        System.out.println("7. Healthcare");
+        System.out.println("8. Entertainment");
+        System.out.println("9. Return to previous menu");
 
         // Validate Input - must be Int type
         while (!scan.hasNextInt()) {
@@ -607,7 +633,7 @@ public class Budget {
         selection = scan.nextInt();
 
         // Validate input - must be positive value
-        while (selection <= 0 || selection > 8) {
+        while (selection <= 0 || selection > 9) {
             System.out.print("Invalid input. Please enter an option from the menu above.");
 
             // Validate Input - must be Int type
@@ -626,17 +652,26 @@ public class Budget {
 
         switch (selection) {
             case 1:
-                // Change total income
-                if (amount > totalIncome) {
-                    totalIncome = 0;
+                // Change wage income
+                if (amount > wageIncome) {
+                    wageIncome = 0;
                 } else {
-                    totalIncome -= amount;
+                    wageIncome -= amount;
 
                     budgetReminder.BudgetRemoveReminder(amount);
-
                 }
                 break;
             case 2:
+                // Change other income
+                if (amount > otherIncome) {
+                    otherIncome = 0;
+                } else {
+                    otherIncome -= amount;
+
+                    budgetReminder.BudgetRemoveReminder(amount);
+                }
+                break;
+            case 3:
                 // Change Mortage/rent
                 if (amount > rentExpenses) {
                     rentExpenses = 0;
@@ -646,7 +681,7 @@ public class Budget {
 
                 }
                 break;
-            case 3:
+            case 4:
                 // Change Utilities
                 if (amount > utilitiesExpenses) {
                     rentExpenses = 0;
@@ -657,7 +692,7 @@ public class Budget {
 
                 }
                 break;
-            case 4:
+            case 5:
                 // Change Food
                 if (amount > foodExpenses) {
                     foodExpenses = 0;
@@ -667,7 +702,7 @@ public class Budget {
 
                 }
                 break;
-            case 5:
+            case 6:
                 // Change Travel
                 if (amount > travelExpenses) {
                     travelExpenses = 0;
@@ -678,7 +713,7 @@ public class Budget {
 
                 }
                 break;
-            case 6:
+            case 7:
                 // Change Healthcare
                 if (amount > healthcareExpenses) {
                     healthcareExpenses = 0;
@@ -689,7 +724,7 @@ public class Budget {
 
                 }
                 break;
-            case 7:
+            case 8:
                 // Change Entertainment
                 if (amount > entertainmentExpenses) {
                     entertainmentExpenses = 0;
@@ -699,12 +734,16 @@ public class Budget {
 
                 }
                 break;
-            case 8:
+            case 9:
                 break;
             default:
                 break;
 
+
         }
+        CalculateTotalExpenses();
+        CalculateTotalIncome();
+        CalculateMonthlyNetChange();
     }
 
     /**
@@ -907,7 +946,15 @@ public class Budget {
      * @param monthlyNetChange
      */
     public void setMonthlyNetChange(double monthlyNetChange){
-        monthlyNetChange = monthlyNetChange;
+        this.monthlyNetChange = monthlyNetChange;
+    }
+
+    /**
+     *
+     * @param reminder BudgetReminder
+     */
+    public void setBudgetReminder(BudgetReminder reminder){
+        budgetReminder = reminder;
     }
 
 }

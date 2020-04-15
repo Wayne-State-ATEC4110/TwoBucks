@@ -25,3 +25,4 @@ public class DisplayResults {
         currentUser.getBudget().DisplayBudget();
     }
 }
+
