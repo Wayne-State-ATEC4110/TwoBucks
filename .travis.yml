@@ -1,5 +1,5 @@
 language: java
 install: true
-script: mvn main
+script: mvn install
 jdk:
  -oraclejdk9
