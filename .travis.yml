@@ -1,4 +1,4 @@
 language: java9
 install: true
 script: mvn -U clean install
-jdk: jdk9
+jdk: jdk8
