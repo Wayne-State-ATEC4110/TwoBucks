@@ -1,4 +1,4 @@
 language: java
 script: mvn main
 jdk: 
- -oraclejdk9
+ -openjdk8
