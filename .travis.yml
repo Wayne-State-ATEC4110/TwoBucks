@@ -1,4 +1,4 @@
-language: java9
+language: java
 script: mvn install
 jdk: 
- -jdk9
+ -jdk8
