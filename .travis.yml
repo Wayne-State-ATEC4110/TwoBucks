@@ -1,5 +1,5 @@
 language: java9
 install: true
-script: mvn -U clean install
+script: mvn main
 jdk:
  -oraclejdk9
