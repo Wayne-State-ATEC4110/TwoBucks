@@ -1,4 +1,2 @@
 language: java
-script: mvn install
-jdk: 
- -oraclejdk9
+script: ./mvnw clean install
