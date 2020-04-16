@@ -1,2 +1,11 @@
 language: java
-script: ./mvnw clean verify
+
+install:
+    - sudo apt-get update
+    - sudo apt-get install build-essential
+    - scripts/install-dependencies.sh
+    - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+script:
+    - export LD_LIBRARY_PATH="$TRAVIS_BUILD_DIR/lib/"
+    - mvn test -B
