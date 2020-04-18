@@ -23,9 +23,6 @@ public class Week {
      private double spendAmount;
      private Budget budget;
 
-
-
-
     public Week(){
         this.income = 0;
         this.expenses = 0;
@@ -92,7 +89,6 @@ public class Week {
         int input;
 
         while(true) {
-
 
             System.out.println("Are you sure you want to Progress to next week?");
             System.out.println("You will not be able to make further edits for this week");
