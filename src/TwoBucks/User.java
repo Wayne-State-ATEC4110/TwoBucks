@@ -15,6 +15,9 @@
 
 package TwoBucks;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class User {
     private String firstName;
@@ -59,8 +62,7 @@ public class User {
         this.week = new Week();
         this.previousWeek = new Week();
         this.initialWeek = new Week();
-        this.score = 0.0;
-        this.rank = "Financial Novice";
+
     }
 
     /**
@@ -77,6 +79,8 @@ public class User {
         this.initialWeek = new Week();
         this.previousWeek = new Week();
         this.firstWeek = true;
+        this.score = 0;
+        this.calculateRank();
     }
 
 
@@ -123,7 +127,7 @@ public class User {
     }
 
     public User(String firstName, String lastName, String email, double income, double expenses, double saveAmount,
-                double spendAmount, Budget budget, Week initialWeek, Week previousWeek) {
+                double spendAmount, Budget budget, Week initialWeek, Week previousWeek, double score, boolean firstWeek) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -134,6 +138,11 @@ public class User {
         this.budget = budget;
         this.initialWeek = initialWeek;
         this.previousWeek = previousWeek;
+        this.score = score;
+        this.calculateRank();
+        this.firstWeek = firstWeek;
+
+
     }
 
     /**
@@ -163,6 +172,27 @@ public class User {
     public String getEmail() {
 
         return email;
+    }
+
+    /**
+     * Checks if email is in valid format
+     *
+     * @param email
+     * @return
+     */
+    public boolean validEmail(String email){
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pattern = Pattern.compile(emailRegex);
+        if(this.email== null){
+            return false;
+        }
+
+        return pattern.matcher(email).matches();
+
     }
 
     /**
@@ -407,7 +437,9 @@ public class User {
                 ", " + spendAmount +
                 ", " + this.getBudget().toString()+
                  ", "+ this.getInitialWeek().toString()+
-                ", "+ this.getPreviousWeek().toString()
+                ", "+ this.getPreviousWeek().toString()+
+                ", "+ score +
+                ", "+firstWeek
          ;
     }
 }

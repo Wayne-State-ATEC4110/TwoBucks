@@ -23,9 +23,6 @@ public class Week {
      private double spendAmount;
      private Budget budget;
 
-
-
-
     public Week(){
         this.income = 0;
         this.expenses = 0;
@@ -86,13 +83,12 @@ public class Week {
 
     // progress to next week copies user variables and saves them to
     // new User object previousWeek. Previous week cannot be edited.
-    public User toNextWeek(User currentWeek){
+    public void toNextWeek(User currentWeek){
 
         Scanner scan = new Scanner(System.in);
         int input;
 
         while(true) {
-
 
             System.out.println("Are you sure you want to Progress to next week?");
             System.out.println("You will not be able to make further edits for this week");
@@ -127,11 +123,13 @@ public class Week {
 
 
                 currentWeek.clearBudget();
+                break;
 
-                return currentWeek;
+                //return currentWeek;
             }
             else if (input ==2 ){
-                return currentWeek;
+                //return currentWeek;
+                break;
 
             }
             else{

@@ -128,14 +128,16 @@ public class Main
             }
             // Progress to Next Week
             if (menu.getOption() == 9){
-                // Save initial week (if applicable)
-                if(currentUser.isFirstWeek()){
-                    currentUser.setInitialWeek(currentUser.week);
-                }
 
                 // Save week ending as previous week
-                Week week = new Week();
-                currentUser = week.toNextWeek(currentUser);
+                currentUser.getPreviousWeek().toNextWeek(currentUser);
+
+                // Checks if first week
+                if(currentUser.isFirstWeek()){
+                    // Copies previous week to initial week
+                    currentUser.setInitialWeek(currentUser.getPreviousWeek());
+                    currentUser.setFirstWeek(false);
+                }
 
                 // Update User Score and Rank
                 currentUser.calculateScore();

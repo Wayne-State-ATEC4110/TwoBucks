@@ -62,7 +62,7 @@ public class LoadUserProfile {
                 }
 
                 //splits user string into separate pieces to represent User variables.
-                check = users.get(i).split(", ", 48);
+                check = users.get(i).split(", ", 50);
 
                 //if user found load user
                 if (check[2].equals(email)) {
@@ -91,7 +91,8 @@ public class LoadUserProfile {
                                             Double.parseDouble(check[41]), Double.parseDouble(check[42]),
                                             Double.parseDouble(check[43]), Double.parseDouble(check[44]),
                                             Double.parseDouble(check[45]), Double.parseDouble(check[46]),
-                                            Double.parseDouble(check[47]))));
+                                            Double.parseDouble(check[47]))), Double.parseDouble(check[48]),
+                                            Boolean.parseBoolean(check[49]));
 
                     profileOption = false;
                     break;
