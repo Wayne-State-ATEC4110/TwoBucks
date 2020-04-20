@@ -33,7 +33,6 @@ public class Main
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
         currentUser.setBudget(new Budget());
-        currentUser.setWeek(new Week());
 
         /**
          * Intro Menu
@@ -140,16 +139,10 @@ public class Main
                 // Save week ending as previous week
                 currentUser.getPreviousWeek().toNextWeek(currentUser);
 
-                // Checks if first week
-                if(currentUser.isFirstWeek()){
-                    // Copies previous week to initial week
-                    currentUser.setInitialWeek(currentUser.getPreviousWeek());
-                    currentUser.setFirstWeek(false);
-                }
-
                 // Update User Score and Rank
                 currentUser.calculateScore();
                 currentUser.calculateRank();
+                file.saveFile(currentUser);
 
             }
             // Display Results (Current, Previous, Initial Weeks)
