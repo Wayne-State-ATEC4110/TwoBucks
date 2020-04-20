@@ -66,7 +66,6 @@ public class Main
 
         while (menu.getOption() != 13)
         {
-            System.out.println(currentUser.toString());
             // Display User Score and Rank
             DisplayScoreAndRank.outputScoreAndRank(currentUser);
 
