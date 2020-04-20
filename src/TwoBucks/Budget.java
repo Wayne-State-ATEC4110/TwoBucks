@@ -531,7 +531,9 @@ public class Budget {
             selection = scanner.nextInt();
         }
 
-        scanner.nextLine();
+        if(selection == 9){
+            return;
+        }
 
         System.out.print("Enter the amount you would like to add: $");
         amount = getAmount();
@@ -632,7 +634,9 @@ public class Budget {
             selection = scan.nextInt();
         }
 
-        scan.nextLine();    // Clear input stream
+        if(selection == 9){
+            return;
+        }
 
         System.out.print("Enter the amount you would like to remove: $");
         amount = getAmount();
