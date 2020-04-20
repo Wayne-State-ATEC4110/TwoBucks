@@ -27,8 +27,8 @@ public class Main
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
         User currentUser = new User();
-        DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
-        DisplayResults displayResults = new DisplayResults();
+        DisplayScoreAndRank displayScoreAndRank = DisplayScoreAndRank.getInstance();
+        DisplayResults displayResults = DisplayResults.getInstance();
 
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
@@ -68,7 +68,7 @@ public class Main
         while (menu.getOption() != 13)
         {
             // Display User Score and Rank
-            displayScoreAndRank.outputScoreAndRank(currentUser);
+            DisplayScoreAndRank.outputScoreAndRank(currentUser);
 
             // Display menu and receive user selection
             menu.showOptions();
