@@ -435,14 +435,26 @@ public class User {
         return previousWeek;
     }
 
+    /**
+     * setPreviousWeek method
+     * @param previousWeek
+     */
     public void setPreviousWeek(Week previousWeek) {
         this.previousWeek = previousWeek;
     }
 
+    /**
+     * getInitialWeek method
+     * @return initialWeek
+     */
     public Week getInitialWeek() {
         return initialWeek;
     }
 
+    /**
+     * setInitialWeek method
+     * @param initialWeek
+     */
     public void setInitialWeek(Week initialWeek) {
         this.initialWeek = initialWeek;
     }
