@@ -44,12 +44,14 @@ public class UpdateProfile {
 
         option = scnr.nextInt();
         String oldFirstName;
+        String currentFirstName;
 
         if (option == 1) {
             System.out.println("Please confirm your existing first name: ");
             oldFirstName = scnr.next();
+            currentFirstName=currentUser.getFirstName();
 
-            while (!(oldFirstName.equals(currentUser.getFirstName()))) {
+            while (!(oldFirstName.equals(currentFirstName))) {
 
                 System.out.println("This first name does not exist. Please try again: ");
                 oldFirstName = scnr.next();
@@ -66,8 +68,9 @@ public class UpdateProfile {
 
             System.out.println("Please confirm your existing last name: ");
             String oldLastName = scnr.next();
+            String currentLastName=currentUser.getLastName();
 
-            while (!(oldLastName.equals(currentUser.getLastName()))) {
+            while (!(oldLastName.equals(currentLastName))) {
 
                 System.out.println("This first name does not exist. Please try again: ");
                 oldLastName = scnr.next();
@@ -83,14 +86,15 @@ public class UpdateProfile {
 
             System.out.println("Please confirm your existing email: ");
             String oldEmail = scnr.next();
+            String currentEmail=currentUser.getEmail();
 
-            while (!(oldEmail.equals(currentUser.getFirstName()))) {
+            while (!(oldEmail.equals(currentEmail))) {
 
                 System.out.println("This email name does not exist. Please try again: ");
                 oldEmail = scnr.next();
             }
 
-            System.out.println("Please enter your new first name: ");
+            System.out.println("Please enter your new email: ");
             currentUser.setEmail(scnr.next()); // use set function to set new first name
 
             System.out.println("Saved Successfully!");
