@@ -14,7 +14,6 @@
 
 package TwoBucks;
 
-
 import java.util.Scanner;
 import java.io.*;
 import java.util.*;
@@ -87,6 +86,12 @@ public class UpdateProfile {
 
             System.out.println("Please confirm your existing email: ");
             String oldEmail = scnr.next();
+
+            while(currentUser.validEmail(oldEmail)==false) {
+                System.out.println("Incorrect email format. Please try confirming email again: ");
+                oldEmail=scnr.next();
+            };
+
             String currentEmail=currentUser.getEmail();
 
             while (!(oldEmail.equals(currentEmail))) {
