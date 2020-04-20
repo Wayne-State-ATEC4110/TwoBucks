@@ -324,66 +324,114 @@ public class DebtCalculator {
     // Getters and Setters
 
 
+    /**
+     * @return debtPrincipal double
+     */
     public double getDebtPrincipal() {
         return debtPrincipal;
     }
 
+    /**
+     * @param debtPrincipal
+     */
     public void setDebtPrincipal(double debtPrincipal) {
         this.debtPrincipal = debtPrincipal;
     }
 
+    /**
+     * @return debtInterestRate double
+     */
     public double getDebtInterestRate() {
         return debtInterestRate;
     }
 
+    /**
+     * @param debtInterestRate
+     */
     public void setDebtInterestRate(double debtInterestRate) {
         this.debtInterestRate = debtInterestRate;
     }
 
+    /**
+     * @return monthlyInterestRate double
+     */
     public double getMonthlyInterestRate() {
         return monthlyInterestRate;
     }
 
+    /**
+     * @param monthlyInterestRate
+     */
     public void setMonthlyInterestRate(double monthlyInterestRate) {
         this.monthlyInterestRate = monthlyInterestRate;
     }
 
+    /**
+     * @return debtInterestAmount double
+     */
     public double getDebtInterestAmount() {
         return debtInterestAmount;
     }
 
+    /**
+     * @param debtInterestAmount
+     */
     public void setDebtInterestAmount(double debtInterestAmount) {
         this.debtInterestAmount = debtInterestAmount;
     }
 
+    /**
+     * @return debtMonthlyPayment
+     */
     public double getDebtMonthlyPayment() {
         return debtMonthlyPayment;
     }
 
+    /**
+     * @param debtMonthlyPayment
+     */
     public void setDebtMonthlyPayment(double debtMonthlyPayment) {
         this.debtMonthlyPayment = debtMonthlyPayment;
     }
 
+    /**
+     * @return totalInterestPaid double
+     */
     public double getTotalInterestPaid() {
         return totalInterestPaid;
     }
 
+    /**
+     * @param totalInterestPaid
+     */
     public void setTotalInterestPaid(double totalInterestPaid) {
         this.totalInterestPaid = totalInterestPaid;
     }
 
+    /**
+     * @return monthsRemaining int
+     */
     public int getMonthsRemaining() {
         return monthsRemaining;
     }
 
+    /**
+     * @param monthsRemaining
+     */
     public void setMonthsRemaining(int monthsRemaining) {
         this.monthsRemaining = monthsRemaining;
     }
 
+    /**
+     * @return numberOfPeriods int
+     */
     public int getNumberOfPeriods() {
         return numberOfPeriods;
     }
 
+    /**
+     * @return userSelection int
+     */
     public int getUserSelection(){
         return userSelection;
     }

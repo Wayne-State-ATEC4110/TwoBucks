@@ -5,11 +5,9 @@
  * It belongs to the User class.</p>
  *
  * @author Mike Shea
- * @version 1.0
- * @since 3/27/20
+ * @version 1.1
+ * @since 4/20/20
  */
-
-// Fix javadocs comments
 
 package TwoBucks;
 
