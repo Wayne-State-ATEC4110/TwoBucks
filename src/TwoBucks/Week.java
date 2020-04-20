@@ -13,6 +13,7 @@
 
 package TwoBucks;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Week {
@@ -89,51 +90,63 @@ public class Week {
         int input;
 
         while(true) {
+            try {
+                System.out.println("Are you sure you want to Progress to next week?");
+                System.out.println("You will not be able to make further edits for this week");
+                System.out.println("==========================================================");
+                System.out.println("1. Proceed to next week");
+                System.out.println("2. Return to main");
 
-            System.out.println("Are you sure you want to Progress to next week?");
-            System.out.println("You will not be able to make further edits for this week");
-            System.out.println("==========================================================");
-            System.out.println("1. Proceed to next week");
-            System.out.println("2. Return to main");
-            input = scan.nextInt();
+                if(scan.hasNextInt()) {
+                    input = scan.nextInt();
+                }
 
-
-            if(input == 1) {
-                // Copy all current user parameters from 'currentWeek' to 'previousWeek'
-                //previousWeek.setFirstName(currentWeek.getFirstName());          // first name
-                //previousWeek.setLastName(currentWeek.getLastName());            // last name
-                //previousWeek.setEmail(currentWeek.getEmail());                  // email
-                this.setIncome(currentWeek.getIncome());                // income
-                this.setExpenses(currentWeek.getExpenses());
-                this.setSaveAmount(currentWeek.getSaveAmount());        // saveAmount
-                this.setSpendAmount(currentWeek.getSpendAmount());      // spendAmount
-
-                // copy budget parameters
-                this.getBudget().setTotalIncome(currentWeek.getBudget().getTotalIncome());
-                this.getBudget().setWageIncome(currentWeek.getBudget().getWageIncome());
-                this.getBudget().setOtherIncome(currentWeek.getBudget().getOtherIncome());
-                this.getBudget().setRentExpenses(currentWeek.getBudget().getRentExpenses());
-                this.getBudget().setUtilitiesExpenses(currentWeek.getBudget().getUtilitiesExpenses());
-                this.getBudget().setFoodExpenses(currentWeek.getBudget().getFoodExpenses());
-                this.getBudget().setTravelExpenses(currentWeek.getBudget().getTravelExpenses());
-                this.getBudget().setHealthcareExpenses(currentWeek.getBudget().getHealthcareExpenses());
-                this.getBudget().setEntertainmentExpenses(currentWeek.getBudget().getEntertainmentExpenses());
-                this.getBudget().setTotalExpenses(currentWeek.getBudget().getTotalExpenses());
-                this.getBudget().setMonthlyNetChange(currentWeek.getBudget().getMonthlyNetChange());
+                else{
+                    scan.next();
+                    throw new InputMismatchException("Invalid Input");
+                }
 
 
-                currentWeek.clearBudget();
-                break;
+                if (input == 1) {
+                    // Copy all current user parameters from 'currentWeek' to 'previousWeek'
+                    //previousWeek.setFirstName(currentWeek.getFirstName());          // first name
+                    //previousWeek.setLastName(currentWeek.getLastName());            // last name
+                    //previousWeek.setEmail(currentWeek.getEmail());                  // email
+                    this.setIncome(currentWeek.getIncome());                // income
+                    this.setExpenses(currentWeek.getExpenses());
+                    this.setSaveAmount(currentWeek.getSaveAmount());        // saveAmount
+                    this.setSpendAmount(currentWeek.getSpendAmount());      // spendAmount
 
-                //return currentWeek;
+                    // copy budget parameters
+                    this.getBudget().setTotalIncome(currentWeek.getBudget().getTotalIncome());
+                    this.getBudget().setWageIncome(currentWeek.getBudget().getWageIncome());
+                    this.getBudget().setOtherIncome(currentWeek.getBudget().getOtherIncome());
+                    this.getBudget().setRentExpenses(currentWeek.getBudget().getRentExpenses());
+                    this.getBudget().setUtilitiesExpenses(currentWeek.getBudget().getUtilitiesExpenses());
+                    this.getBudget().setFoodExpenses(currentWeek.getBudget().getFoodExpenses());
+                    this.getBudget().setTravelExpenses(currentWeek.getBudget().getTravelExpenses());
+                    this.getBudget().setHealthcareExpenses(currentWeek.getBudget().getHealthcareExpenses());
+                    this.getBudget().setEntertainmentExpenses(currentWeek.getBudget().getEntertainmentExpenses());
+                    this.getBudget().setTotalExpenses(currentWeek.getBudget().getTotalExpenses());
+                    this.getBudget().setMonthlyNetChange(currentWeek.getBudget().getMonthlyNetChange());
+
+
+                    currentWeek.clearBudget();
+                    break;
+
+                    //return currentWeek;
+                }
+                else if (input == 2) {
+                    //return currentWeek;
+                    break;
+
+                }
+                else {
+                    throw new Exception("Invalid Input");
+                }
             }
-            else if (input ==2 ){
-                //return currentWeek;
-                break;
-
-            }
-            else{
-                System.out.println("Invalid Input");
+            catch(Exception e){
+                System.out.println("Please enter a number 1 or 2\n");
             }
         }
 
