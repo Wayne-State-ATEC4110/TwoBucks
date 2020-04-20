@@ -104,6 +104,9 @@ public class CreateUserProfile {
                     //Greeting with user name, indicates successful profile creation
                     System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName() +
                             "! Your User Profile has been created.");
+                    FileManagement file = new FileManagement();
+                    file.createFile();
+
                     return user;
                 }
 
@@ -116,6 +119,8 @@ public class CreateUserProfile {
                 System.out.println("Please follow proper email format. Example: person@domain.com");
             }
         }
+
+
 
     }
 
