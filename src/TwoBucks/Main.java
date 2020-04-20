@@ -65,7 +65,7 @@ public class Main
          */
 
 
-        while (menu.getOption() != 11)
+        while (menu.getOption() != 13)
         {
             // Display User Score and Rank
             displayScoreAndRank.outputScoreAndRank(currentUser);
@@ -110,7 +110,7 @@ public class Main
                 CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
                 calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
             }
-            //Budget
+            //Set Budget
             if(menu.getOption() == 7)
             {
                 BudgetReminder budgetReminder = new BudgetReminder();
@@ -120,14 +120,22 @@ public class Main
                 budget.CreateBudget();
                 currentUser.setBudget(budget);
             }
+            // Add to budget
+            if(menu.getOption() == 8){
+                currentUser.budget.AddToBudget();
+            }
+            // Remove from budget
+            if(menu.getOption() == 9){
+                currentUser.budget.RemoveFromBudget();
+            }
             //Update Profile
-            if(menu.getOption() == 8)
+            if(menu.getOption() == 10)
             {
                 UpdateProfile updateProfile = new UpdateProfile();
                 updateProfile.updateInfo(currentUser);
             }
             // Progress to Next Week
-            if (menu.getOption() == 9){
+            if (menu.getOption() == 11){
 
                 // Save week ending as previous week
                 currentUser.getPreviousWeek().toNextWeek(currentUser);
@@ -145,11 +153,11 @@ public class Main
 
             }
             // Display Results (Current, Previous, Initial Weeks)
-            if(menu.getOption() == 10){
+            if(menu.getOption() == 12){
                 displayResults.outputResults(currentUser);
             }
             // Exit Application
-            if (menu.getOption() == 11){
+            if (menu.getOption() == 13){
                 file.saveFile(currentUser);
             }
 
