@@ -86,7 +86,7 @@ public class UpdateProfile {
 
             while (!(oldEmail.equals(currentUser.getFirstName()))) {
 
-                System.out.println("This first name does not exist. Please try again: ");
+                System.out.println("This email name does not exist. Please try again: ");
                 oldEmail = scnr.next();
             }
 
