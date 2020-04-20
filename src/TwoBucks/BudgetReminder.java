@@ -16,8 +16,8 @@ package TwoBucks;
 public class BudgetReminder
 {
 
-    double spendGoal;
-
+    EnterFinancialGoals enterFinancialGoals = new EnterFinancialGoals();
+    double spendGoal = enterFinancialGoals.enterSpendGoal();
     /**
      *  Takes the spendAmt from EnterFinancialGoals.java
      *  and the amount added to the budget in Budget.java
@@ -67,6 +67,3 @@ public class BudgetReminder
     public void setSpendGoal(double spendGoal){
         this.spendGoal = spendGoal;
     }
-
-
-}

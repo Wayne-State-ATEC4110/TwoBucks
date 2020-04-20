@@ -1,4 +1,3 @@
-
 /**
  * <h1>Main</h1>
  *
@@ -13,8 +12,8 @@
 
 package TwoBucks;
 
-        import java.io.IOException;
-        import java.lang.reflect.Method;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class Main
 {
@@ -37,34 +36,33 @@ public class Main
         /**
          * Intro Menu
          */
-
-        menu.showIntroOptions();
-        menu.selectIntroOption();
-
-        //Create New User Profile
-        if (menu.getOption() == 1)
+        while (menu.getOption() != 3)
         {
-            CreateUserProfile create = new CreateUserProfile();
-            file.saveFile(create.createUser());
-        }
-        //Load User Profile
-        if (menu.getOption() == 2)
-        {
-            LoadUserProfile load = new LoadUserProfile();
-            currentUser = load.loadUser(file.loadFile());
-        }
-        //Exiting Application
-        if (menu.getOption() == 3)
-        {
-            System.exit(0);
-        }
+            menu.showIntroOptions();
+            menu.selectIntroOption();
 
+            //Create New User Profile
+            if (menu.getOption() == 1) {
+                CreateUserProfile create = new CreateUserProfile();
+                file.saveFile(create.createUser());
+            }
+            //Load User Profile
+            if (menu.getOption() == 2) {
+                LoadUserProfile load = new LoadUserProfile();
+                currentUser = load.loadUser(file.loadFile());
+                break;
+            }
+            //Exiting Application
+            if (menu.getOption() == 3) {
+                System.exit(0);
+            }
+        }
         /**
          * Main Menu
          */
 
 
-        while (menu.getOption() != 13)
+        while (menu.getOption() != 16)
         {
             // Display User Score and Rank
             DisplayScoreAndRank.outputScoreAndRank(currentUser);
@@ -149,13 +147,25 @@ public class Main
             if(menu.getOption() == 12){
                 displayResults.outputResults(currentUser);
             }
+            // Display Report
+            if(menu.getOption() == 13){
+                CreateReport createReport = new CreateReport();
+                createReport.showReport(currentUser);
+            }
+            // Send Report to Email
+            if(menu.getOption() == 14){
+                SendEmail sendEmail = new SendEmail();
+                sendEmail.sendEmail(currentUser);
+            }
+            // Send Report to Text
+            if(menu.getOption() == 15){
+                ReportToText reportToText = new ReportToText();
+                reportToText.printInfoToFile(currentUser);
+            }
             // Exit Application
-            if (menu.getOption() == 13){
+            if (menu.getOption() == 16){
                 file.saveFile(currentUser);
             }
-
-            //Create more paths for future features...
         }
     }
-
 }

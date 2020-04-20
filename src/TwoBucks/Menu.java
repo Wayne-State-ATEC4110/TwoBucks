@@ -50,7 +50,10 @@ public class Menu
         System.out.println("10. Update Profile ");
         System.out.println("11. Progress to Next Week");
         System.out.println("12. Display Results (initial, previous, current weekly budgets)");
-        System.out.println("13. Exit ");
+        System.out.println("13. Display Report");
+        System.out.println("14. Send Report to Email");
+        System.out.println("15. Send Report to Text");
+        System.out.println("16. Exit ");
 
     }
 
@@ -145,7 +148,7 @@ public class Menu
             System.out.println("Please enter a numerical value ");
         }
 
-       //Each option leads to different feature
+        //Each option leads to different feature
         switch(choice)
         {
             case 1:
@@ -208,8 +211,23 @@ public class Menu
                 System.out.println("Displaying results...");
                 break;
             case 13:
-                //Exiting the application
+                // Display Report
                 this.option = 13;
+                System.out.println("Display Report: ");
+                break;
+            case 14:
+                // Send Report to Email
+                this.option = 14;
+                System.out.println("Send Report to Email: ");
+                break;
+            case 15:
+                // Send Report to Text
+                this.option = 15;
+                System.out.println("Send Report to Text: ");
+                break;
+            case 16:
+                //Exiting the application
+                this.option = 16;
                 System.out.println("TwoBucks application closing...");
                 break;
             default:
