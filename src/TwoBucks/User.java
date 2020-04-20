@@ -411,8 +411,11 @@ public class User {
     }
 
     public void clearBudget(){
+        // Income
         this.budget.setWageIncome(0);
         this.budget.setOtherIncome(0);
+        this.budget.setTotalIncome(0);
+        // Expenses
         this.budget.setEntertainmentExpenses(0);
         this.budget.setFoodExpenses(0);
         this.budget.setHealthcareExpenses(0);
@@ -420,6 +423,7 @@ public class User {
         this.budget.setTravelExpenses(0);
         this.budget.setUtilitiesExpenses(0);
         this.budget.setTotalExpenses(0);
+        // Net
         this.budget.setMonthlyNetChange(0);
     }
 
