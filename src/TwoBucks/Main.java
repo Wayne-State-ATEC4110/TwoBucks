@@ -13,8 +13,8 @@
 
 package TwoBucks;
 
-        import java.io.IOException;
-        import java.lang.reflect.Method;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class Main
 {
@@ -27,48 +27,46 @@ public class Main
         Menu menu = new Menu();
         DebtCalculator calculateDebt = new DebtCalculator();
         User currentUser = new User();
-        DisplayScoreAndRank displayScoreAndRank = new DisplayScoreAndRank();
-        DisplayResults displayResults = new DisplayResults();
+        DisplayScoreAndRank displayScoreAndRank = DisplayScoreAndRank.getInstance();
+        DisplayResults displayResults = DisplayResults.getInstance();
 
         // Initialize budget as member of currentUser
         Budget budget = new Budget();
         currentUser.setBudget(new Budget());
-        currentUser.setWeek(new Week());
 
         /**
          * Intro Menu
          */
-
-        menu.showIntroOptions();
-        menu.selectIntroOption();
-
-        //Create New User Profile
-        if (menu.getOption() == 1)
+        while (menu.getOption() != 3)
         {
-            CreateUserProfile create = new CreateUserProfile();
-            file.saveFile(create.createUser());
-        }
-        //Load User Profile
-        if (menu.getOption() == 2)
-        {
-            LoadUserProfile load = new LoadUserProfile();
-            currentUser = load.loadUser(file.loadFile());
-        }
-        //Exiting Application
-        if (menu.getOption() == 3)
-        {
-            System.exit(0);
-        }
+            menu.showIntroOptions();
+            menu.selectIntroOption();
 
+            //Create New User Profile
+            if (menu.getOption() == 1) {
+                CreateUserProfile create = new CreateUserProfile();
+                file.saveFile(create.createUser());
+            }
+            //Load User Profile
+            if (menu.getOption() == 2) {
+                LoadUserProfile load = new LoadUserProfile();
+                currentUser = load.loadUser(file.loadFile());
+                break;
+            }
+            //Exiting Application
+            if (menu.getOption() == 3) {
+                System.exit(0);
+            }
+        }
         /**
          * Main Menu
          */
 
 
-        while (menu.getOption() != 11)
+        while (menu.getOption() != 16)
         {
             // Display User Score and Rank
-            displayScoreAndRank.outputScoreAndRank(currentUser);
+            DisplayScoreAndRank.outputScoreAndRank(currentUser);
 
             // Display menu and receive user selection
             menu.showOptions();
@@ -110,7 +108,7 @@ public class Main
                 CalculateGoalsVsPerformance calculateGoalsVsPerformance = new CalculateGoalsVsPerformance();
                 calculateGoalsVsPerformance.PerformanceAnalysis(currentUser);
             }
-            //Budget
+            //Set Budget
             if(menu.getOption() == 7)
             {
                 BudgetReminder budgetReminder = new BudgetReminder();
@@ -120,38 +118,55 @@ public class Main
                 budget.CreateBudget();
                 currentUser.setBudget(budget);
             }
+            // Add to budget
+            if(menu.getOption() == 8){
+                currentUser.budget.AddToBudget();
+            }
+            // Remove from budget
+            if(menu.getOption() == 9){
+                currentUser.budget.RemoveFromBudget();
+            }
             //Update Profile
-            if(menu.getOption() == 8)
+            if(menu.getOption() == 10)
             {
                 UpdateProfile updateProfile = new UpdateProfile();
                 updateProfile.updateInfo(currentUser);
             }
             // Progress to Next Week
-            if (menu.getOption() == 9){
-                // Save initial week (if applicable)
-                if(currentUser.isFirstWeek()){
-                    currentUser.setInitialWeek(currentUser.week);
-                }
+            if (menu.getOption() == 11){
 
                 // Save week ending as previous week
-                Week week = new Week();
-                currentUser = week.toNextWeek(currentUser);
+                currentUser.getPreviousWeek().toNextWeek(currentUser);
 
                 // Update User Score and Rank
                 currentUser.calculateScore();
                 currentUser.calculateRank();
+                file.saveFile(currentUser);
 
             }
             // Display Results (Current, Previous, Initial Weeks)
-            if(menu.getOption() == 10){
+            if(menu.getOption() == 12){
                 displayResults.outputResults(currentUser);
             }
+            // Display Report
+            if(menu.getOption() == 13){
+                CreateReport createReport = new CreateReport();
+                createReport.showReport(currentUser);
+            }
+            // Send Report to Email
+            if(menu.getOption() == 14){
+                SendEmail sendEmail = new SendEmail();
+                sendEmail.sendEmail(currentUser);
+            }
+            // Send Report to Text
+            if(menu.getOption() == 15){
+                ReportToText reportToText = new ReportToText();
+                reportToText.printInfoToFile(currentUser);
+            }
             // Exit Application
-            if (menu.getOption() == 11){
+            if (menu.getOption() == 16){
                 file.saveFile(currentUser);
             }
-
-            //Create more paths for future features...
         }
     }
 

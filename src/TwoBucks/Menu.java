@@ -44,11 +44,17 @@ public class Menu
         System.out.println("4. Debt Calculator ");
         System.out.println("5. Display Goals ");
         System.out.println("6. Goals vs Performance ");
-        System.out.println("7. Budget ");
-        System.out.println("8. Update Profile ");
-        System.out.println("9. Progress to Next Week");
-        System.out.println("10. Display Results (initial, previous, current weekly budgets)");
-        System.out.println("11. Exit ");
+        System.out.println("7. Set Budget ");
+        System.out.println("8. Add to budget");
+        System.out.println("9. Remove amount from budget");
+        System.out.println("10. Update Profile ");
+        System.out.println("11. Progress to Next Week");
+        System.out.println("12. Display Results (initial, previous, current weekly budgets)");
+        System.out.println("13. Display Report");
+        System.out.println("14. Send Report to Email");
+        System.out.println("15. Send Report to Text");
+        System.out.println("16. Exit ");
+
     }
 
     /**
@@ -142,7 +148,7 @@ public class Menu
             System.out.println("Please enter a numerical value ");
         }
 
-       //Each option leads to different feature
+        //Each option leads to different feature
         switch(choice)
         {
             case 1:
@@ -176,28 +182,52 @@ public class Menu
                 System.out.println("Goals vs Performance: ");
                 break;
             case 7:
-                //Budget
+                //Set Budget
                 this.option = 7;
                 System.out.println("Budget: ");
                 break;
             case 8:
-                //Display Goals
+                // Add item to budget
+                System.out.println("Adding item to budget...");
                 this.option = 8;
-                System.out.println("Update Profile: ");
                 break;
             case 9:
-                //Progress to Next Week
+                // Remove item from budget
                 this.option = 9;
-                System.out.println("To Next Week: ");
+                System.out.println("Removing item from budget...");
                 break;
             case 10:
-                // Display Results
+                // Update profile
                 this.option = 10;
-                System.out.println("Displaying results...");
                 break;
             case 11:
-                //Exiting the application
+                //Progress to Next Week
                 this.option = 11;
+                System.out.println("To Next Week: ");
+                break;
+            case 12:
+                // Display Results
+                this.option = 12;
+                System.out.println("Displaying results...");
+                break;
+            case 13:
+                // Display Report
+                this.option = 13;
+                System.out.println("Display Report: ");
+                break;
+            case 14:
+                // Send Report to Email
+                this.option = 14;
+                System.out.println("Send Report to Email: ");
+                break;
+            case 15:
+                // Send Report to Text
+                this.option = 15;
+                System.out.println("Send Report to Text: ");
+                break;
+            case 16:
+                //Exiting the application
+                this.option = 16;
                 System.out.println("TwoBucks application closing...");
                 break;
             default:
