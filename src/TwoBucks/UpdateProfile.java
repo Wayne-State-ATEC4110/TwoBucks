@@ -14,6 +14,7 @@
 
 package TwoBucks;
 
+
 import java.util.Scanner;
 import java.io.*;
 import java.util.*;
@@ -72,11 +73,11 @@ public class UpdateProfile {
 
             while (!(oldLastName.equals(currentLastName))) {
 
-                System.out.println("This first name does not exist. Please try again: ");
+                System.out.println("This last name does not exist. Please try again: ");
                 oldLastName = scnr.next();
             }
 
-            System.out.println("Please enter your new first name: ");
+            System.out.println("Please enter your new last name: ");
             currentUser.setLastName(scnr.next()); // use set function to set new first name
 
             System.out.println("Saved Successfully!");
@@ -90,7 +91,7 @@ public class UpdateProfile {
 
             while (!(oldEmail.equals(currentEmail))) {
 
-                System.out.println("This email name does not exist. Please try again: ");
+                System.out.println("This email does not exist. Please try again: ");
                 oldEmail = scnr.next();
             }
 
