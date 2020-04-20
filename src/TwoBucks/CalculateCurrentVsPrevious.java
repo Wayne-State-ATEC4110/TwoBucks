@@ -21,7 +21,9 @@ package TwoBucks;
 public class CalculateCurrentVsPrevious
 {
     /**
-     *
+     *  This method calculates the difference between the current
+     *  data verses the previous data using subtraction. Then prints
+     *  the difference.
      * @param currentUser
      */
     public void CurrentVsPrevious(User currentUser)
