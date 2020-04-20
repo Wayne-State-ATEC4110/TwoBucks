@@ -48,7 +48,6 @@ public class User {
 
     /**
      * Constructor used when no parameters are passed
-     * @param Nothing
      */
     public User(){
         this.firstName = " ";
