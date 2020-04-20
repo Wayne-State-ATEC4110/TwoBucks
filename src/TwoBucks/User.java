@@ -64,6 +64,7 @@ public class User {
         this.initialWeek = new Week();
         this.setScore(0.0);
         this.setRank("Financial Novice");
+        this.setFirstWeek(true);
     }
 
     /**
