@@ -411,6 +411,8 @@ public class User {
     }
 
     public void clearBudget(){
+        this.budget.setWageIncome(0);
+        this.budget.setOtherIncome(0);
         this.budget.setEntertainmentExpenses(0);
         this.budget.setFoodExpenses(0);
         this.budget.setHealthcareExpenses(0);
