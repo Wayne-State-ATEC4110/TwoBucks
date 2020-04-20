@@ -67,6 +67,3 @@ public class BudgetReminder
     public void setSpendGoal(double spendGoal){
         this.spendGoal = spendGoal;
     }
-
-
-}

@@ -1,4 +1,3 @@
-
 /**
  * <h1>Main</h1>
  *
@@ -169,5 +168,4 @@ public class Main
             }
         }
     }
-
 }

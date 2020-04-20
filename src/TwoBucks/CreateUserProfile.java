@@ -88,26 +88,41 @@ public class CreateUserProfile {
         }
 
 
+        while (true) {
+            try {
+                //prompt user for email address
+                System.out.println("Enter your email address: ");
+                email = scan.nextLine();
 
-        //prompt user for email address
-        System.out.println("Enter your email address: ");
-        email = scan.nextLine();
+                //create and return new user class.
+                User user = new User(firstName, lastName, email);
+                Budget budget = new Budget();
+                user.setBudget(budget);
 
-        //Greeting with user name, indicates successful profile creation
-        System.out.println("Welcome "+firstName+" "+lastName+"! Your User Profile has been created.");
+                // Email validation
+                if(user.validEmail(email)){
+                    //Greeting with user name, indicates successful profile creation
+                    System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName() +
+                            "! Your User Profile has been created.");
+                    FileManagement file = new FileManagement();
+                    file.createFile();
 
-        //create and return new user class.
-        User user = new User(firstName,lastName,email);
-        Budget budget = new Budget();
-        user.setBudget(budget);
-        return user;
+                    return user;
+                }
+
+                else{
+                    throw new Exception("Invalid Input");
+                }
+
+            }
+            catch (Exception e){
+                System.out.println("Please follow proper email format. Example: person@domain.com");
+            }
+        }
+
 
 
     }
-
-
-
-
 
 
 }

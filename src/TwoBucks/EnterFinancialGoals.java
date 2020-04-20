@@ -37,7 +37,7 @@ public class EnterFinancialGoals {
     }
 
 
-    public double enterSaveGoal(){
+    public double enterSaveGoal() {
 
         Scanner in = new Scanner(System.in);
 

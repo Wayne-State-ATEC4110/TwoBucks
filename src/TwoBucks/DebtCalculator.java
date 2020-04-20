@@ -92,8 +92,6 @@ public class DebtCalculator {
 
             }
 
-            // Close input stream
-            //scan.close();
 
         }
         catch(InputMismatchException e){
@@ -131,7 +129,7 @@ public class DebtCalculator {
      * Prompts the user to enter a debt principal. Only accepts positive doubles.
      * @throws InputMismatchException
      */
-    private void ReceiveDebtPrincipal() throws InputMismatchException {
+    public void ReceiveDebtPrincipal() throws InputMismatchException {
         System.out.print("Enter the principal of the debt: $");
 
         // Validate Input - must be Double type
@@ -155,7 +153,6 @@ public class DebtCalculator {
             debtPrincipal = scan.nextDouble();
         }
 
-        scan.nextLine();    // Clear input stream
     }
 
     /**
@@ -163,7 +160,7 @@ public class DebtCalculator {
      * @throws InputMismatchException
      */
     // Receive the debt interest rate from the user
-    private void ReceiveDebtInterestRate() throws InputMismatchException {
+    public void ReceiveDebtInterestRate() throws InputMismatchException {
         System.out.print("Enter the annual percentage rate (APR) of the debt: ");
 
         // Validate Input - must be Double type
@@ -190,7 +187,6 @@ public class DebtCalculator {
         // Formula for monthly interest rate = (principal / periods) / 100
         monthlyInterestRate = debtInterestRate / numberOfPeriods;
 
-        scan.nextLine();    // Clear input stream
 
     }
 
@@ -199,7 +195,7 @@ public class DebtCalculator {
      * @throws InputMismatchException
      */
     // Receive the monthly payment amount from the user
-    private void ReceiveMonthlyPaymentAmount()  throws InputMismatchException {
+    public void ReceiveMonthlyPaymentAmount()  throws InputMismatchException {
 
         System.out.print("Enter a monthly payment amount: $");
 
@@ -231,7 +227,7 @@ public class DebtCalculator {
      * @throws InputMismatchException
      */
     // Receive user selection from the user for navigating the debt calculator menu
-    private void ReceiveUserSelection() throws InputMismatchException {
+    public void ReceiveUserSelection() throws InputMismatchException {
 
         int temporarySelection = 0;
 
@@ -261,7 +257,7 @@ public class DebtCalculator {
      * Calculates the monthly amount paid in interest
      */
     // Calculate the debt interest amount
-    private void CalculateDebtInterestAmount() {
+    public void CalculateDebtInterestAmount() {
 
         debtInterestAmount =  (monthlyInterestRate / 100) * debtPrincipal;
     }
@@ -281,7 +277,7 @@ public class DebtCalculator {
      * Calculates the months remaining until the debt will be paid with current debt information
      * held by the class.
      */
-    private void CalculateRemainingMonths() {
+    public void CalculateRemainingMonths() {
         if (debtMonthlyPayment <= debtInterestAmount) {
             System.out.println("The monthly payment of " + "$" + debtMonthlyPayment + " is not enough to overcome the monthly interest amount of $" + String.format("%.2f", (debtInterestAmount)));
             System.out.println("Returning to the TwoBucks Debt Calculator main menu.");
@@ -325,4 +321,118 @@ public class DebtCalculator {
         System.out.println("Total amount paid: $" + String.format("%.2f", debtPrincipal + totalInterestPaid));
     }
 
+    // Getters and Setters
+
+
+    /**
+     * @return debtPrincipal double
+     */
+    public double getDebtPrincipal() {
+        return debtPrincipal;
+    }
+
+    /**
+     * @param debtPrincipal
+     */
+    public void setDebtPrincipal(double debtPrincipal) {
+        this.debtPrincipal = debtPrincipal;
+    }
+
+    /**
+     * @return debtInterestRate double
+     */
+    public double getDebtInterestRate() {
+        return debtInterestRate;
+    }
+
+    /**
+     * @param debtInterestRate
+     */
+    public void setDebtInterestRate(double debtInterestRate) {
+        this.debtInterestRate = debtInterestRate;
+    }
+
+    /**
+     * @return monthlyInterestRate double
+     */
+    public double getMonthlyInterestRate() {
+        return monthlyInterestRate;
+    }
+
+    /**
+     * @param monthlyInterestRate
+     */
+    public void setMonthlyInterestRate(double monthlyInterestRate) {
+        this.monthlyInterestRate = monthlyInterestRate;
+    }
+
+    /**
+     * @return debtInterestAmount double
+     */
+    public double getDebtInterestAmount() {
+        return debtInterestAmount;
+    }
+
+    /**
+     * @param debtInterestAmount
+     */
+    public void setDebtInterestAmount(double debtInterestAmount) {
+        this.debtInterestAmount = debtInterestAmount;
+    }
+
+    /**
+     * @return debtMonthlyPayment
+     */
+    public double getDebtMonthlyPayment() {
+        return debtMonthlyPayment;
+    }
+
+    /**
+     * @param debtMonthlyPayment
+     */
+    public void setDebtMonthlyPayment(double debtMonthlyPayment) {
+        this.debtMonthlyPayment = debtMonthlyPayment;
+    }
+
+    /**
+     * @return totalInterestPaid double
+     */
+    public double getTotalInterestPaid() {
+        return totalInterestPaid;
+    }
+
+    /**
+     * @param totalInterestPaid
+     */
+    public void setTotalInterestPaid(double totalInterestPaid) {
+        this.totalInterestPaid = totalInterestPaid;
+    }
+
+    /**
+     * @return monthsRemaining int
+     */
+    public int getMonthsRemaining() {
+        return monthsRemaining;
+    }
+
+    /**
+     * @param monthsRemaining
+     */
+    public void setMonthsRemaining(int monthsRemaining) {
+        this.monthsRemaining = monthsRemaining;
+    }
+
+    /**
+     * @return numberOfPeriods int
+     */
+    public int getNumberOfPeriods() {
+        return numberOfPeriods;
+    }
+
+    /**
+     * @return userSelection int
+     */
+    public int getUserSelection(){
+        return userSelection;
+    }
 }

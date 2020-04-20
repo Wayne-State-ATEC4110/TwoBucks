@@ -23,8 +23,32 @@ import java.lang.*;
 
 public class FileManagement {
 
+    /**
+     * Method creates Users.txt file if no already created
+     * @throws IOException
+     */
+    public void createFile()throws IOException{
+
+            try {
+
+                File myFile = new File("Users.txt");
+
+                if (myFile.createNewFile()){
+                    System.out.println("Users.txt Created");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+    }
 
 
+    /**
+     * Method to save users to Users.txt
+     * @param saveUser
+     * @throws IOException
+     */
     public void saveFile(User saveUser) throws IOException{
 
         //load existing Users
