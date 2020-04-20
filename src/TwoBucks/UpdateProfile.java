@@ -87,16 +87,12 @@ public class UpdateProfile {
             System.out.println("Please confirm your existing email: ");
             String oldEmail = scnr.next();
 
-            while(currentUser.validEmail(oldEmail)==false) {
-                System.out.println("Incorrect email format. Please try confirming email again: ");
-                oldEmail=scnr.next();
-            };
-
             String currentEmail=currentUser.getEmail();
 
-            while (!(oldEmail.equals(currentEmail))) {
+            while (!(oldEmail.equals(currentEmail)) || currentUser.validEmail(oldEmail)==false) {
 
-                System.out.println("This email does not exist. Please try again: ");
+                System.out.println("This email does not exist. (Tip: Check your email format) ");
+                System.out.println("Please try again: ");
                 oldEmail = scnr.next();
             }
 
