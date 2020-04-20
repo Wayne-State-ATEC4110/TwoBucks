@@ -48,7 +48,6 @@ public class User {
 
     /**
      * Constructor used when no parameters are passed
-     * @param Nothing
      */
     public User(){
         this.firstName = " ";
@@ -62,7 +61,9 @@ public class User {
         this.week = new Week();
         this.previousWeek = new Week();
         this.initialWeek = new Week();
-
+        this.setScore(0.0);
+        this.setRank("Financial Novice");
+        this.setFirstWeek(true);
     }
 
     /**
@@ -409,6 +410,11 @@ public class User {
     }
 
     public void clearBudget(){
+        // Income
+        this.budget.setWageIncome(0);
+        this.budget.setOtherIncome(0);
+        this.budget.setTotalIncome(0);
+        // Expenses
         this.budget.setEntertainmentExpenses(0);
         this.budget.setFoodExpenses(0);
         this.budget.setHealthcareExpenses(0);
@@ -416,6 +422,7 @@ public class User {
         this.budget.setTravelExpenses(0);
         this.budget.setUtilitiesExpenses(0);
         this.budget.setTotalExpenses(0);
+        // Net
         this.budget.setMonthlyNetChange(0);
     }
 
