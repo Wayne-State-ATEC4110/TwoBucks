@@ -40,8 +40,6 @@ public class User {
     protected Week previousWeek;
     protected Week initialWeek;
 
-    protected Week week;
-
     // Initial Week Boolean
     private boolean firstWeek;
 
@@ -58,7 +56,6 @@ public class User {
         this.saveAmount = 0;
         this.spendAmount = 0;
         this.budget = new Budget();
-        this.week = new Week();
         this.previousWeek = new Week();
         this.initialWeek = new Week();
         this.setScore(0.0);
@@ -86,8 +83,7 @@ public class User {
 
 
     /**
-     * Constructor used to load saved
-     * profile information.
+     * Constructor used for testing
      *
      * @param firstName
      * @param lastName
@@ -104,7 +100,7 @@ public class User {
     }
 
     /**
-     *
+     * Constructor used for testing
      *
      * @param firstName
      * @param lastName
@@ -127,6 +123,21 @@ public class User {
         this.budget = budget;
     }
 
+    /**
+     * Constructor used to LoadProfile
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param income
+     * @param expenses
+     * @param saveAmount
+     * @param spendAmount
+     * @param budget
+     * @param initialWeek
+     * @param previousWeek
+     * @param score
+     * @param firstWeek
+     */
     public User(String firstName, String lastName, String email, double income, double expenses, double saveAmount,
                 double spendAmount, Budget budget, Week initialWeek, Week previousWeek, double score, boolean firstWeek) {
         this.firstName = firstName;
@@ -303,14 +314,27 @@ public class User {
         this.spendAmount = spendAmount;
     }
 
+    /**
+     * getBudget method
+     * @return budget
+     */
     public Budget getBudget() {
         return budget;
     }
 
+    /**
+     * setBudget method
+     * @param budget
+     */
     public void setBudget(Budget budget) {
         this.budget = budget;
     }
 
+    /**
+     * calculateScore method:
+     * calculated the user's score based on their spending goal - total expenses
+     * and adds that to how much they have saved - their save goal
+     */
     public void calculateScore(){
         double scoreCalc = ((this.spendAmount - this.getBudget().getTotalExpenses()) +
                 ((this.getIncome() - this.getBudget().getTotalExpenses()) - this.getSaveAmount()));
@@ -369,30 +393,44 @@ public class User {
 
     }
 
+    /**
+     * getRank method
+     * @return rank
+     */
     public String getRank() {
         return rank;
     }
 
+    /**
+     * setRank method
+     * @param rank
+     */
     public void setRank(String rank) {
         this.rank = rank;
     }
 
+    /**
+     * isFirstWeek method, checks if user is in first week
+     * used to determine if initial week needs to be saved.
+     * @return
+     */
     public boolean isFirstWeek() {
         return firstWeek;
     }
 
+    /**
+     * setFirstWeek method
+     * @param firstWeek
+     */
     public void setFirstWeek(boolean firstWeek) {
         this.firstWeek = firstWeek;
     }
 
-    public Week getWeek() {
-        return week;
-    }
 
-    public void setWeek(Week week) {
-        this.week = week;
-    }
-
+    /**
+     * getPreviousWeek method
+     * @return previousWeek
+     */
     public Week getPreviousWeek() {
         return previousWeek;
     }
@@ -409,6 +447,9 @@ public class User {
         this.initialWeek = initialWeek;
     }
 
+    /**
+     * Method to reset user budget
+     */
     public void clearBudget(){
         // Income
         this.budget.setWageIncome(0);
