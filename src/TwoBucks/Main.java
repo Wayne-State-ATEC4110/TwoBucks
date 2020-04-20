@@ -116,16 +116,16 @@ public class Main
             //Set Budget
             if(menu.getOption() == 7)
             {
-                BudgetReminder budgetReminder = new BudgetReminder();
+                BudgetReminder budgetReminder = new BudgetReminder(currentUser.getSaveAmount());
                 budgetReminder.setSpendGoal(currentUser.getSpendAmount());
 
                 budget.setBudgetReminder(budgetReminder);
-                budget.CreateBudget();
+                budget.CreateBudget(currentUser);
                 currentUser.setBudget(budget);
             }
             // Add to budget
             if(menu.getOption() == 8){
-                currentUser.budget.AddToBudget();
+                currentUser.budget.AddToBudget(currentUser);
             }
             // Remove from budget
             if(menu.getOption() == 9){

@@ -101,7 +101,7 @@ public class Budget {
      * by following the menu prompts.
      */
 
-    public void CreateBudget() {
+    public void CreateBudget(User currentUser) {
         try {
             // Receive User Input
             ReceiveWageIncome();
@@ -126,7 +126,7 @@ public class Budget {
                 // Add purchase to budget
                 if (userSelection == 1) {
 
-                    AddToBudget();
+                    AddToBudget(currentUser);
 
                     DisplayBudget();
                     ReceiveUserSelection();
@@ -492,11 +492,11 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    public void AddToBudget() throws InputMismatchException {
+    public void AddToBudget(User currentUser) throws InputMismatchException {
         double amount = 0;
         int selection = 0;
 
-        BudgetReminder budgetReminder = new BudgetReminder();
+        BudgetReminder budgetReminder = new BudgetReminder(currentUser.getSaveAmount());
 
         Scanner scanner = new Scanner(System.in);
 
@@ -519,7 +519,7 @@ public class Budget {
         selection = scanner.nextInt();
 
         //Make sure accepted integer
-        while (selection <= 0 || selection > 8) {
+        while (selection <= 0 || selection > 9) {
             System.out.print("Invalid input. ");
 
             // Make sure integer
