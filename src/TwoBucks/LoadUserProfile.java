@@ -57,7 +57,8 @@ public class LoadUserProfile {
 
                 //if user not found
                 if (i == users.size()) {
-                    System.out.println("No profile with email " + email + "Try again or create new profile");
+                    System.out.println("No profile with email " + email + " found in TwoBucks database.");
+                    System.out.println("Try again or create new profile.");;
                     break;
                 }
 
