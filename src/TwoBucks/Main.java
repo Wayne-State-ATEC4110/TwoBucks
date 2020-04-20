@@ -64,6 +64,12 @@ public class Main
 
         while (menu.getOption() != 16)
         {
+            // Update User Score and Rank
+            currentUser.calculateScore();
+            currentUser.calculateRank();
+            // Update user save
+            file.saveFile(currentUser);
+
             // Display User Score and Rank
             DisplayScoreAndRank.outputScoreAndRank(currentUser);
 
@@ -136,11 +142,6 @@ public class Main
 
                 // Save week ending as previous week
                 currentUser.getPreviousWeek().toNextWeek(currentUser);
-
-                // Update User Score and Rank
-                currentUser.calculateScore();
-                currentUser.calculateRank();
-                file.saveFile(currentUser);
 
             }
             // Display Results (Current, Previous, Initial Weeks)
