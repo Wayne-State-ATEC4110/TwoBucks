@@ -79,39 +79,66 @@ public class Week {
     }
 
     /**
-     *
+     * setExpenses method
      * @param expenses
      */
     public void setExpenses(double expenses) {
         this.expenses = expenses;
     }
 
+    /**
+     * getSaveAmount method
+     * @return
+     */
     public double getSaveAmount() {
         return saveAmount;
     }
 
+    /**
+     * setSaveAmount method
+     * @param saveAmount
+     */
     public void setSaveAmount(double saveAmount) {
         this.saveAmount = saveAmount;
     }
 
+    /**
+     * getSpendAmount method
+     * @return
+     */
     public double getSpendAmount() {
         return spendAmount;
     }
 
+    /**
+     * setSpendAmount
+     * @param spendAmount
+     */
     public void setSpendAmount(double spendAmount) {
         this.spendAmount = spendAmount;
     }
 
+    /**
+     * getBudget method
+     * @return budget
+     */
     public Budget getBudget() {
         return budget;
     }
 
+    /**
+     * setBudget method
+     * @param budget
+     */
     public void setBudget(Budget budget) {
         this.budget = budget;
     }
 
     /**
+     * copyWeek method, takes user as parameter and copies all
+     * the relevant parameters to the week class.
      *
+     * @param currentWeek
      */
     public void copyWeek(User currentWeek){
         // Copy all current user parameters from 'currentWeek' to 'previousWeek'
