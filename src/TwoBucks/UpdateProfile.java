@@ -44,12 +44,14 @@ public class UpdateProfile {
 
         option = scnr.nextInt();
         String oldFirstName;
+        String currentFirstName;
 
         if (option == 1) {
             System.out.println("Please confirm your existing first name: ");
             oldFirstName = scnr.next();
+            currentFirstName=currentUser.getFirstName();
 
-            while (!(oldFirstName.equals(currentUser.getFirstName()))) {
+            while (!(oldFirstName.equals(currentFirstName))) {
 
                 System.out.println("This first name does not exist. Please try again: ");
                 oldFirstName = scnr.next();
@@ -66,14 +68,15 @@ public class UpdateProfile {
 
             System.out.println("Please confirm your existing last name: ");
             String oldLastName = scnr.next();
+            String currentLastName=currentUser.getLastName();
 
-            while (!(oldLastName.equals(currentUser.getLastName()))) {
+            while (!(oldLastName.equals(currentLastName))) {
 
-                System.out.println("This first name does not exist. Please try again: ");
+                System.out.println("This last name does not exist. Please try again: ");
                 oldLastName = scnr.next();
             }
 
-            System.out.println("Please enter your new first name: ");
+            System.out.println("Please enter your new last name: ");
             currentUser.setLastName(scnr.next()); // use set function to set new first name
 
             System.out.println("Saved Successfully!");
@@ -84,13 +87,16 @@ public class UpdateProfile {
             System.out.println("Please confirm your existing email: ");
             String oldEmail = scnr.next();
 
-            while (!(oldEmail.equals(currentUser.getFirstName()))) {
+            String currentEmail=currentUser.getEmail();
 
-                System.out.println("This first name does not exist. Please try again: ");
+            while (!(oldEmail.equals(currentEmail)) || currentUser.validEmail(oldEmail)==false) {
+
+                System.out.println("This email does not exist. (Tip: Check your email format) ");
+                System.out.println("Please try again: ");
                 oldEmail = scnr.next();
             }
 
-            System.out.println("Please enter your new first name: ");
+            System.out.println("Please enter your new email: ");
             currentUser.setEmail(scnr.next()); // use set function to set new first name
 
             System.out.println("Saved Successfully!");

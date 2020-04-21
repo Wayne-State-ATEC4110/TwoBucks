@@ -13,26 +13,30 @@
 
 package TwoBucks;
 
-public class BudgetReminder
-{
+public class BudgetReminder {
 
-    double spendGoal;
+    public double spendGoal;
 
     /**
-     *  Takes the spendAmt from EnterFinancialGoals.java
-     *  and the amount added to the budget in Budget.java
-     *  and subtract both variables to come up with the amount
-     *  of spending left for the specific user
+     * Argument Constructor to initialize with spending goal
+     * @param spend
+     */
+    public BudgetReminder(double spend){
+        this.spendGoal = spend;
+    }
+
+    /**
+     * Takes the spendAmt from EnterFinancialGoals.java
+     * and the amount added to the budget in Budget.java
+     * and subtract both variables to come up with the amount
+     * of spending left for the specific user
+     *
      * @param amount
      */
-    public void BudgetAddReminder(double amount)
-    {
-        if(spendGoal <= 0)
-        {
+    public void BudgetAddReminder(double amount) {
+        if (spendGoal <= 0) {
             System.out.println("Create a financial goal to set up a weekly spending allowance.");
-        }
-        else
-        {
+        } else {
             double goal = spendGoal - amount;
             System.out.println("Current spendings left: $" + goal);
             System.out.println("Current goal: $" + spendGoal);
@@ -40,20 +44,17 @@ public class BudgetReminder
     }
 
     /**
-     *  Takes the spendAmt from EnterFinancialGoals.java
-     *  and the amount subtracted to the budget in Budget.java
-     *  and adds both variables to come up with the amount
-     *  of spending left for the specific user
+     * Takes the spendAmt from EnterFinancialGoals.java
+     * and the amount subtracted to the budget in Budget.java
+     * and adds both variables to come up with the amount
+     * of spending left for the specific user
+     *
      * @param amount
      */
-    public void BudgetRemoveReminder(double amount)
-    {
-        if(spendGoal <= 0)
-        {
+    public void BudgetRemoveReminder(double amount) {
+        if (spendGoal <= 0) {
             System.out.println("Create a financial goal to set up a weekly spending allowance.");
-        }
-        else
-        {
+        } else {
             double goal = spendGoal + amount;
             System.out.println("Current spendings left: $" + goal);
             System.out.println("Current goal: $" + spendGoal);
@@ -61,12 +62,9 @@ public class BudgetReminder
     }
 
     /**
-     *
      * @param spendGoal double
      */
-    public void setSpendGoal(double spendGoal){
+    public void setSpendGoal(double spendGoal) {
         this.spendGoal = spendGoal;
     }
-
-
 }

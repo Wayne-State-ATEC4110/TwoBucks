@@ -57,12 +57,15 @@ public class LoadUserProfile {
 
                 //if user not found
                 if (i == users.size()) {
-                    System.out.println("No profile with email " + email + "Try again or create new profile");
-                    break;
+                    System.out.println("No profile with email " + email + " found in TwoBucks database.");
+                    System.out.println("Try again or create new profile.");
+                    User userNotFound = new User();
+                    userNotFound.setEmail("failedToLoad");
+                    return userNotFound;
                 }
 
                 //splits user string into separate pieces to represent User variables.
-                check = users.get(i).split(", ", 48);
+                check = users.get(i).split(", ", 50);
 
                 //if user found load user
                 if (check[2].equals(email)) {
@@ -91,7 +94,8 @@ public class LoadUserProfile {
                                             Double.parseDouble(check[41]), Double.parseDouble(check[42]),
                                             Double.parseDouble(check[43]), Double.parseDouble(check[44]),
                                             Double.parseDouble(check[45]), Double.parseDouble(check[46]),
-                                            Double.parseDouble(check[47]))));
+                                            Double.parseDouble(check[47]))), Double.parseDouble(check[48]),
+                                            Boolean.parseBoolean(check[49]));
 
                     profileOption = false;
                     break;

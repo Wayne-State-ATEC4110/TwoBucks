@@ -5,11 +5,9 @@
  * It belongs to the User class.</p>
  *
  * @author Mike Shea
- * @version 1.0
- * @since 3/27/20
+ * @version 1.1
+ * @since 4/20/20
  */
-
-// Fix javadocs comments
 
 package TwoBucks;
 
@@ -103,7 +101,7 @@ public class Budget {
      * by following the menu prompts.
      */
 
-    public void CreateBudget() {
+    public void CreateBudget(User currentUser) {
         try {
             // Receive User Input
             ReceiveWageIncome();
@@ -128,7 +126,7 @@ public class Budget {
                 // Add purchase to budget
                 if (userSelection == 1) {
 
-                    AddToBudget();
+                    AddToBudget(currentUser);
 
                     DisplayBudget();
                     ReceiveUserSelection();
@@ -189,7 +187,7 @@ public class Budget {
         wageIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (wageIncome <= 0) {
+        while (wageIncome < 0) {
 
             System.out.print("Invalid input. Please enter a positive numerical value for your wages: $");
 
@@ -223,7 +221,7 @@ public class Budget {
         otherIncome = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (otherIncome <= 0) {
+        while (otherIncome < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the income: $");
 
             // Validate Input - must be Double type
@@ -254,7 +252,7 @@ public class Budget {
         rentExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (rentExpenses <= 0) {
+        while (rentExpenses < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the rent/mortgage payment: $");
 
             // Validate Input - must be Double type
@@ -284,7 +282,7 @@ public class Budget {
         utilitiesExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (utilitiesExpenses <= 0) {
+        while (utilitiesExpenses < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the utilities payment: $");
 
             // Validate Input - must be Double type
@@ -317,7 +315,7 @@ public class Budget {
         foodExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (foodExpenses <= 0) {
+        while (foodExpenses < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the food payment: $");
 
             // Validate Input - must be Double type
@@ -349,7 +347,7 @@ public class Budget {
         travelExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (travelExpenses <= 0) {
+        while (travelExpenses < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the travel expenses: $");
 
             // Validate Input - must be Double type
@@ -381,7 +379,7 @@ public class Budget {
         healthcareExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (healthcareExpenses <= 0) {
+        while (healthcareExpenses < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for the healthcare expenses: $");
 
             // Validate Input - must be Double type
@@ -413,7 +411,7 @@ public class Budget {
         entertainmentExpenses = scan.nextDouble();
 
         // Validate input - must be positive value
-        while (entertainmentExpenses <= 0) {
+        while (entertainmentExpenses < 0) {
             System.out.print("Invalid input. Please enter a positive numerical value for entertainment expenses: $");
 
             // Validate Input - must be Double type
@@ -494,11 +492,11 @@ public class Budget {
      *
      * @throws InputMismatchException
      */
-    public void AddToBudget() throws InputMismatchException {
+    public void AddToBudget(User currentUser) throws InputMismatchException {
         double amount = 0;
         int selection = 0;
 
-        BudgetReminder budgetReminder = new BudgetReminder();
+        BudgetReminder budgetReminder = new BudgetReminder(currentUser.getSaveAmount());
 
         Scanner scanner = new Scanner(System.in);
 
@@ -521,7 +519,7 @@ public class Budget {
         selection = scanner.nextInt();
 
         //Make sure accepted integer
-        while (selection <= 0 || selection > 8) {
+        while (selection <= 0 || selection > 9) {
             System.out.print("Invalid input. ");
 
             // Make sure integer
@@ -533,7 +531,9 @@ public class Budget {
             selection = scanner.nextInt();
         }
 
-        scanner.nextLine();
+        if(selection == 9){
+            return;
+        }
 
         System.out.print("Enter the amount you would like to add: $");
         amount = getAmount();
@@ -634,7 +634,9 @@ public class Budget {
             selection = scan.nextInt();
         }
 
-        scan.nextLine();    // Clear input stream
+        if(selection == 9){
+            return;
+        }
 
         System.out.print("Enter the amount you would like to remove: $");
         amount = getAmount();
