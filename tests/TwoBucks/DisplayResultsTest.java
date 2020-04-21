@@ -1,72 +1,55 @@
-/**
- * <h1>DisplayResults</h1>
- *
- * <p>
- * DisplayResults class outputs initial week, previous week, and current week.
- * It also compares each week to the current week.
- *
- * This class implements the Singleton design pattern
- * </p>
- *
- * @author Mike Shea, Sawyer Kisha
- * @version 1.1
- * @since 4/20/20
- */
-
 package TwoBucks;
 
-public class DisplayResults {
+import org.junit.jupiter.api.Test;
 
-    /**
-     * Private static variable
-     */
-    private static DisplayResults displayResults;
+import static org.junit.jupiter.api.Assertions.*;
 
+class DisplayResultsTest {
 
-    /**
-     * Private constructor
-     */
-    private DisplayResults(){
-        DisplayResults displayResults = new DisplayResults();
-    }
+    @Test
+    public void DisplayResultsTest(){
+        // Initialize User object
+        User currentUser = new User();
 
-    /**
-     * Public static method - returns instance of this class
-     * @return displayResults
-     */
+        // Initial Week
+        Week initialWeek = new Week();
+        Budget initialBudget = new Budget();
+        initialBudget.setWageIncome(100.00);
+        initialBudget.setOtherIncome(100.00);
+        initialBudget.setRentExpenses(100.00);
+        initialBudget.setFoodExpenses(100.00);
+        initialBudget.setUtilitiesExpenses(100.00);
+        initialBudget.setEntertainmentExpenses(100.00);
+        initialBudget.setTravelExpenses(100.00);
+        initialWeek.setBudget(initialBudget);
+        currentUser.setInitialWeek(initialWeek);
 
-    public static DisplayResults getInstance(){
-        return displayResults;
-    }
+        // Previous Week
+        Week previousWeek = new Week();
+        Budget previousBudget = new Budget();
+        currentUser.setPreviousWeek(initialWeek);
+        previousBudget.setWageIncome(100.00);
+        previousBudget.setOtherIncome(100.00);
+        previousBudget.setRentExpenses(100.00);
+        previousBudget.setFoodExpenses(100.00);
+        previousBudget.setUtilitiesExpenses(100.00);
+        previousBudget.setEntertainmentExpenses(100.00);
+        previousBudget.setTravelExpenses(100.00);
+        previousWeek.setBudget(initialBudget);
+        currentUser.setPreviousWeek(previousWeek);
 
-    /**
-     * Outputs the currentUser's initial, previous, and current weekly budget
-     * @param currentUser
-     */
-    public static void outputResults(User currentUser){
+        // Current Budget
+        Budget currentBudget = new Budget();
+        currentBudget.setWageIncome(100.00);
+        currentBudget.setOtherIncome(100.00);
+        currentBudget.setRentExpenses(100.00);
+        currentBudget.setFoodExpenses(100.00);
+        currentBudget.setUtilitiesExpenses(100.00);
+        currentBudget.setEntertainmentExpenses(100.00);
+        currentBudget.setTravelExpenses(100.00);
+        currentUser.setBudget(currentBudget);
 
-        System.out.println("Initial Week");
-        System.out.println("===================");
-        currentUser.getInitialWeek().getBudget().DisplayBudget();
-        System.out.println("");
-        CalculateCurrentVsInitial calculateCurrentVsInitial = new CalculateCurrentVsInitial();
-        calculateCurrentVsInitial.CurrentVsInitial(currentUser);
-        System.out.println("");
-
-        System.out.println("Previous Week");
-        System.out.println("===================");
-        currentUser.getPreviousWeek().getBudget().DisplayBudget();
-        System.out.println("");
-        CalculateCurrentVsPrevious calculateCurrentVsPrevious = new CalculateCurrentVsPrevious();
-        calculateCurrentVsPrevious.CurrentVsPrevious(currentUser);
-        System.out.println("");
-
-        System.out.println("Current Week");
-        System.out.println("===================");
-        currentUser.getBudget().DisplayBudget();
-    }
-
-    public static String[] outputResultsString(User currentUser){
+        String[] methodString = DisplayResults.outputResultsString(currentUser);
         String testString[] = {
                 // Initial Week
                 "Initial Week\n", "===================\n",
@@ -123,7 +106,9 @@ public class DisplayResults {
                 "Net change: $" + String.format("%.2f", currentUser.getBudget().getMonthlyNetChange())
 
         };
-        return testString;
-    }
-}
 
+
+        assertArrayEquals(testString, methodString);
+    }
+
+}
