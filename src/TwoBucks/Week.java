@@ -204,6 +204,8 @@ public class Week {
                     }
 
 
+                    currentWeek.calculateScore();
+                    currentWeek.calculateRank();
                     currentWeek.clearBudget();
                     break;
 
