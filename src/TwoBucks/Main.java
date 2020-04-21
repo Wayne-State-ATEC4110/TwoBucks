@@ -154,8 +154,8 @@ public class Main
                 currentUser.getPreviousWeek().toNextWeek(currentUser);
 
                 // Update User Score and Rank
-                currentUser.calculateScore();
-                currentUser.calculateRank();
+                //currentUser.calculateScore();
+                //currentUser.calculateRank();
 
             }
             // Display Results (Current, Previous, Initial Weeks)
