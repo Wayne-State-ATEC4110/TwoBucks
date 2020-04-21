@@ -103,7 +103,7 @@ public class CreateUserProfile {
                 if(user.validEmail(email)){
                     //Greeting with user name, indicates successful profile creation
                     System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName() +
-                            "! Your User Profile has been created.");
+                            "! Your User Profile has been created. You may now load your profile.");
                     FileManagement file = new FileManagement();
                     file.createFile();
 
