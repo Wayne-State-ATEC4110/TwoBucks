@@ -33,28 +33,41 @@ public class Main
         Budget budget = new Budget();
         currentUser.setBudget(new Budget());
 
+        // Boolean to prevent user from proceeding to main menu
+        // unless properly loaded profile from database
+        boolean successfulLoad = false;
+
         /**
          * Intro Menu
          */
-        while (menu.getOption() != 3)
-        {
-            menu.showIntroOptions();
-            menu.selectIntroOption();
+        while(successfulLoad == false) {
+            while (menu.getOption() != 3) {
+                menu.showIntroOptions();
+                menu.selectIntroOption();
 
-            //Create New User Profile
-            if (menu.getOption() == 1) {
-                CreateUserProfile create = new CreateUserProfile();
-                file.saveFile(create.createUser());
-            }
-            //Load User Profile
-            if (menu.getOption() == 2) {
-                LoadUserProfile load = new LoadUserProfile();
-                currentUser = load.loadUser(file.loadFile());
-                break;
-            }
-            //Exiting Application
-            if (menu.getOption() == 3) {
-                System.exit(0);
+                //Create New User Profile
+                if (menu.getOption() == 1) {
+                    CreateUserProfile create = new CreateUserProfile();
+                    file.saveFile(create.createUser());
+                }
+                //Load User Profile
+                if (menu.getOption() == 2) {
+                    LoadUserProfile load = new LoadUserProfile();
+                    currentUser = load.loadUser(file.loadFile());
+
+                    // User properly loaded - allow loop to break
+
+                    if (currentUser.getEmail().equals("failedToLoad")) {
+                        // Failed to load - continue to loop
+                    } else {
+                        successfulLoad = true;
+                    }
+                    break;
+                }
+                //Exiting Application
+                if (menu.getOption() == 3) {
+                    System.exit(0);
+                }
             }
         }
         /**
