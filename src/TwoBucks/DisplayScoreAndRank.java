@@ -46,4 +46,9 @@ public class DisplayScoreAndRank {
         System.out.println("User Rank: " + currentUser.getRank());
         System.out.println("");
     }
+
+    public static String[] outputScoreAndRankString(User currentUser) {
+        String testString[] = {"User Score: " + currentUser.getScore() + " points\n" + "User Rank: Financial Novice"};
+        return testString;
+    }
 }
