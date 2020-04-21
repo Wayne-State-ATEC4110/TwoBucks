@@ -92,7 +92,25 @@ public class Menu
         System.out.println("Select an option: ");
         try
         {
+            //Make sure integer
+            while (!scanner.hasNextInt()) {
+                System.out.print("Invalid input. ");
+                scanner.next();
+            }
             choice = scanner.nextInt();
+
+            //Make sure accepted integer
+            while (choice <= 0 || choice > 3) {
+                System.out.print("Invalid input. ");
+
+                // Make sure integer
+                while (!scanner.hasNextInt()) {
+                    System.out.print("Invalid input. ");
+                    scanner.next();
+                }
+
+                choice = scanner.nextInt();
+            }
         }
         catch(Exception e)
         {
@@ -141,7 +159,25 @@ public class Menu
         System.out.println("Select an option: ");
         try
         {
+            //Make sure integer
+            while (!scanner.hasNextInt()) {
+                System.out.print("Invalid input. ");
+                scanner.next();
+            }
             choice = scanner.nextInt();
+
+            //Make sure accepted integer
+            while (choice <= 0 || choice > 16) {
+                System.out.print("Invalid input. ");
+
+                // Make sure integer
+                while (!scanner.hasNextInt()) {
+                    System.out.print("Invalid input. ");
+                    scanner.next();
+                }
+
+                choice = scanner.nextInt();
+            }
         }
         catch(Exception e)
         {

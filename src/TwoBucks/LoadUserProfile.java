@@ -57,8 +57,11 @@ public class LoadUserProfile {
 
                 //if user not found
                 if (i == users.size()) {
-                    System.out.println("No profile with email " + email + "Try again or create new profile");
-                    break;
+                    System.out.println("No profile with email " + email + " found in TwoBucks database.");
+                    System.out.println("Try again or create new profile.");
+                    User userNotFound = new User();
+                    userNotFound.setEmail("failedToLoad");
+                    return userNotFound;
                 }
 
                 //splits user string into separate pieces to represent User variables.

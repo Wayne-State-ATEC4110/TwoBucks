@@ -15,8 +15,15 @@ package TwoBucks;
 
 public class BudgetReminder {
 
-    EnterFinancialGoals enterFinancialGoals = new EnterFinancialGoals();
-    double spendGoal = enterFinancialGoals.enterSpendGoal();
+    public double spendGoal;
+
+    /**
+     * Argument Constructor to initialize with spending goal
+     * @param spend
+     */
+    public BudgetReminder(double spend){
+        this.spendGoal = spend;
+    }
 
     /**
      * Takes the spendAmt from EnterFinancialGoals.java
